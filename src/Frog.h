@@ -18,11 +18,15 @@ class Frog : public SceneObject
 			
 		~Frog() = default;
 		
-		void update();
+		void update() override;
 		
 		void render() const override;
 		
 		void handleEvent(const SDL_Event& event);
+
+		Collision checkCollision(const SDL_FRect& otherRect) override{
+			// No hace nada por que la rana no debe colisionar con ella misma.
+		}
 		
 		void setLogDirection(const Vector2D<float>& newDirection);
 		

@@ -10,10 +10,10 @@ public:
     
     virtual ~HomedFrog() = default;
     
-    // Al heredar de SceneObject, debe
-    virtual void update() override;
+    // Al heredar de SceneObject, debe tener un override aunque este no haga nada
+    void update() override;
     
-    virtual void render() const override;
+    void render() const override;
     
 };
 

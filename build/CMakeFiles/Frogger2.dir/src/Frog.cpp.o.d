@@ -2,91 +2,17 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /home/malten/Documents/UNI\ RELATED/Frogger2/src/Frog.cpp \
  /usr/include/stdc-predef.h \
  /home/malten/Documents/UNI\ RELATED/Frogger2/src/Frog.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_stdinc.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_platform_defines.h \
- /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/include/stdarg.h \
- /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/include/stdint.h \
- /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
- /usr/include/features.h /usr/include/features-time64.h \
- /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
- /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
- /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
- /usr/include/bits/types.h /usr/include/bits/typesizes.h \
- /usr/include/bits/time64.h /usr/include/bits/wchar.h \
- /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h /usr/include/string.h \
- /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/include/stddef.h \
- /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
- /usr/include/strings.h /usr/include/wchar.h /usr/include/bits/floatn.h \
- /usr/include/bits/floatn-common.h /usr/include/bits/types/wint_t.h \
- /usr/include/bits/types/mbstate_t.h \
- /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
- /usr/include/bits/types/FILE.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_begin_code.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_close_code.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_assert.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_asyncio.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_atomic.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_audio.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_endian.h \
- /usr/include/endian.h /usr/include/bits/endian.h \
- /usr/include/bits/endianness.h /usr/include/bits/byteswap.h \
- /usr/include/bits/uintn-identity.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_error.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_mutex.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_thread.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_properties.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_iostream.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_bits.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_blendmode.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_camera.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_pixels.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_surface.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_rect.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_clipboard.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_cpuinfo.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_dialog.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_video.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_events.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_gamepad.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_guid.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_joystick.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_power.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_sensor.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_keyboard.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_keycode.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_scancode.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_mouse.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_pen.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_touch.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_filesystem.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_gpu.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_haptic.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_hidapi.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_hints.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_init.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_loadso.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_locale.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_log.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_messagebox.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_metal.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_misc.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_platform.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_process.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_render.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_storage.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_system.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_time.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_timer.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_tray.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_version.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_oldnames.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/src/SceneObject.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/src/GameObject.h \
  /home/malten/Documents/UNI\ RELATED/Frogger2/src/Vector2D.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/iostream \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/requires_hosted.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/x86_64-unknown-linux-gnu/bits/c++config.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/x86_64-unknown-linux-gnu/bits/os_defines.h \
+ /usr/include/features.h /usr/include/features-time64.h \
+ /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/long-double.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/x86_64-unknown-linux-gnu/bits/cpu_defines.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/pstl/pstl_config.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/ostream \
@@ -97,6 +23,15 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/memoryfwd.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/postypes.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/cwchar \
+ /usr/include/wchar.h /usr/include/bits/libc-header-start.h \
+ /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/include/stddef.h \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/include/stdarg.h \
+ /usr/include/bits/wchar.h /usr/include/bits/types/wint_t.h \
+ /usr/include/bits/types/mbstate_t.h \
+ /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
+ /usr/include/bits/types/FILE.h /usr/include/bits/types/locale_t.h \
+ /usr/include/bits/types/__locale_t.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/exception \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/exception.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/version.h \
@@ -115,7 +50,9 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/clocale \
  /usr/include/locale.h /usr/include/bits/locale.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/cctype \
- /usr/include/ctype.h \
+ /usr/include/ctype.h /usr/include/bits/types.h \
+ /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
+ /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/ios_base.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/ext/atomicity.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/x86_64-unknown-linux-gnu/bits/gthr.h \
@@ -185,6 +122,8 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/cstdlib \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
  /usr/include/bits/waitstatus.h /usr/include/sys/types.h \
+ /usr/include/bits/stdint-intn.h /usr/include/endian.h \
+ /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
  /usr/include/sys/select.h /usr/include/bits/select.h \
  /usr/include/bits/types/sigset_t.h /usr/include/alloca.h \
  /usr/include/bits/stdlib-float.h \
@@ -225,6 +164,70 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/ostream.tcc \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/istream \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/istream.tcc \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/src/Collision.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_stdinc.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_platform_defines.h \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/lib/gcc/x86_64-unknown-linux-gnu/15.2.0/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h /usr/include/string.h \
+ /usr/include/strings.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_begin_code.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_close_code.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_assert.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_asyncio.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_atomic.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_audio.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_endian.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_error.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_mutex.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_thread.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_properties.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_iostream.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_bits.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_blendmode.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_camera.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_pixels.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_surface.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_rect.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_clipboard.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_cpuinfo.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_dialog.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_video.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_events.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_gamepad.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_guid.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_joystick.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_power.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_sensor.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_keyboard.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_keycode.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_scancode.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_mouse.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_pen.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_touch.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_filesystem.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_gpu.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_haptic.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_hidapi.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_hints.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_init.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_loadso.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_locale.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_log.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_messagebox.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_metal.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_misc.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_platform.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_process.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_render.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_storage.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_system.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_time.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_timer.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_tray.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_version.h \
+ /home/malten/Documents/UNI\ RELATED/Frogger2/libs/SDL3/include/SDL3/SDL_oldnames.h \
  /home/malten/Documents/UNI\ RELATED/Frogger2/src/Texture.h \
  /home/malten/Documents/UNI\ RELATED/Frogger2/src/Game.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/array \
@@ -234,6 +237,11 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/stl_vector.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/stl_bvector.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/vector.tcc \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/list \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/stl_list.h \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/allocated_ptr.h \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/ext/aligned_buffer.h \
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/list.tcc \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/random \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/cmath \
  /usr/include/math.h /usr/include/bits/math-vector.h \
@@ -265,5 +273,4 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/numeric \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/bits/stl_numeric.h \
  /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/pstl/glue_numeric_defs.h \
- /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/pstl/execution_defs.h \
- /home/malten/Documents/UNI\ RELATED/Frogger2/src/Collision.h
+ /var/lib/flatpak/runtime/org.freedesktop.Sdk/x86_64/25.08/13c148466d130b011ca9f8c52708abcbf6cc06f2244fb899d5b03daeb4d0531e/files/include/c++/15.2.0/pstl/execution_defs.h
