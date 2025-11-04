@@ -73,8 +73,8 @@ private:
 	std::list<SceneObject*> sceneObjects;
 	/*std::vector<Vehicle*> vehicles;
 	std::vector<Log*> logs;
-	std::vector<HomedFrog*> homedFrogs;
-	Wasp* wasp;*/
+	std::vector<HomedFrog*> homedFrogs;*/
+	//Wasp* wasp;
 
 	// Puntero a la rana del jugador
 	Frog* frogPointer;
