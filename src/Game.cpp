@@ -87,8 +87,6 @@ bool Game::LoadEntitiesFromFile()
 
 
 
-
-
 //bool Game::LoadEntitiesFromFile(const char* MAP_FILE, std::vector<Vehicle*>& vehicles, std::vector<Log*>& logs, Frog*& frogPointer) 
 //{
 //	std::fstream file(MAP_FILE, std::ios::in);
@@ -128,8 +126,8 @@ Game::Game()
 	: exit(false),
 	frogSpawnPos(Point2D<float>(WINDOW_WIDTH / 2, 405)),
 	frogPointer(nullptr),
-	randomGenerator(time(nullptr)),
-	wasp(nullptr)
+	randomGenerator(time(nullptr))
+	//wasp(nullptr)
 {
 	// Carga SDL y sus bibliotecas auxiliares
 
@@ -179,22 +177,16 @@ Game::Game()
 // Destructor de la clase Game, libera la memoria y cierra SDL
 Game::~Game()
 {
-	delete frogPointer;
 
-	for (Vehicle* v : vehicles) {
-		delete v;
+	for (SceneObject* ele : sceneObjects ) 
+	{
+		delete ele;
 	}
 
-	for (Log* l : logs) {
-		delete l;
-	}
-
-	for (HomedFrog* hf : homedFrogs) {
-		delete hf;
-	}
 	// puede que la avispa ya haya sido eliminada en un update
 	// pero si no, se elimina aquí
-	if (wasp != nullptr) delete wasp;
+
+	//if (wasp != nullptr) delete wasp;
 	
 
 	for (Texture* t : textures) {
@@ -228,27 +220,14 @@ void Game::render() const
 	textures[BACKGROUND]->render();
 
 	// Renderiza los troncos
-	for (const Log* l : logs) {
-		l->Render();
-	}
 
-	// Renderiza los vehículos
-	for (const Vehicle* v : vehicles) {
-		v->Render();
-	}
-
-	// Renderiza las ranas en los nidos
-	for (const HomedFrog* hf : homedFrogs) {
-		hf->Render();
+	for (SceneObject* ele : sceneObjects)
+	{
+		ele->render();
 	}
 
 	// Renderiza las avispas
-	if (wasp != nullptr) wasp->Render();
-	
-
-
-	// Renderiza la rana
-	frogPointer->Render();
+	/*if (wasp != nullptr) wasp->Render();*/
 
 	SDL_RenderPresent(renderer);
 }
@@ -257,32 +236,25 @@ void Game::render() const
 void Game::update()
 {
 	// Actualiza los troncos
-	for (Log* l : logs) {
-		l->Update();
-	}
-
-	// Actualiza los vehículos
-	for (Vehicle* v : vehicles) {
-		v->Update();
+	for (SceneObject* ele : sceneObjects)
+	{
+		ele->update();
 	}
 
 	// Actualiza la avispa
-	if (wasp != nullptr) wasp->Update();
+	//if (wasp != nullptr) wasp->Update();
 	
 
 
-	if (wasp != nullptr && !(wasp->isAlive())) 
+	/*if (wasp != nullptr && !(wasp->isAlive())) 
 	{
 		delete wasp;
 		wasp = nullptr;
-	}
+	}*/
 	
 
 	// Intenta generar una nueva avispa aleatoriamente
 	trySpawnWasp();
-
-	// Actualiza la rana
-	frogPointer->Update();
 }
 
 // Bucle/pipeline principal del juego
@@ -328,29 +300,35 @@ Collision Game::checkCollision(const SDL_FRect& frogRect)
 	}
 
 	// Comprueba colisiones con los troncos
-	for (Log* l : logs) 
+
+	for (SceneObject* ele : sceneObjects)
 	{
-		Collision result = l->checkCollision(frogRect);
-		if (result.collisionType == Collision::Type::PLATFORM) {
-			return result;
-		}
+		ele->checkCollision(frogRect);
 	}
 
-	// Comprueba colisiones con los vehículos
-	for (Vehicle* v : vehicles) {
-		Collision result = v->checkCollision(frogRect);
-		if (result.collisionType == Collision::Type::ENEMY) {
-			return result;	
-		}
-	}
+	//for (Log* l : logs) 
+	//{
+	//	Collision result = l->checkCollision(frogRect);
+	//	if (result.collisionType == Collision::Type::PLATFORM) {
+	//		return result;
+	//	}
+	//}
 
-	if (wasp != nullptr)
-	{
-		Collision result = wasp->checkCollision(frogRect);
-		if (result.collisionType == Collision::Type::ENEMY) {
-			return result;
-		}
-	}
+	//// Comprueba colisiones con los vehículos
+	//for (Vehicle* v : vehicles) {
+	//	Collision result = v->checkCollision(frogRect);
+	//	if (result.collisionType == Collision::Type::ENEMY) {
+	//		return result;	
+	//	}
+	//}
+
+	//if (wasp != nullptr)
+	//{
+	//	Collision result = wasp->checkCollision(frogRect);
+	//	if (result.collisionType == Collision::Type::ENEMY) {
+	//		return result;
+	//	}
+	//}
 
 
 	return Collision(Collision::NONE, Vector2D<float>(0,0));
