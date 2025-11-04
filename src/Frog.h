@@ -1,33 +1,37 @@
-#pragma once
-#include <SDL3/SDL.h>
-#include "Vector2D.h"
-#include "SceneObject.h"
+#ifndef FROG_H
+#define FROG_H
 
-class Game;
-class Texture;
+#include "SceneObject.h"
+#include <SDL3/SDL.h>
+
 
 class Frog : public SceneObject
 {
-private:
-	Game* gamePointer;
-	Texture* texture;
-	Point2D<float> position;
-	Point2D<float> spawnPosition;
-	Vector2D<float> direction;
-	int lives;
-
-public:
-	Frog(Game* game, Texture* texture, Point2D<float> position, int lives);
-
-	void handleEvent(const SDL_Event& event);
-	void Update();
-	void setLogDirection(const Vector2D<float>& newDirection);
-
-	int getLives() const;
-	Point2D<float> getPosition() const;
-	void setPosition(const Point2D<float>& pos);
-
-	void Die();
-
-	void render() const override;
+	private:
+		Point2D<float> spawnPosition;  
+		Vector2D<float> direction;      
+		int lives;                      
+		
+	public:
+		// Este constructor llamará al constructor de SceneObject
+		Frog(Game* game, Texture* texture, Point2D<float> position, int lives);
+			
+		~Frog() = default;
+		
+		void update();
+		
+		void render() const override;
+		
+		void handleEvent(const SDL_Event& event);
+		
+		void setLogDirection(const Vector2D<float>& newDirection);
+		
+		int getLives() const;
+		Point2D<float> getPosition() const;
+		
+		void setPosition(const Point2D<float>& pos);
+		
+		void Die();
 };
+
+#endif // FROG_H

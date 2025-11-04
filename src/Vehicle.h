@@ -1,26 +1,21 @@
-#pragma once
-#include <SDL3/SDL.h>
-#include "Vector2D.h"
-#include "Collision.h"
+#ifndef VEHICLE_H
+#define VEHICLE_H
 
-class Game;
-class Texture;
+#include "Crosser.h"
 
-class Vehicle
+class Vehicle : public Crosser
 {
-private:
-	Game* gamePointer;
-	Texture* texture;
-	Point2D<float> position;
-	Vector2D<float> velocity;
-
 public:
-	Vehicle(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel);
-
-	Point2D<float> getPosition() const;
-	Vector2D<float> getVelocity() const;
-
-	void Render() const;
-	void Update();
-	Collision checkCollision(const SDL_FRect& otherFRect);
+    Vehicle(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel);
+    
+    ~Vehicle() = default;
+    
+    // Hereda update() de Crosser
+    
+    // checkCollision debe hacer override para hacer un return ENEMY collision type
+     Collision checkCollision(const SDL_FRect& otherRect) override;
+    
+    // Hereda render() de SceneObject
 };
+
+#endif // VEHICLE_H

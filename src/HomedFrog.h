@@ -1,21 +1,20 @@
-#pragma once
-#include <SDL3/SDL.h>
-#include "Vector2D.h"
+#ifndef HOMEDFROG_H
+#define HOMEDFROG_H
 
-class Game;
-class Texture;
+#include "SceneObject.h"
 
-class HomedFrog
+class HomedFrog : public SceneObject
 {
-private:
-	Game* gamePointer;
-	Texture* texture;
-	Point2D<float> position;
-
 public:
-	HomedFrog(Game* game, Texture* texture, Point2D<float> pos);
-
-	Point2D<float> getPosition() const;
-
-	void Render() const;
+    HomedFrog(Game* game, Texture* texture, Point2D<float> pos);
+    
+    virtual ~HomedFrog() = default;
+    
+    // Al heredar de SceneObject, debe
+    virtual void update() override;
+    
+    virtual void render() const override;
+    
 };
+
+#endif // HOMEDFROG_H

@@ -1,26 +1,19 @@
-#pragma once
-#include <SDL3/SDL.h>
-#include "Vector2D.h"
-#include "Collision.h"
+#ifndef LOG_H
+#define LOG_H
 
-class Game;
-class Texture;
+#include "Platform.h"
 
-class Log
+class Log : public Platform
 {
-private:
-	Game* gamePointer;
-	Texture* texture;
-	Point2D<float> position;
-	Vector2D<float> velocity;
-
 public:
-	Log(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel);
+    Log(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel);
+    
+    virtual ~Log() = default;
+    
+    // Hereda update() de Crosser
+    // Hereda checkCollision() de Platform
+    // Hereda render() de SceneObject
 
-	Point2D<float> getPosition() const;
-	Vector2D<float> getVelocity() const;
-
-	void Render() const;
-	void Update();
-	Collision checkCollision(const SDL_FRect& otherFRect);
 };
+
+#endif // LOG_H
