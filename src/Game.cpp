@@ -4,14 +4,15 @@
 #include <ctime>
 #include <SDL3_image/SDL_image.h>
 #include <algorithm>
+#include <fstream>
+#include <limits>
 #include "Texture.h"
 #include "Frog.h"
 #include "HomedFrog.h"
 #include "Vehicle.h"
 #include "Log.h"
 #include "Wasp.h"
-#include <fstream>
-#include <limits>
+#include "SceneObject.h"
 
 using namespace std;
 
@@ -47,7 +48,8 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 // @param vehicles Vector donde se almacenarán los vehículos cargados
 // @param logs Vector donde se almacenarán los troncos cargados
 // @param frogPointer Puntero donde se almacenará la rana del jugador
-bool Game::LoadEntitiesFromFile(const char* MAP_FILE, std::vector<Vehicle*>& vehicles, std::vector<Log*>& logs, Frog*& frogPointer) 
+
+bool Game::LoadEntitiesFromFile() 
 {
 	std::fstream file(MAP_FILE, std::ios::in);
 	if (file.is_open()) // Se encontró el archivo correctamente
@@ -61,15 +63,16 @@ bool Game::LoadEntitiesFromFile(const char* MAP_FILE, std::vector<Vehicle*>& veh
 			switch (entidad) {
 			case 'V':
 				file >> Xpos >> Ypos >> Xvel >> TextureType;
-				vehicles.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0))); 
+				sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0))); 
 				break;
 			case 'L':
 				file >> Xpos >> Ypos >> Xvel >> TextureType;
-				logs.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0))); 
+				sceneObjects.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
 				break;
 			case 'F':
 				file >> Xpos >> Ypos >> FrogLives;
 				frogPointer = new Frog(this, textures[FROG], Point2D<float>(Xpos, Ypos), FrogLives);
+				sceneObjects.push_back(frogPointer);
 				break;
 			default: // Cuando detecta un "#"
 				file.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora el resto de la línea
@@ -80,6 +83,45 @@ bool Game::LoadEntitiesFromFile(const char* MAP_FILE, std::vector<Vehicle*>& veh
 	}
 	return false; // si no encuentra el archivo o no lo logra abrir
 }
+
+
+
+
+
+
+//bool Game::LoadEntitiesFromFile(const char* MAP_FILE, std::vector<Vehicle*>& vehicles, std::vector<Log*>& logs, Frog*& frogPointer) 
+//{
+//	std::fstream file(MAP_FILE, std::ios::in);
+//	if (file.is_open()) // Se encontró el archivo correctamente
+//	{
+//		char entidad; // "V" , "L" , "F" o "#"
+//		float Xpos, Ypos, Xvel;
+//		int TextureType;
+//		int FrogLives;
+//		while (file >> entidad) // Mientras que el stream pueda leer (aun queda archivo por leer)
+//		{
+//			switch (entidad) {
+//			case 'V':
+//				file >> Xpos >> Ypos >> Xvel >> TextureType;
+//				vehicles.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0))); 
+//				break;
+//			case 'L':
+//				file >> Xpos >> Ypos >> Xvel >> TextureType;
+//				logs.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0))); 
+//				break;
+//			case 'F':
+//				file >> Xpos >> Ypos >> FrogLives;
+//				frogPointer = new Frog(this, textures[FROG], Point2D<float>(Xpos, Ypos), FrogLives);
+//				break;
+//			default: // Cuando detecta un "#"
+//				file.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignora el resto de la línea
+//				break;
+//			}
+//		}
+//		return true; // si todo va bien asd asdasdsdasdasdasdasd
+//	}
+//	return false; // si no encuentra el archivo o no lo logra abrir
+//}
 
 // Constructor de la clase Game, inicializa SDL, carga texturas y entidades
 Game::Game()
@@ -127,7 +169,7 @@ Game::Game()
 	}
 
 	
-	LoadEntitiesFromFile(MAP_FILE, vehicles,logs, frogPointer);
+	LoadEntitiesFromFile();
 
 
 	// Configura que se pueden utilizar capas translúcidas

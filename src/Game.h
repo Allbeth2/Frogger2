@@ -5,6 +5,7 @@
 #include <array>
 #include <istream>
 #include <vector>
+#include <list>
 #include <random>
 #include "Vector2D.h"
 
@@ -16,6 +17,7 @@ class Log;
 class HomedFrog;
 class Wasp;
 class Collision;
+class SceneObject;
 
 
 /**
@@ -67,10 +69,12 @@ private:
 	std::array<Texture*, NUM_TEXTURES> textures;
 
 	// Vectores de objetos del juego
-	std::vector<Vehicle*> vehicles;
+
+	std::list<SceneObject*> sceneObjects;
+	/*std::vector<Vehicle*> vehicles;
 	std::vector<Log*> logs;
 	std::vector<HomedFrog*> homedFrogs;
-	Wasp* wasp;
+	Wasp* wasp;*/
 
 	// Puntero a la rana del jugador
 	Frog* frogPointer;
@@ -93,7 +97,7 @@ private:
 	// Posición inicial de spawn de la rana
 	Point2D<float> frogSpawnPos;
 
-	bool LoadEntitiesFromFile(const char* MAP_FILE, std::vector<Vehicle*>&, std::vector<Log*>&, Frog*&);
+	bool LoadEntitiesFromFile();
 
 public:
 	Game();
