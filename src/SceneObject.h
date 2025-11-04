@@ -24,8 +24,7 @@ protected:
 
 public:
     virtual ~SceneObject() = default;
-    virtual void render() const override;
-    virtual void update() override = 0;
+    void render() const override;
     virtual Collision checkCollision(const SDL_FRect& otherRect);
 };
 

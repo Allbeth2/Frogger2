@@ -1,11 +1,13 @@
 #pragma once
 #include <SDL3/SDL.h>
 #include "Vector2D.h"
+#include "SceneObject.h"
 
 class Game;
 class Texture;
 
-class Frog {
+class Frog : public SceneObject
+{
 private:
 	Game* gamePointer;
 	Texture* texture;
@@ -27,5 +29,5 @@ public:
 
 	void Die();
 
-	void Render() const;
+	void render() const override;
 };
