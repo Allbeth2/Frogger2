@@ -1,6 +1,6 @@
-CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
- /home/malten/Documents/Frogger2/src/Frog.cpp /usr/include/stdc-predef.h \
- /home/malten/Documents/Frogger2/src/Frog.h \
+CMakeFiles/Frogger2.dir/src/Crosser.cpp.o: \
+ /home/malten/Documents/Frogger2/src/Crosser.cpp \
+ /usr/include/stdc-predef.h /home/malten/Documents/Frogger2/src/Crosser.h \
  /home/malten/Documents/Frogger2/src/SceneObject.h \
  /home/malten/Documents/Frogger2/src/GameObject.h \
  /home/malten/Documents/Frogger2/src/Vector2D.h \
@@ -172,7 +172,6 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /usr/include/SDL3/SDL_time.h /usr/include/SDL3/SDL_timer.h \
  /usr/include/SDL3/SDL_tray.h /usr/include/SDL3/SDL_version.h \
  /usr/include/SDL3/SDL_oldnames.h \
- /home/malten/Documents/Frogger2/src/Texture.h \
  /home/malten/Documents/Frogger2/src/Game.h /usr/include/c++/15/array \
  /usr/include/c++/15/compare /usr/include/c++/15/vector \
  /usr/include/c++/15/bits/stl_uninitialized.h \

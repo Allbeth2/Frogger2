@@ -1,28 +1,17 @@
 #include "HomedFrog.h"
-#include "Game.h"
 #include "Texture.h"
 
-//Constructir 
-HomedFrog::HomedFrog(Game* game, Texture* texture, Point2D<float> pos) :
-	gamePointer(game),
-	texture(texture),
-	position(pos)
+HomedFrog::HomedFrog(Game* game, Texture* texture, Point2D<float> pos)
+    : SceneObject(game, texture, pos, texture->getFrameWidth(), texture->getFrameHeight())
 {
 }
 
-Point2D<float> HomedFrog::getPosition() const
+void HomedFrog::update()
 {
-	return position;
+    // HomedFrog does not update.
 }
 
-void HomedFrog::Render() const
+void HomedFrog::render() const
 {
-	SDL_FRect targetFRect{
-		position.getX(),
-		position.getY(),
-		texture->getFrameWidth(),
-		texture->getFrameHeight()
-	};
-	texture->renderFrame(targetFRect, 0, 0);
+    SceneObject::render();
 }
-

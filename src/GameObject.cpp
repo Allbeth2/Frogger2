@@ -1,6 +1,5 @@
-#include "Game.h"
+#include "GameObject.h"
 
-
-Game::Game(Game* game){
-    gamePointer = game;
+GameObject::GameObject(Game* game) : gamePointer(game)
+{
 }

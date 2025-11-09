@@ -36,3 +36,8 @@ Collision SceneObject::checkCollision(const SDL_FRect& otherRect)
     }
     return Collision(Collision::Type::NONE, Vector2D<float>(0, 0));
 }
+
+void SceneObject::setPosition(const Point2D<float>& pos)
+{
+    position = pos;
+}

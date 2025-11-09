@@ -1,6 +1,7 @@
-CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
- /home/malten/Documents/Frogger2/src/Frog.cpp /usr/include/stdc-predef.h \
- /home/malten/Documents/Frogger2/src/Frog.h \
+CMakeFiles/Frogger2.dir/src/HomedFrog.cpp.o: \
+ /home/malten/Documents/Frogger2/src/HomedFrog.cpp \
+ /usr/include/stdc-predef.h \
+ /home/malten/Documents/Frogger2/src/HomedFrog.h \
  /home/malten/Documents/Frogger2/src/SceneObject.h \
  /home/malten/Documents/Frogger2/src/GameObject.h \
  /home/malten/Documents/Frogger2/src/Vector2D.h \
@@ -172,40 +173,4 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /usr/include/SDL3/SDL_time.h /usr/include/SDL3/SDL_timer.h \
  /usr/include/SDL3/SDL_tray.h /usr/include/SDL3/SDL_version.h \
  /usr/include/SDL3/SDL_oldnames.h \
- /home/malten/Documents/Frogger2/src/Texture.h \
- /home/malten/Documents/Frogger2/src/Game.h /usr/include/c++/15/array \
- /usr/include/c++/15/compare /usr/include/c++/15/vector \
- /usr/include/c++/15/bits/stl_uninitialized.h \
- /usr/include/c++/15/bits/stl_vector.h \
- /usr/include/c++/15/bits/stl_bvector.h \
- /usr/include/c++/15/bits/vector.tcc /usr/include/c++/15/list \
- /usr/include/c++/15/bits/stl_list.h \
- /usr/include/c++/15/bits/allocated_ptr.h \
- /usr/include/c++/15/ext/aligned_buffer.h \
- /usr/include/c++/15/bits/list.tcc /usr/include/c++/15/random \
- /usr/include/c++/15/cmath /usr/include/math.h \
- /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
- /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
- /usr/include/bits/fp-fast.h /usr/include/bits/mathcalls-macros.h \
- /usr/include/bits/mathcalls-helper-functions.h \
- /usr/include/bits/mathcalls.h /usr/include/bits/mathcalls-narrow.h \
- /usr/include/bits/iscanonical.h /usr/include/c++/15/bits/specfun.h \
- /usr/include/c++/15/limits /usr/include/c++/15/tr1/gamma.tcc \
- /usr/include/c++/15/tr1/special_function_util.h \
- /usr/include/c++/15/tr1/bessel_function.tcc \
- /usr/include/c++/15/tr1/beta_function.tcc \
- /usr/include/c++/15/tr1/ell_integral.tcc \
- /usr/include/c++/15/tr1/exp_integral.tcc \
- /usr/include/c++/15/tr1/hypergeometric.tcc \
- /usr/include/c++/15/tr1/legendre_function.tcc \
- /usr/include/c++/15/tr1/modified_bessel_func.tcc \
- /usr/include/c++/15/tr1/poly_hermite.tcc \
- /usr/include/c++/15/tr1/poly_laguerre.tcc \
- /usr/include/c++/15/tr1/riemann_zeta.tcc /usr/include/c++/15/cstdint \
- /usr/include/c++/15/bits/random.h \
- /usr/include/c++/15/bits/uniform_int_dist.h \
- /usr/include/c++/15/x86_64-redhat-linux/bits/opt_random.h \
- /usr/include/c++/15/bits/random.tcc /usr/include/c++/15/numeric \
- /usr/include/c++/15/bits/stl_numeric.h \
- /usr/include/c++/15/pstl/glue_numeric_defs.h \
- /usr/include/c++/15/pstl/execution_defs.h
+ /home/malten/Documents/Frogger2/src/Texture.h

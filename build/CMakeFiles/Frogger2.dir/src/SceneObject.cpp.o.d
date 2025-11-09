@@ -1,6 +1,6 @@
-CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
- /home/malten/Documents/Frogger2/src/Frog.cpp /usr/include/stdc-predef.h \
- /home/malten/Documents/Frogger2/src/Frog.h \
+CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o: \
+ /home/malten/Documents/Frogger2/src/SceneObject.cpp \
+ /usr/include/stdc-predef.h \
  /home/malten/Documents/Frogger2/src/SceneObject.h \
  /home/malten/Documents/Frogger2/src/GameObject.h \
  /home/malten/Documents/Frogger2/src/Vector2D.h \

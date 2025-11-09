@@ -1,62 +1,42 @@
-﻿#include "Wasp.h"
+#include "Wasp.h"
 #include "Game.h"
 #include "Texture.h"
+#include "Collision.h"
 
-Wasp::Wasp(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime) :
-	gamePointer(game),
-	texture(texture),
-	position(pos),
-	velocity(vel),
-	deathTime(SDL_GetTicks() + lifetime) // Tiempo actual + tiempo de vida
+Wasp::Wasp(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime)
+    : SceneObject(game, texture, pos, texture->getFrameWidth(), texture->getFrameHeight()),
+      velocity(vel),
+      deathTime(SDL_GetTicks() + lifetime)
 {
 }
 
-Point2D<float> Wasp::getPosition() const
+void Wasp::update()
 {
-	return position;
-}
-
-Vector2D<float> Wasp::getVelocity() const
-{
-	return velocity;
+    position = position + velocity * Game::DELTATIME;
+    // The logic for self-destruction will be handled by the Game class
 }
 
 bool Wasp::isAlive() const
 {
-	return SDL_GetTicks() < deathTime;
+    return SDL_GetTicks() < deathTime;
 }
 
-void Wasp::Update()
+Collision Wasp::checkCollision(const SDL_FRect& otherRect)
 {
-	Point2D<float> actualPos = position;
-	Point2D<float> newPos = actualPos + Vector2D<float>(velocity.getX(), velocity.getY());
-	position = newPos;
-
+    SDL_FRect myRect = getBoundingBox();
+    if (SDL_HasRectIntersectionFloat(&myRect, &otherRect))
+    {
+        return Collision(Collision::Type::ENEMY, Vector2D<float>(0, 0));
+    }
+    return Collision(Collision::Type::NONE, Vector2D<float>(0, 0));
 }
 
-Collision Wasp::checkCollision(const SDL_FRect& otherFRect)
+void Wasp::render() const
 {
-	SDL_FRect waspRect{
-		position.getX(),
-		position.getY(),
-		texture->getFrameWidth(),
-		texture->getFrameHeight()
-	};
-
-	if (SDL_HasRectIntersectionFloat(&waspRect, &otherFRect)) {
-		return Collision(Collision::Type::ENEMY, Vector2D<float>(0, 0));
-	}
-
-	return Collision(Collision::Type::NONE, Vector2D<float>(0, 0));
+    SceneObject::render();
 }
 
-void Wasp::Render() const
+void Wasp::setAnchor(std::list<SceneObject*>::iterator it)
 {
-	SDL_FRect targetFRect{
-		position.getX(),
-		position.getY(),
-		texture->getFrameWidth(),
-		texture->getFrameHeight()
-	};
-	texture->renderFrame(targetFRect, 0, 0);
+    anchor = it;
 }

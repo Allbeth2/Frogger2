@@ -1,6 +1,6 @@
-CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
- /home/malten/Documents/Frogger2/src/Frog.cpp /usr/include/stdc-predef.h \
- /home/malten/Documents/Frogger2/src/Frog.h \
+CMakeFiles/Frogger2.dir/src/Wasp.cpp.o: \
+ /home/malten/Documents/Frogger2/src/Wasp.cpp /usr/include/stdc-predef.h \
+ /home/malten/Documents/Frogger2/src/Wasp.h \
  /home/malten/Documents/Frogger2/src/SceneObject.h \
  /home/malten/Documents/Frogger2/src/GameObject.h \
  /home/malten/Documents/Frogger2/src/Vector2D.h \
@@ -171,18 +171,17 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /usr/include/SDL3/SDL_storage.h /usr/include/SDL3/SDL_system.h \
  /usr/include/SDL3/SDL_time.h /usr/include/SDL3/SDL_timer.h \
  /usr/include/SDL3/SDL_tray.h /usr/include/SDL3/SDL_version.h \
- /usr/include/SDL3/SDL_oldnames.h \
- /home/malten/Documents/Frogger2/src/Texture.h \
+ /usr/include/SDL3/SDL_oldnames.h /usr/include/c++/15/list \
+ /usr/include/c++/15/bits/stl_list.h \
+ /usr/include/c++/15/bits/allocated_ptr.h \
+ /usr/include/c++/15/ext/aligned_buffer.h \
+ /usr/include/c++/15/bits/list.tcc \
  /home/malten/Documents/Frogger2/src/Game.h /usr/include/c++/15/array \
  /usr/include/c++/15/compare /usr/include/c++/15/vector \
  /usr/include/c++/15/bits/stl_uninitialized.h \
  /usr/include/c++/15/bits/stl_vector.h \
  /usr/include/c++/15/bits/stl_bvector.h \
- /usr/include/c++/15/bits/vector.tcc /usr/include/c++/15/list \
- /usr/include/c++/15/bits/stl_list.h \
- /usr/include/c++/15/bits/allocated_ptr.h \
- /usr/include/c++/15/ext/aligned_buffer.h \
- /usr/include/c++/15/bits/list.tcc /usr/include/c++/15/random \
+ /usr/include/c++/15/bits/vector.tcc /usr/include/c++/15/random \
  /usr/include/c++/15/cmath /usr/include/math.h \
  /usr/include/bits/math-vector.h /usr/include/bits/libm-simd-decl-stubs.h \
  /usr/include/bits/flt-eval-method.h /usr/include/bits/fp-logb.h \
@@ -208,4 +207,5 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /usr/include/c++/15/bits/random.tcc /usr/include/c++/15/numeric \
  /usr/include/c++/15/bits/stl_numeric.h \
  /usr/include/c++/15/pstl/glue_numeric_defs.h \
- /usr/include/c++/15/pstl/execution_defs.h
+ /usr/include/c++/15/pstl/execution_defs.h \
+ /home/malten/Documents/Frogger2/src/Texture.h

@@ -20,7 +20,6 @@ protected:
     float height;
     Texture* texture;
     SceneObject(Game* game, Texture* texture, Point2D<float> pos, float w, float h);
-    SDL_FRect getBoundingBox() const;
 
 public:
     virtual ~SceneObject() = default;
@@ -28,6 +27,7 @@ public:
     void update() override;
     virtual Collision checkCollision(const SDL_FRect& otherRect);
     SDL_FRect getBoundingBox() const;
+    void setPosition(const Point2D<float>& pos);
 };
 
 #endif // SCENEOBJECT_H

@@ -1,3 +1,3 @@
-/home/malten/Documents/UNI RELATED/Frogger2/build/CMakeFiles/Frogger2.dir
-/home/malten/Documents/UNI RELATED/Frogger2/build/CMakeFiles/edit_cache.dir
-/home/malten/Documents/UNI RELATED/Frogger2/build/CMakeFiles/rebuild_cache.dir
+/home/malten/Documents/Frogger2/build/CMakeFiles/Frogger2.dir
+/home/malten/Documents/Frogger2/build/CMakeFiles/edit_cache.dir
+/home/malten/Documents/Frogger2/build/CMakeFiles/rebuild_cache.dir

@@ -13,7 +13,6 @@ class Frog : public SceneObject
 		int lives;                      
 		
 	public:
-		// Este constructor llamará al constructor de SceneObject
 		Frog(Game* game, Texture* texture, Point2D<float> position, int lives);
 			
 		~Frog() = default;
@@ -24,16 +23,11 @@ class Frog : public SceneObject
 		
 		void handleEvent(const SDL_Event& event);
 
-		Collision checkCollision(const SDL_FRect& otherRect) override{
-			// No hace nada por que la rana no debe colisionar con ella misma.
-		}
+		Collision checkCollision(const SDL_FRect& otherRect) override;
 		
 		void setLogDirection(const Vector2D<float>& newDirection);
 		
 		int getLives() const;
-		Point2D<float> getPosition() const;
-		
-		void setPosition(const Point2D<float>& pos);
 		
 		void Die();
 };
