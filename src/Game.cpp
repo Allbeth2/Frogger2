@@ -11,6 +11,7 @@
 #include "HomedFrog.h"
 #include "Vehicle.h"
 #include "Log.h"
+#include "TurtleGroup.h"
 #include "Wasp.h"
 #include "SceneObject.h"
 #include "Collision.h"
@@ -41,6 +42,7 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	TextureSpec{"car5.png", 1, 1},
 	TextureSpec{"log1.png", 1, 1},
 	TextureSpec{"log2.png", 1, 1},
+	TextureSpec{"turtle.png", 1, 7},
 	TextureSpec{"wasp.png", 1, 1},
 };
 
@@ -52,17 +54,24 @@ bool Game::LoadEntitiesFromFile()
 		char entidad;
 		float Xpos, Ypos, Xvel;
 		int TextureType;
+		int turtleCount;
+		bool Sink;
 		int FrogLives;
 		while (file >> entidad)
 		{
 			switch (entidad) {
 			case 'V':
 				file >> Xpos >> Ypos >> Xvel >> TextureType;
+				
 				sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0))); 
 				break;
 			case 'L':
 				file >> Xpos >> Ypos >> Xvel >> TextureType;
 				sceneObjects.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
+				break;
+			case 'T':
+				file >> Xpos >> Ypos >> Xvel >> turtleCount >> Sink;
+				sceneObjects.push_back(new TurtleGroup(this, textures[TURTLE], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0), turtleCount, Sink));
 				break;
 			case 'F':
 				file >> Xpos >> Ypos >> FrogLives;

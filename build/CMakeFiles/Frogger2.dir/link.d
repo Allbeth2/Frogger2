@@ -11,6 +11,7 @@ Frogger2: \
   CMakeFiles/Frogger2.dir/src/Platform.cpp.o \
   CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o \
   CMakeFiles/Frogger2.dir/src/Texture.cpp.o \
+  CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o \
   CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o \
   CMakeFiles/Frogger2.dir/src/Wasp.cpp.o \
   CMakeFiles/Frogger2.dir/src/main.cpp.o \
@@ -67,6 +68,8 @@ CMakeFiles/Frogger2.dir/src/Platform.cpp.o:
 CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o:
 
 CMakeFiles/Frogger2.dir/src/Texture.cpp.o:
+
+CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o:
 
 CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o:
 

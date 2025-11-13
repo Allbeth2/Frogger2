@@ -18,6 +18,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o.d"
   "CMakeFiles/Frogger2.dir/src/Texture.cpp.o"
   "CMakeFiles/Frogger2.dir/src/Texture.cpp.o.d"
+  "CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o"
+  "CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o.d"
   "CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o"
   "CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o.d"
   "CMakeFiles/Frogger2.dir/src/Wasp.cpp.o"

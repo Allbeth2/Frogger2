@@ -17,6 +17,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/malten/Documents/Frogger2/src/Platform.cpp" "CMakeFiles/Frogger2.dir/src/Platform.cpp.o" "gcc" "CMakeFiles/Frogger2.dir/src/Platform.cpp.o.d"
   "/home/malten/Documents/Frogger2/src/SceneObject.cpp" "CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o" "gcc" "CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o.d"
   "/home/malten/Documents/Frogger2/src/Texture.cpp" "CMakeFiles/Frogger2.dir/src/Texture.cpp.o" "gcc" "CMakeFiles/Frogger2.dir/src/Texture.cpp.o.d"
+  "/home/malten/Documents/Frogger2/src/TurtleGroup.cpp" "CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o" "gcc" "CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o.d"
   "/home/malten/Documents/Frogger2/src/Vehicle.cpp" "CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o" "gcc" "CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o.d"
   "/home/malten/Documents/Frogger2/src/Wasp.cpp" "CMakeFiles/Frogger2.dir/src/Wasp.cpp.o" "gcc" "CMakeFiles/Frogger2.dir/src/Wasp.cpp.o.d"
   "/home/malten/Documents/Frogger2/src/main.cpp" "CMakeFiles/Frogger2.dir/src/main.cpp.o" "gcc" "CMakeFiles/Frogger2.dir/src/main.cpp.o.d"

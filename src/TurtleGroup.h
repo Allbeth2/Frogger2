@@ -1,29 +1,27 @@
 #ifndef TURTLEGROUP_H
 #define TURTLEGROUP_H
 
-#include "Platform.h"
-#include <SDL3/SDL.h>
+#include <istream>
 
-/**
- * Represents a group of turtles that swim upstream.
- */
+#include "Platform.h"
+
 class TurtleGroup : public Platform
 {
-private:
-    int numTurtles;
-    bool canDive;
-    bool isSubmerged;
-    int nextStateChange;
-    int diveInterval;
+
+    int turtleCount;
+    bool Sinking;
     
+
 public:
-    TurtleGroup(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int numTurtles, bool canDive);
+    TurtleGroup(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool Sinking);
+    
     virtual ~TurtleGroup() = default;
-    virtual void update() override;
-    virtual Collision checkCollision(const SDL_FRect& otherRect) override;
-    virtual void render() const override;
-private:
-    void updateDivingState();
+    
+    // Hereda update() de Crosser
+    // Hereda checkCollision() de Platform
+    void render() const override;
+
+
 };
 
 #endif // TURTLEGROUP_H

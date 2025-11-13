@@ -1,6 +1,7 @@
 #ifndef FROG_H
 #define FROG_H
 
+#include <istream>
 #include "SceneObject.h"
 #include <SDL3/SDL.h>
 

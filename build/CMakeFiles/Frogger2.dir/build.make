@@ -198,10 +198,24 @@ CMakeFiles/Frogger2.dir/src/Texture.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Frogger2.dir/src/Texture.cpp.s"
 	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/malten/Documents/Frogger2/src/Texture.cpp -o CMakeFiles/Frogger2.dir/src/Texture.cpp.s
 
+CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o: CMakeFiles/Frogger2.dir/flags.make
+CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o: /home/malten/Documents/Frogger2/src/TurtleGroup.cpp
+CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o: CMakeFiles/Frogger2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o -MF CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o.d -o CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o -c /home/malten/Documents/Frogger2/src/TurtleGroup.cpp
+
+CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.i"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/malten/Documents/Frogger2/src/TurtleGroup.cpp > CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.i
+
+CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.s"
+	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/malten/Documents/Frogger2/src/TurtleGroup.cpp -o CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.s
+
 CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o: CMakeFiles/Frogger2.dir/flags.make
 CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o: /home/malten/Documents/Frogger2/src/Vehicle.cpp
 CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o: CMakeFiles/Frogger2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o"
 	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o -MF CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o.d -o CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o -c /home/malten/Documents/Frogger2/src/Vehicle.cpp
 
 CMakeFiles/Frogger2.dir/src/Vehicle.cpp.i: cmake_force
@@ -215,7 +229,7 @@ CMakeFiles/Frogger2.dir/src/Vehicle.cpp.s: cmake_force
 CMakeFiles/Frogger2.dir/src/Wasp.cpp.o: CMakeFiles/Frogger2.dir/flags.make
 CMakeFiles/Frogger2.dir/src/Wasp.cpp.o: /home/malten/Documents/Frogger2/src/Wasp.cpp
 CMakeFiles/Frogger2.dir/src/Wasp.cpp.o: CMakeFiles/Frogger2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Frogger2.dir/src/Wasp.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Frogger2.dir/src/Wasp.cpp.o"
 	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Frogger2.dir/src/Wasp.cpp.o -MF CMakeFiles/Frogger2.dir/src/Wasp.cpp.o.d -o CMakeFiles/Frogger2.dir/src/Wasp.cpp.o -c /home/malten/Documents/Frogger2/src/Wasp.cpp
 
 CMakeFiles/Frogger2.dir/src/Wasp.cpp.i: cmake_force
@@ -229,7 +243,7 @@ CMakeFiles/Frogger2.dir/src/Wasp.cpp.s: cmake_force
 CMakeFiles/Frogger2.dir/src/main.cpp.o: CMakeFiles/Frogger2.dir/flags.make
 CMakeFiles/Frogger2.dir/src/main.cpp.o: /home/malten/Documents/Frogger2/src/main.cpp
 CMakeFiles/Frogger2.dir/src/main.cpp.o: CMakeFiles/Frogger2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Frogger2.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Frogger2.dir/src/main.cpp.o"
 	/usr/lib64/ccache/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Frogger2.dir/src/main.cpp.o -MF CMakeFiles/Frogger2.dir/src/main.cpp.o.d -o CMakeFiles/Frogger2.dir/src/main.cpp.o -c /home/malten/Documents/Frogger2/src/main.cpp
 
 CMakeFiles/Frogger2.dir/src/main.cpp.i: cmake_force
@@ -251,6 +265,7 @@ Frogger2_OBJECTS = \
 "CMakeFiles/Frogger2.dir/src/Platform.cpp.o" \
 "CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o" \
 "CMakeFiles/Frogger2.dir/src/Texture.cpp.o" \
+"CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o" \
 "CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o" \
 "CMakeFiles/Frogger2.dir/src/Wasp.cpp.o" \
 "CMakeFiles/Frogger2.dir/src/main.cpp.o"
@@ -267,13 +282,14 @@ Frogger2: CMakeFiles/Frogger2.dir/src/Log.cpp.o
 Frogger2: CMakeFiles/Frogger2.dir/src/Platform.cpp.o
 Frogger2: CMakeFiles/Frogger2.dir/src/SceneObject.cpp.o
 Frogger2: CMakeFiles/Frogger2.dir/src/Texture.cpp.o
+Frogger2: CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o
 Frogger2: CMakeFiles/Frogger2.dir/src/Vehicle.cpp.o
 Frogger2: CMakeFiles/Frogger2.dir/src/Wasp.cpp.o
 Frogger2: CMakeFiles/Frogger2.dir/src/main.cpp.o
 Frogger2: CMakeFiles/Frogger2.dir/build.make
 Frogger2: CMakeFiles/Frogger2.dir/compiler_depend.ts
 Frogger2: CMakeFiles/Frogger2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable Frogger2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/malten/Documents/Frogger2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable Frogger2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Frogger2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

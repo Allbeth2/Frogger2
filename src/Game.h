@@ -45,11 +45,14 @@ public:
 
 	//Constantes para representar las separaciones entre carretera-agua y agua-nido
 	static constexpr int waterHeight = 182;
-	static constexpr int nestHeight = 53;
+	static constexpr int nestHeight = 21;
 
 	static constexpr int minWaspLifetime = 3000;
 	static constexpr int maxWaspLifetime = 8000;
 	static constexpr int waspSpawnChance = 1;
+
+
+	static constexpr int turtleFrameWidth = 30;
 
 
 
@@ -59,6 +62,7 @@ public:
 		FROG,
 		CAR1, CAR2, CAR3, CAR4, CAR5,
 		LOG1, LOG2,
+		TURTLE,
 		WASP,
 		NUM_TEXTURES
 	};

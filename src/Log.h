@@ -1,6 +1,7 @@
 #ifndef LOG_H
 #define LOG_H
 
+#include <istream>
 #include "Platform.h"
 
 class Log : public Platform

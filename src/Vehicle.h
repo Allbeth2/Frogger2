@@ -1,6 +1,7 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
+#include <istream>
 #include "Crosser.h"
 
 class Vehicle : public Crosser
@@ -16,6 +17,7 @@ public:
      Collision checkCollision(const SDL_FRect& otherRect) override;
     
     // Hereda render() de SceneObject
+    
 };
 
 #endif // VEHICLE_H

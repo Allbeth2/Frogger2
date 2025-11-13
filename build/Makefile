@@ -345,6 +345,30 @@ src/Texture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Frogger2.dir/build.make CMakeFiles/Frogger2.dir/src/Texture.cpp.s
 .PHONY : src/Texture.cpp.s
 
+src/TurtleGroup.o: src/TurtleGroup.cpp.o
+.PHONY : src/TurtleGroup.o
+
+# target to build an object file
+src/TurtleGroup.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Frogger2.dir/build.make CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.o
+.PHONY : src/TurtleGroup.cpp.o
+
+src/TurtleGroup.i: src/TurtleGroup.cpp.i
+.PHONY : src/TurtleGroup.i
+
+# target to preprocess a source file
+src/TurtleGroup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Frogger2.dir/build.make CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.i
+.PHONY : src/TurtleGroup.cpp.i
+
+src/TurtleGroup.s: src/TurtleGroup.cpp.s
+.PHONY : src/TurtleGroup.s
+
+# target to generate assembly for a file
+src/TurtleGroup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Frogger2.dir/build.make CMakeFiles/Frogger2.dir/src/TurtleGroup.cpp.s
+.PHONY : src/TurtleGroup.cpp.s
+
 src/Vehicle.o: src/Vehicle.cpp.o
 .PHONY : src/Vehicle.o
 
@@ -453,6 +477,9 @@ help:
 	@echo "... src/Texture.o"
 	@echo "... src/Texture.i"
 	@echo "... src/Texture.s"
+	@echo "... src/TurtleGroup.o"
+	@echo "... src/TurtleGroup.i"
+	@echo "... src/TurtleGroup.s"
 	@echo "... src/Vehicle.o"
 	@echo "... src/Vehicle.i"
 	@echo "... src/Vehicle.s"

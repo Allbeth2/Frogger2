@@ -1,10 +1,7 @@
 CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /home/malten/Documents/Frogger2/src/Frog.cpp /usr/include/stdc-predef.h \
- /home/malten/Documents/Frogger2/src/Frog.h \
- /home/malten/Documents/Frogger2/src/SceneObject.h \
- /home/malten/Documents/Frogger2/src/GameObject.h \
- /home/malten/Documents/Frogger2/src/Vector2D.h \
- /usr/include/c++/15/iostream /usr/include/c++/15/bits/requires_hosted.h \
+ /home/malten/Documents/Frogger2/src/Frog.h /usr/include/c++/15/istream \
+ /usr/include/c++/15/bits/requires_hosted.h \
  /usr/include/c++/15/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
  /usr/include/c++/15/x86_64-redhat-linux/bits/os_defines.h \
@@ -13,8 +10,7 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
  /usr/include/c++/15/x86_64-redhat-linux/bits/cpu_defines.h \
- /usr/include/c++/15/pstl/pstl_config.h /usr/include/c++/15/ostream \
- /usr/include/c++/15/bits/ostream.h /usr/include/c++/15/ios \
+ /usr/include/c++/15/pstl/pstl_config.h /usr/include/c++/15/ios \
  /usr/include/c++/15/iosfwd /usr/include/c++/15/bits/stringfwd.h \
  /usr/include/c++/15/bits/memoryfwd.h /usr/include/c++/15/bits/postypes.h \
  /usr/include/c++/15/cwchar /usr/include/wchar.h \
@@ -135,9 +131,13 @@ CMakeFiles/Frogger2.dir/src/Frog.cpp.o: \
  /usr/include/c++/15/bits/streambuf_iterator.h \
  /usr/include/c++/15/x86_64-redhat-linux/bits/ctype_inline.h \
  /usr/include/c++/15/bits/locale_facets.tcc \
- /usr/include/c++/15/bits/basic_ios.tcc \
- /usr/include/c++/15/bits/ostream.tcc /usr/include/c++/15/istream \
+ /usr/include/c++/15/bits/basic_ios.tcc /usr/include/c++/15/ostream \
+ /usr/include/c++/15/bits/ostream.h /usr/include/c++/15/bits/ostream.tcc \
  /usr/include/c++/15/bits/istream.tcc \
+ /home/malten/Documents/Frogger2/src/SceneObject.h \
+ /home/malten/Documents/Frogger2/src/GameObject.h \
+ /home/malten/Documents/Frogger2/src/Vector2D.h \
+ /usr/include/c++/15/iostream \
  /home/malten/Documents/Frogger2/src/Collision.h /usr/include/SDL3/SDL.h \
  /usr/include/SDL3/SDL_stdinc.h /usr/include/SDL3/SDL_platform_defines.h \
  /usr/lib/gcc/x86_64-redhat-linux/15/include/stdint.h \

@@ -1,5 +1,6 @@
 #include "Frog.h"
 #include "Texture.h"
+#include <istream>
 #include "Game.h"
 #include "Collision.h"
 
