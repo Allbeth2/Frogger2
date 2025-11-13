@@ -7,7 +7,8 @@ Frog::Frog(Game* game, Texture* texture, Point2D<float> position, int lives) :
 	SceneObject(game, texture, position, texture->getFrameWidth(), texture->getFrameHeight()),
 	spawnPosition(position),
 	direction(0, 0),
-	lives(lives)
+	lives(lives),
+	orientation(1)
 {
 }
 
@@ -56,22 +57,29 @@ void Frog::handleEvent(const SDL_Event& event)
 {
 	switch (event.key.key) {
 	case SDLK_UP:
-	 if (position.getY() > 0) direction = Vector2D<float>(0, -Game::CellSize);
+		if (position.getY() > 0)
+		{
+			direction = Vector2D<float>(0, -Game::CellSize);
+			orientation = 1;
+		}
 		break;
 	case SDLK_DOWN:
 		if (position.getY() + height < Game::WINDOW_HEIGHT)
 		{
 			direction = Vector2D<float>(0, Game::CellSize);
+			orientation = 3;
 		}
 		break;
 	case SDLK_LEFT:
 		if (position.getX() > 0) {
 			direction = Vector2D<float>(-Game::CellSize, 0);
+			orientation = 2;
 		}
 		break;
 	case SDLK_RIGHT:
 		if (position.getX() + width < Game::WINDOW_WIDTH) {
 			direction = Vector2D<float>(Game::CellSize, 0);
+			orientation = 4;
 		}
 		break;
 	default:
@@ -81,7 +89,15 @@ void Frog::handleEvent(const SDL_Event& event)
 
 void Frog::render() const
 {
-	texture->render(getBoundingBox());
+	double angle = 0.0;
+	switch (orientation)
+	{
+	case 1: angle = 0.0; break;
+	case 2: angle = -90.0; break;
+	case 3: angle = 180.0; break;
+	case 4: angle = 90.0; break;  
+	}
+	texture->renderFrame(getBoundingBox(), 0, 0, angle);
 }
 
 Collision Frog::checkCollision(const SDL_FRect& otherRect)

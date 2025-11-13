@@ -10,7 +10,8 @@ class Frog : public SceneObject
 	private:
 		Point2D<float> spawnPosition;  
 		Vector2D<float> direction;      
-		int lives;                      
+		int lives;
+		int orientation;                      
 		
 	public:
 		Frog(Game* game, Texture* texture, Point2D<float> position, int lives);

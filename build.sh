@@ -1,4 +1,4 @@
-#!/bin/bash
+1#!/bin/bash
 set -e
 rm -rf build
 mkdir -p build

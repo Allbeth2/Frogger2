@@ -44,7 +44,7 @@ public:
 	static constexpr int rightFrame = WINDOW_WIDTH + FrameLength;
 
 	//Constantes para representar las separaciones entre carretera-agua y agua-nido
-	static constexpr int waterHeight = 213;
+	static constexpr int waterHeight = 182;
 	static constexpr int nestHeight = 53;
 
 	static constexpr int minWaspLifetime = 3000;

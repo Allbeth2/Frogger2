@@ -8,7 +8,7 @@ Crosser::Crosser(Game* game, Texture* texture, Point2D<float> pos, float w, floa
 
 void Crosser::update()
 {
-    position = position + velocity * Game::DELTATIME;
+    position = position + velocity;
 
     // Screen wrapping logic
     if (position.getX() > Game::rightFrame)
