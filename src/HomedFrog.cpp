@@ -13,5 +13,5 @@ void HomedFrog::update()
 
 void HomedFrog::render() const
 {
-    SceneObject::render();
+    texture->renderFrame(getBoundingBox(), 0, 0);
 }

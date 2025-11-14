@@ -94,25 +94,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Crosser.cpp" />
+    <ClCompile Include="FileFormatError.cpp" />
+    <ClCompile Include="FileNotFoundError.cpp" />
     <ClCompile Include="Frog.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GameError.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="HomedFrog.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
+    <ClCompile Include="SDLError.cpp" />
     <ClCompile Include="texture.cpp" />
+    <ClCompile Include="TurtleGroup.cpp" />
     <ClCompile Include="Vehicle.cpp" />
     <ClCompile Include="Wasp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Crosser.h" />
+    <ClInclude Include="FileFormatError.h" />
+    <ClInclude Include="FileNotFoundError.h" />
     <ClInclude Include="Frog.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="GameError.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="HomedFrog.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="SceneObject.h" />
+    <ClInclude Include="SDLError.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="TurtleGroup.h" />
     <ClInclude Include="vector2D.h" />

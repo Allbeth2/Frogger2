@@ -8,6 +8,7 @@
 #include <list>
 #include <random>
 #include "Vector2D.h"
+#include "FileNotFoundError.h"
 
 // Declaraciones anticipadas
 class Texture;

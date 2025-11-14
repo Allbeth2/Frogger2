@@ -15,12 +15,14 @@
 #include "Wasp.h"
 #include "SceneObject.h"
 #include "Collision.h"
+#include "GameError.h"
+#include "FileNotFoundError.h"
 
 using namespace std;
 
 // Constantes
 constexpr const char* const WINDOW_TITLE = "Frogger 2.0";
-constexpr const char* const MAP_FILE = "../assets/maps/default.txt";
+constexpr const char* const MAP_FILE = "../assets/maps/turtleS.txt";
 
 // Estructura para especificar las texturas que hay que cargar
 struct TextureSpec
@@ -49,29 +51,34 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 bool Game::LoadEntitiesFromFile() 
 {
 	std::fstream file(MAP_FILE, std::ios::in);
-	if (file.is_open())
+	if (!file.is_open())
+	{
+		throw FileNotFoundError("turtle.txt not found");
+		return false;
+	}
+	else 
 	{
 		char entidad;
 		float Xpos, Ypos, Xvel;
 		int TextureType;
 		int turtleCount;
-		bool Sink;
+		bool sink;
 		int FrogLives;
 		while (file >> entidad)
 		{
 			switch (entidad) {
 			case 'V':
 				file >> Xpos >> Ypos >> Xvel >> TextureType;
-				
-				sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0))); 
+
+				sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
 				break;
 			case 'L':
 				file >> Xpos >> Ypos >> Xvel >> TextureType;
 				sceneObjects.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
 				break;
 			case 'T':
-				file >> Xpos >> Ypos >> Xvel >> turtleCount >> Sink;
-				sceneObjects.push_back(new TurtleGroup(this, textures[TURTLE], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0), turtleCount, Sink));
+				file >> Xpos >> Ypos >> Xvel >> turtleCount >> sink;
+				sceneObjects.push_back(new TurtleGroup(this, textures[TURTLE], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0), turtleCount, sink, 0));
 				break;
 			case 'F':
 				file >> Xpos >> Ypos >> FrogLives;
@@ -85,7 +92,8 @@ bool Game::LoadEntitiesFromFile()
 		}
 		return true;
 	}
-	return false;
+
+	//return false;
 }
 
 Game::Game()
@@ -131,7 +139,7 @@ Game::Game()
 
 Game::~Game()
 {
-	for (SceneObject* ele : sceneObjects ) 
+	for(SceneObject * ele : sceneObjects)
 	{
 		delete ele;
 	}
@@ -194,8 +202,27 @@ void Game::handleEvents() {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_EVENT_QUIT)
 			exit = true;
-		if (event.type == SDL_EVENT_KEY_DOWN) {
+
+		if (event.type == SDL_EVENT_KEY_DOWN) 
+		{
+			if (event.key.key == SDLK_0)
+			{
+				//if ((event.key.mod & SDL_KMOD_SHIFT) && (event.key.mod & SDL_KMOD_CTRL))
+				
+
+				for (SceneObject* ele : sceneObjects)
+				{
+					delete ele;
+				}
+				sceneObjects.clear();
+				frogPointer = nullptr;
+
+				LoadEntitiesFromFile();
+				
+			}
+
 			frogPointer->handleEvent(event);
+			
 		}
 	}
 }
