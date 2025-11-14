@@ -22,7 +22,7 @@ using namespace std;
 
 // Constantes
 constexpr const char* const WINDOW_TITLE = "Frogger 2.0";
-constexpr const char* const MAP_FILE = "../assets/maps/turtleS.txt";
+constexpr const char* const MAP_FILE = "../assets/maps/turtles.txt";
 
 // Estructura para especificar las texturas que hay que cargar
 struct TextureSpec
