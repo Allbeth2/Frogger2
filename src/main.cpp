@@ -6,6 +6,10 @@
 //
 
 #include "Game.h"
+#include "GameError.h"
+#include "SDLError.h"
+#include "FileNotFoundError.h"
+#include "FileFormatError.h"
 #include <iostream>
 #include <string>
 
@@ -15,8 +19,20 @@ int main(int argc, char* argv[])
 		Game game;
 		game.run();
 	}
-	catch (const std::string& error) {
-		std::cerr << "ERROR: " << error << std::endl;
+	catch (const FileNotFoundError& e) {
+		std::cerr << "ERROR: Archivo no encontrado - " << e.what() << std::endl;
+		return 1;
+	}
+	catch (const FileFormatError& e) {
+		std::cerr << "ERROR: Formato de archivo incorrecto - " << e.what() << std::endl;
+		return 1;
+	}
+	catch (const SDLError& e) {
+		std::cerr << "ERROR: Error de SDL - " << e.what() << std::endl;
+		return 1;
+	}
+	catch (const GameError& e) {
+		std::cerr << "ERROR: Error del juego - " << e.what() << std::endl;
 		return 1;
 	}
 	catch (const std::exception& e) {

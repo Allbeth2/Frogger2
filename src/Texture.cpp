@@ -1,4 +1,5 @@
 #include "Texture.h"
+#include "SDLError.h"
 
 #include <SDL3_image/SDL_image.h>
 #include <string>
@@ -10,7 +11,7 @@ SDL_Texture* tryLoadTexture(SDL_Renderer* renderer, const char* filename)
 	SDL_Texture* texture = IMG_LoadTexture(renderer, filename);
 
 	if (texture == nullptr)
-		throw "No se pudo cargar la imagen: "s + filename + " - " + SDL_GetError();
+		throw SDLError("No se pudo cargar la imagen: "s + filename + " - " + SDL_GetError());
 
 	SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
 

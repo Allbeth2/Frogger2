@@ -17,6 +17,7 @@
 #include "Collision.h"
 #include "GameError.h"
 #include "FileNotFoundError.h"
+#include "SDLError.h"
 
 using namespace std;
 
@@ -102,17 +103,17 @@ Game::Game()
 	randomGenerator(time(nullptr))
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		throw "Error al inicializar SDL: "s + SDL_GetError();
+		throw SDLError("Error al inicializar SDL: "s + SDL_GetError());
 	window = SDL_CreateWindow(WINDOW_TITLE,
 		WINDOW_WIDTH,
 		WINDOW_HEIGHT,
 		0);
 	if (window == nullptr)
-		throw "window: "s + SDL_GetError();
+		throw SDLError("window: "s + SDL_GetError());
 
 	renderer = SDL_CreateRenderer(window, nullptr);
 	if (renderer == nullptr)
-		throw "renderer: "s + SDL_GetError();
+		throw SDLError("renderer: "s + SDL_GetError());
 
 	for (size_t i = 0; i < textures.size(); i++) {
 		auto [name, nrows, ncols] = textureList[i];
