@@ -18,6 +18,7 @@
 #include "GameError.h"
 #include "FileNotFoundError.h"
 #include "SDLError.h"
+#include "FileFormatError.h"
 
 using namespace std;
 
@@ -65,24 +66,34 @@ bool Game::LoadEntitiesFromFile()
 		int turtleCount;
 		bool sink;
 		int FrogLives;
+		int lineNumber = 0;
+		
 		while (file >> entidad)
 		{
+			lineNumber++;
 			switch (entidad) {
 			case 'V':
-				file >> Xpos >> Ypos >> Xvel >> TextureType;
-
+				if (!(file >> Xpos >> Ypos >> Xvel >> TextureType)) {
+					throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de vehículo");
+				}
 				sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
 				break;
 			case 'L':
-				file >> Xpos >> Ypos >> Xvel >> TextureType;
+				if (!(file >> Xpos >> Ypos >> Xvel >> TextureType)) {
+					throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de tronco");
+				}
 				sceneObjects.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
 				break;
 			case 'T':
-				file >> Xpos >> Ypos >> Xvel >> turtleCount >> sink;
+				if (!(file >> Xpos >> Ypos >> Xvel >> turtleCount >> sink)) {
+					throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de grupo de tortugas");
+				}
 				sceneObjects.push_back(new TurtleGroup(this, textures[TURTLE], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0), turtleCount, sink, 0));
 				break;
 			case 'F':
-				file >> Xpos >> Ypos >> FrogLives;
+				if (!(file >> Xpos >> Ypos >> FrogLives)) {
+					throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de rana");
+				}
 				frogPointer = new Frog(this, textures[FROG], Point2D<float>(Xpos, Ypos), FrogLives);
 				sceneObjects.push_back(frogPointer);
 				break;
@@ -93,8 +104,6 @@ bool Game::LoadEntitiesFromFile()
 		}
 		return true;
 	}
-
-	//return false;
 }
 
 Game::Game()
