@@ -207,22 +207,21 @@ void Game::handleEvents() {
 		{
 			if (event.key.key == SDLK_0)
 			{
-				//if ((event.key.mod & SDL_KMOD_SHIFT) && (event.key.mod & SDL_KMOD_CTRL))
-				
-
-				for (SceneObject* ele : sceneObjects)
+				SDL_Keymod mod = event.key.mod;
+				if ((mod & SDL_KMOD_SHIFT))
 				{
-					delete ele;
-				}
-				sceneObjects.clear();
-				frogPointer = nullptr;
+					for (SceneObject* ele : sceneObjects)
+					{
+						delete ele;
+					}
+					sceneObjects.clear();
+					frogPointer = nullptr;
 
-				LoadEntitiesFromFile();
-				
+					LoadEntitiesFromFile();
+				}
 			}
 
 			frogPointer->handleEvent(event);
-			
 		}
 	}
 }

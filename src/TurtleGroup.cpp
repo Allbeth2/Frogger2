@@ -13,7 +13,6 @@ TurtleGroup::TurtleGroup(Game* game, Texture* texture, Point2D<float> pos, Vecto
 
 void TurtleGroup::update()
 {
-    // Call base class update to handle movement
     Platform::update();
 
     if (sinking)
@@ -22,7 +21,7 @@ void TurtleGroup::update()
         if (animationTimer >= ANIMATION_RATE)
         {
             animationTimer -= ANIMATION_RATE;
-            currentFrame = (currentFrame + 1) % NUM_FRAMES;   //evitas reseteos innecesarios
+            currentFrame = (currentFrame + 1) % TOTAL_FRAMES;   //evitas reseteos innecesarios
         }
     }
 }
@@ -32,7 +31,7 @@ void TurtleGroup::render() const
     SDL_FRect destRect = getBoundingBox();
     destRect.w = texture->getFrameWidth();
 
-    const int sinkingFrames[] = {0, 3, 4, 5, 6};
+    const int frames[] = {0, 1, 2, 3, 4, 5, 6};
 
     for (int i = 0; i < turtleCount; ++i)
     {
@@ -42,7 +41,7 @@ void TurtleGroup::render() const
         }
         else
         {
-            texture->renderFrame(destRect, 0, sinkingFrames[currentFrame]);
+            texture->renderFrame(destRect, 0, frames[currentFrame]);
         }
         destRect.x += destRect.w;
     }
@@ -53,11 +52,10 @@ Collision TurtleGroup :: checkCollision(const SDL_FRect& otherRect)
     SDL_FRect myRect = getBoundingBox();
     if (SDL_HasRectIntersectionFloat(&myRect, &otherRect))
     {
-        if (sinking && currentFrame != 0)
+        if (sinking && currentFrame > 3)
         {
             return Collision(Collision::Type::ENEMY, Vector2D<float>(0, 0));
         }
-
         return Collision(Collision::Type::PLATFORM, getVelocity());
     }
     else 

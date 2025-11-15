@@ -12,8 +12,8 @@ class TurtleGroup : public Platform
     int currentFrame = 0;
     float animationTimer = 0.0f;
 
-    static constexpr float ANIMATION_RATE = 0.5f; // Time in seconds per frame
-    static constexpr int NUM_FRAMES = 5; // Number of frames in sinking animation
+    static constexpr float ANIMATION_RATE = 0.5f; // Tiempo en seonds por frame
+    static constexpr int TOTAL_FRAMES = 7; // numero de frames en la animacion de siking
 
 public:
     TurtleGroup(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool sinking, int currentFrame);
