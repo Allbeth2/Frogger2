@@ -10,14 +10,14 @@ void Crosser::update()
 {
     position = position + velocity;
 
-    // Screen wrapping logic
-    if (position.getX() > Game::rightFrame)
+    
+    if (position.getX() + width >= Game::rightFrame)
     {
-        position = Point2D<float>(Game::leftFrame - width, position.getY());
+        position = Point2D<float>(Game::leftFrame, position.getY());
     }
-    else if (position.getX() < Game::leftFrame - width)
+    else if (position.getX() < Game::leftFrame)
     {
-        position = Point2D<float>(Game::rightFrame, position.getY());
+        position = Point2D<float>(Game::rightFrame - width, position.getY());
     }
 }
 

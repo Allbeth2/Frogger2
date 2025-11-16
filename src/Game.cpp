@@ -17,6 +17,8 @@
 #include "Collision.h"
 #include "GameError.h"
 #include "FileNotFoundError.h"
+#include "SDLError.h"
+#include "FileFormatError.h"
 
 using namespace std;
 
@@ -56,44 +58,76 @@ bool Game::LoadEntitiesFromFile()
 		throw FileNotFoundError("turtle.txt not found");
 		return false;
 	}
-	else 
+	
+	char entidad;
+	int lineNumber = 0;
+	
+	while (file >> entidad)
 	{
-		char entidad;
-		float Xpos, Ypos, Xvel;
-		int TextureType;
-		int turtleCount;
-		bool sink;
-		int FrogLives;
-		while (file >> entidad)
-		{
-			switch (entidad) {
-			case 'V':
-				file >> Xpos >> Ypos >> Xvel >> TextureType;
-
-				sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
-				break;
-			case 'L':
-				file >> Xpos >> Ypos >> Xvel >> TextureType;
-				sceneObjects.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
-				break;
-			case 'T':
-				file >> Xpos >> Ypos >> Xvel >> turtleCount >> sink;
-				sceneObjects.push_back(new TurtleGroup(this, textures[TURTLE], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0), turtleCount, sink, 0));
-				break;
-			case 'F':
-				file >> Xpos >> Ypos >> FrogLives;
-				frogPointer = new Frog(this, textures[FROG], Point2D<float>(Xpos, Ypos), FrogLives);
-				sceneObjects.push_back(frogPointer);
-				break;
-			default:
-				file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				break;
-			}
-		}
-		return true;
+		lineNumber++;
+		processEntity(entidad, file, lineNumber);
 	}
+	return true;
+}
 
-	//return false;
+void Game::processEntity(char entidad, std::fstream& file, int lineNumber)
+{
+	float Xpos, Ypos, Xvel;
+	int TextureType;
+	int turtleCount;
+	bool sink;
+	int FrogLives;
+	
+	switch (entidad) {
+	case 'V':
+		if (!(file >> Xpos >> Ypos >> Xvel >> TextureType)) {
+			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de vehículo");
+		}
+		loadVehicle(file, lineNumber, Xpos, Ypos, Xvel, TextureType);
+		break;
+	case 'L':
+		if (!(file >> Xpos >> Ypos >> Xvel >> TextureType)) {
+			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de tronco");
+		}
+		loadLog(file, lineNumber, Xpos, Ypos, Xvel, TextureType);
+		break;
+	case 'T':
+		if (!(file >> Xpos >> Ypos >> Xvel >> turtleCount >> sink)) {
+			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de grupo de tortugas");
+		}
+		loadTurtleGroup(file, lineNumber, Xpos, Ypos, Xvel, turtleCount, sink);
+		break;
+	case 'F':
+		if (!(file >> Xpos >> Ypos >> FrogLives)) {
+			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de rana");
+		}
+		loadFrog(file, lineNumber, Xpos, Ypos, FrogLives);
+		break;
+	default:
+		file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		break;
+	}
+}
+
+void Game::loadVehicle(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int TextureType)
+{
+	sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
+}
+
+void Game::loadLog(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int TextureType)
+{
+	sceneObjects.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
+}
+
+void Game::loadTurtleGroup(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int turtleCount, bool sink)
+{
+	sceneObjects.push_back(new TurtleGroup(this, textures[TURTLE], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0), turtleCount, sink, 0));
+}
+
+void Game::loadFrog(std::fstream& file, int lineNumber, float Xpos, float Ypos, int FrogLives)
+{
+	frogPointer = new Frog(this, textures[FROG], Point2D<float>(Xpos, Ypos), FrogLives);
+	sceneObjects.push_back(frogPointer);
 }
 
 Game::Game()
@@ -102,17 +136,17 @@ Game::Game()
 	randomGenerator(time(nullptr))
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		throw "Error al inicializar SDL: "s + SDL_GetError();
+		throw SDLError("Error al inicializar SDL: "s + SDL_GetError());
 	window = SDL_CreateWindow(WINDOW_TITLE,
 		WINDOW_WIDTH,
 		WINDOW_HEIGHT,
 		0);
 	if (window == nullptr)
-		throw "window: "s + SDL_GetError();
+		throw SDLError("window: "s + SDL_GetError());
 
 	renderer = SDL_CreateRenderer(window, nullptr);
 	if (renderer == nullptr)
-		throw "renderer: "s + SDL_GetError();
+		throw SDLError("renderer: "s + SDL_GetError());
 
 	for (size_t i = 0; i < textures.size(); i++) {
 		auto [name, nrows, ncols] = textureList[i];
@@ -265,8 +299,8 @@ Collision Game::nestChecking (const SDL_FRect& frogRect)
 	{
 		Point2D<float> nestPos(nestFound->x, nestFound->y);
 		for (SceneObject* obj : sceneObjects) {
-			if (HomedFrog* hf = dynamic_cast<HomedFrog*>(obj)) {
-				if (hf->getBoundingBox().x == nestPos.getX() && hf->getBoundingBox().y == nestPos.getY()) {
+			if (obj->isHomedFrog()) {
+				if (obj->getBoundingBox().x == nestPos.getX() && obj->getBoundingBox().y == nestPos.getY()) {
 					return Collision(Collision::ENEMY, Vector2D<float>(0,0));
 				}
 			}
@@ -288,8 +322,8 @@ void Game::trySpawnWasp()
 
 		bool occupied = false;
 		for (SceneObject* so : sceneObjects) {
-			if (HomedFrog* hf = dynamic_cast<HomedFrog*>(so)) {
-				if (hf->getBoundingBox().x == nestPos.getX() && hf->getBoundingBox().y == nestPos.getY()) {
+			if (so->isHomedFrog()) {
+				if (so->getBoundingBox().x == nestPos.getX() && so->getBoundingBox().y == nestPos.getY()) {
 					occupied = true;
 					break;
 				}
@@ -299,7 +333,7 @@ void Game::trySpawnWasp()
 		if (!occupied) {
 			bool waspExists = false;
 			for (SceneObject* so : sceneObjects) {
-				if (dynamic_cast<Wasp*>(so)) {
+				if (so->isWasp()) {
 					waspExists = true;
 					break;
 				}
@@ -318,7 +352,7 @@ bool Game::allNestsOccupied() const
 	int homedFrogCount = 0;
 	for(SceneObject* so : sceneObjects)
 	{
-		if(dynamic_cast<HomedFrog*>(so))
+		if(so->isHomedFrog())
 		{
 			homedFrogCount++;
 		}

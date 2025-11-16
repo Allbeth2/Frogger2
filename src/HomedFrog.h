@@ -15,6 +15,7 @@ public:
     
     void render() const override;
     
+    bool isHomedFrog() const override { return true; }
 };
 
 #endif // HOMEDFROG_H

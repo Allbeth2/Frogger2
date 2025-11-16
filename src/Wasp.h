@@ -30,6 +30,7 @@ public:
     
     virtual Collision checkCollision(const SDL_FRect& otherRect) override;
     
+    bool isWasp() const override { return true; }
     
     bool isAlive() const;
     
