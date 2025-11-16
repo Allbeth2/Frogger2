@@ -28,6 +28,10 @@ public:
     virtual Collision checkCollision(const SDL_FRect& otherRect);
     SDL_FRect getBoundingBox() const;
     void setPosition(const Point2D<float>& pos);
+    
+    // Métodos virtuales para evitar dynamic_cast
+    virtual bool isHomedFrog() const { return false; }
+    virtual bool isWasp() const { return false; }
 };
 
 #endif // SCENEOBJECT_H

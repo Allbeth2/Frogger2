@@ -103,6 +103,13 @@ private:
 	Point2D<float> frogSpawnPos;
 
 	bool LoadEntitiesFromFile();
+	
+	// Métodos auxiliares para cargar entidades del archivo
+	void processEntity(char entidad, std::fstream& file, int lineNumber);
+	void loadVehicle(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int TextureType);
+	void loadLog(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int TextureType);
+	void loadTurtleGroup(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int turtleCount, bool sink);
+	void loadFrog(std::fstream& file, int lineNumber, float Xpos, float Ypos, int FrogLives);
 
 public:
 	Game();
