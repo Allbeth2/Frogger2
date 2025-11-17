@@ -224,30 +224,59 @@ void Game::handleEvents() {
 		if (event.type == SDL_EVENT_QUIT)
 			exit = true;
 
-		int numkeys;
-		const Uint8* keys = (const Uint8*)SDL_GetKeyboardState(&numkeys);
-
-		if (keys[SDL_SCANCODE_0])
-		{
-			if (keys[SDL_SCANCODE_LSHIFT] && (keys[SDL_SCANCODE_LCTRL]))
-			{
-				for (SceneObject* ele : sceneObjects)
-				{
-					delete ele;
-				}
-				sceneObjects.clear();
-				frogPointer = nullptr;
-
-				LoadEntitiesFromFile();
-			}
-		}
-		
-
 		if (event.type == SDL_EVENT_KEY_DOWN) 
-		{	
-			frogPointer->handleEvent(event);
+		{
+			if (event.key.key == SDLK_0)
+			{
+				
+				const SDL_MessageBoxButtonData buttons[] =
+				{
+					{SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 1, "Cancel"},
+					{SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "OK" },
+					
+				};
+
+				const SDL_MessageBoxData boxdata = 
+				{
+					SDL_MESSAGEBOX_WARNING,
+					window,
+					"WARNING",
+					"Are you sure you want to restart the game?",
+					SDL_arraysize(buttons),
+					buttons,
+					NULL,
+				};
+
+				int buttonid = -1;
+				if (SDL_ShowMessageBox(&boxdata, &buttonid) != -1)
+				{
+					if (buttonid == 0)
+					{
+						cleanUp();
+					}
+				}
+			}
+			
+			if (frogPointer)
+			{
+				frogPointer->handleEvent(event);
+			}
+			
 		}
 	}
+}
+
+
+void Game::cleanUp()
+{
+	for (SceneObject* ele : sceneObjects)
+	{
+		delete ele;
+	}
+	sceneObjects.clear();
+	frogPointer = nullptr;
+
+	LoadEntitiesFromFile();
 }
 
 Collision Game::checkCollision(const SDL_FRect& frogRect)

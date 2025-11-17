@@ -116,6 +116,8 @@ private:
 	void loadTurtleGroup(std::fstream& file, int lineNumber);
 	void loadFrog(std::fstream& file, int lineNumber);
 
+	void cleanUp();
+
 public:
 	Game();
 	~Game();
