@@ -237,24 +237,27 @@ void Game::handleEvents() {
 		if (event.type == SDL_EVENT_QUIT)
 			exit = true;
 
-		if (event.type == SDL_EVENT_KEY_DOWN) 
+		int numkeys;
+		const Uint8* keys = (const Uint8*)SDL_GetKeyboardState(&numkeys);
+
+		if (keys[SDL_SCANCODE_0])
 		{
-			if (event.key.key == SDLK_0)
+			if (keys[SDL_SCANCODE_LSHIFT] && (keys[SDL_SCANCODE_LCTRL]))
 			{
-				SDL_Keymod mod = event.key.mod;
-				if ((mod & SDL_KMOD_SHIFT))
+				for (SceneObject* ele : sceneObjects)
 				{
-					for (SceneObject* ele : sceneObjects)
-					{
-						delete ele;
-					}
-					sceneObjects.clear();
-					frogPointer = nullptr;
-
-					LoadEntitiesFromFile();
+					delete ele;
 				}
-			}
+				sceneObjects.clear();
+				frogPointer = nullptr;
 
+				LoadEntitiesFromFile();
+			}
+		}
+		
+
+		if (event.type == SDL_EVENT_KEY_DOWN) 
+		{	
 			frogPointer->handleEvent(event);
 		}
 	}
