@@ -1,8 +1,10 @@
 #include "Frog.h"
 #include "Texture.h"
 #include <istream>
+#include <fstream>
 #include "Game.h"
 #include "Collision.h"
+#include "FileFormatError.h"
 
 Frog::Frog(Game* game, Texture* texture, Point2D<float> position, int lives) :
 	SceneObject(game, texture, position, texture->getFrameWidth(), texture->getFrameHeight()),
@@ -11,6 +13,32 @@ Frog::Frog(Game* game, Texture* texture, Point2D<float> position, int lives) :
 	lives(lives),
 	orientation(1)
 {
+}
+Frog::Frog(Game* game, std::fstream& file, int lineNumber)
+	: SceneObject(game,
+		game->getTexture(Game::FROG),
+		Point2D<float>(0.0f, 0.0f),
+		game->getTexture(Game::FROG)->getFrameWidth(),
+		game->getTexture(Game::FROG)->getFrameHeight()),
+	  spawnPosition(0.0f, 0.0f),
+	  direction(0, 0),
+	  lives(3),
+	  orientation(1)
+{
+	float Xpos, Ypos;
+	int FrogLives;
+	// Ensure file is open and in text mode
+	if (!file.is_open()) {
+		throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "El archivo no está abierto");
+	}
+	// Use std::istream& for operator>>
+	std::istream& in = file;
+	if (!(in >> Xpos >> Ypos >> FrogLives)) {
+		throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "Error al leer datos de rana");
+	}
+	position = Point2D<float>(Xpos, Ypos);
+	spawnPosition = position;
+	lives = FrogLives;
 }
 
 void Frog::update()

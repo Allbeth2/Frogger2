@@ -16,6 +16,7 @@ class Frog : public SceneObject
 		
 	public:
 		Frog(Game* game, Texture* texture, Point2D<float> position, int lives);
+		Frog(Game* game, std::fstream& file, int lineNumber);
 			
 		~Frog() = default;
 		

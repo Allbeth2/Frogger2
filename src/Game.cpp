@@ -50,7 +50,8 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	TextureSpec{"wasp.png", 1, 1},
 };
 
-bool Game::LoadEntitiesFromFile() 
+
+bool Game::LoadEntitiesFromFile()
 {
 	std::fstream file(MAP_FILE, std::ios::in);
 	if (!file.is_open())
@@ -58,10 +59,10 @@ bool Game::LoadEntitiesFromFile()
 		throw FileNotFoundError("turtle.txt not found");
 		return false;
 	}
-	
+
 	char entidad;
 	int lineNumber = 0;
-	
+
 	while (file >> entidad)
 	{
 		lineNumber++;
@@ -72,36 +73,18 @@ bool Game::LoadEntitiesFromFile()
 
 void Game::processEntity(char entidad, std::fstream& file, int lineNumber)
 {
-	float Xpos, Ypos, Xvel;
-	int TextureType;
-	int turtleCount;
-	bool sink;
-	int FrogLives;
-	
-	switch (entidad) {
+	switch (entidad) { // Cada clase se encarga de leer sus propios datos
 	case 'V':
-		if (!(file >> Xpos >> Ypos >> Xvel >> TextureType)) {
-			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de vehículo");
-		}
-		loadVehicle(file, lineNumber, Xpos, Ypos, Xvel, TextureType);
+		loadVehicle(file, lineNumber);
 		break;
 	case 'L':
-		if (!(file >> Xpos >> Ypos >> Xvel >> TextureType)) {
-			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de tronco");
-		}
-		loadLog(file, lineNumber, Xpos, Ypos, Xvel, TextureType);
+		loadLog(file, lineNumber);
 		break;
 	case 'T':
-		if (!(file >> Xpos >> Ypos >> Xvel >> turtleCount >> sink)) {
-			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de grupo de tortugas");
-		}
-		loadTurtleGroup(file, lineNumber, Xpos, Ypos, Xvel, turtleCount, sink);
+		loadTurtleGroup(file, lineNumber);
 		break;
 	case 'F':
-		if (!(file >> Xpos >> Ypos >> FrogLives)) {
-			throw FileFormatError(std::string(MAP_FILE), lineNumber, "Error al leer datos de rana");
-		}
-		loadFrog(file, lineNumber, Xpos, Ypos, FrogLives);
+		loadFrog(file, lineNumber);
 		break;
 	default:
 		file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -109,24 +92,28 @@ void Game::processEntity(char entidad, std::fstream& file, int lineNumber)
 	}
 }
 
-void Game::loadVehicle(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int TextureType)
+void Game::loadVehicle(std::fstream& file, int lineNumber)
 {
-	sceneObjects.push_back(new Vehicle(this, textures[TextureType + 1], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
+
+	sceneObjects.push_back(new Vehicle(this, file, lineNumber));
 }
 
-void Game::loadLog(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int TextureType)
+void Game::loadLog(std::fstream& file, int lineNumber)
 {
-	sceneObjects.push_back(new Log(this, textures[TextureType + 7], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0)));
+
+	sceneObjects.push_back(new Log(this, file, lineNumber));
 }
 
-void Game::loadTurtleGroup(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int turtleCount, bool sink)
+void Game::loadTurtleGroup(std::fstream& file, int lineNumber)
 {
-	sceneObjects.push_back(new TurtleGroup(this, textures[TURTLE], Point2D<float>(Xpos, Ypos), Vector2D<float>(Xvel / FRAME_RATE, 0), turtleCount, sink, 0));
+
+	sceneObjects.push_back(new TurtleGroup(this, file, lineNumber));
 }
 
-void Game::loadFrog(std::fstream& file, int lineNumber, float Xpos, float Ypos, int FrogLives)
+void Game::loadFrog(std::fstream& file, int lineNumber)
 {
-	frogPointer = new Frog(this, textures[FROG], Point2D<float>(Xpos, Ypos), FrogLives);
+
+	frogPointer = new Frog(this, file, lineNumber);
 	sceneObjects.push_back(frogPointer);
 }
 

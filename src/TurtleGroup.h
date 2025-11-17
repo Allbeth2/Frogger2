@@ -17,7 +17,7 @@ class TurtleGroup : public Platform
 
 public:
     TurtleGroup(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool sinking, int currentFrame);
-    
+	TurtleGroup(Game* game, std::fstream& file, int lineNumber);
     virtual ~TurtleGroup() = default;
     
     void update() override;

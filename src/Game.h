@@ -111,6 +111,11 @@ private:
 	void loadTurtleGroup(std::fstream& file, int lineNumber, float Xpos, float Ypos, float Xvel, int turtleCount, bool sink);
 	void loadFrog(std::fstream& file, int lineNumber, float Xpos, float Ypos, int FrogLives);
 
+	void loadVehicle(std::fstream& file, int lineNumber);
+	void loadLog(std::fstream& file, int lineNumber);
+	void loadTurtleGroup(std::fstream& file, int lineNumber);
+	void loadFrog(std::fstream& file, int lineNumber);
+
 public:
 	Game();
 	~Game();
