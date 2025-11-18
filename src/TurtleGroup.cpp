@@ -16,7 +16,7 @@ TurtleGroup::TurtleGroup(Game* game, std::fstream& file, int lineNumber)
     : Platform(game,
         game->getTexture(Game::TURTLE),
         Point2D<float>(0.0f, 0.0f),
-        Game::turtleFrameWidth * 3, // default width for 3 turtles
+        Game::turtleFrameWidth * 3, // ancho default son 3 tortugas
         game->getTexture(Game::TURTLE)->getFrameHeight(),
         Vector2D<float>(0.0f, 0.0f)),
       turtleCount(3),
@@ -24,11 +24,11 @@ TurtleGroup::TurtleGroup(Game* game, std::fstream& file, int lineNumber)
 {
     float Xpos, Ypos, Xvel;
     int turtleCountInt, sinkInt;
-    // Ensure file is open and in text mode
+    //Se asegura que el arhivo esta abierto
     if (!file.is_open()) {
         throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "El archivo no está abierto");
     }
-    // Use std::istream& for operator>>
+    // Usa std::istream& para el operator>>
     std::istream& in = file;
     if (!(in >> Xpos >> Ypos >> Xvel >> turtleCountInt >> sinkInt)) {
         throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "Error al leer datos de grupo de tortugas");
@@ -44,13 +44,13 @@ void TurtleGroup::update()
 {
     Platform::update();
 
-    if (sinking)
+    if (sinking)//se realiza la animacion si las torutgas se submergen
     {
-        animationTimer += Game::DELTATIME;
-        if (animationTimer >= ANIMATION_RATE)
+        animationTimer += Game::DELTATIME; //para que vaya conforme al ritmo del juego
+        if (animationTimer >= ANIMATION_RATE) //si el tiempo de animacion de un frame ha exedido el tiempo que debe tener cada frame,  
         {
-            animationTimer -= ANIMATION_RATE;
-            currentFrame = (currentFrame + 1) % TOTAL_FRAMES;   //evitas reseteos innecesarios
+            animationTimer -= ANIMATION_RATE; //se resta el tiempo excedido
+            currentFrame = (currentFrame + 1) % TOTAL_FRAMES;   //y se cambia de frame
         }
     }
 }
@@ -60,19 +60,14 @@ void TurtleGroup::render() const
     SDL_FRect destRect = getBoundingBox();
     destRect.w = texture->getFrameWidth();
 
-    const int frames[] = {0, 1, 2, 3, 4, 5, 6};
+    const int frames[] = {0, 1, 2, 3, 4, 5, 6}; //los frames que se utilizan para la animacion
 
-    for (int i = 0; i < turtleCount; ++i)
+    for (int i = 0; i < turtleCount; ++i) //por cada tortuga 
     {
-        if (!sinking)
-        {
-            texture->renderFrame(destRect, 0, 0);
-        }
-        else
-        {
-            texture->renderFrame(destRect, 0, frames[currentFrame]);
-        }
-        destRect.x += destRect.w;
+        if (!sinking) texture->renderFrame(destRect, 0, 0);
+        else texture->renderFrame(destRect, 0, frames[currentFrame]); //se coloca el frame necesario
+
+        destRect.x += destRect.w; //Se crea la linea de tortugas seguidas
     }
 }
 
@@ -81,11 +76,11 @@ Collision TurtleGroup :: checkCollision(const SDL_FRect& otherRect)
     SDL_FRect myRect = getBoundingBox();
     if (SDL_HasRectIntersectionFloat(&myRect, &otherRect))
     {
-        if (sinking && currentFrame > 3)
+        if (sinking && currentFrame > 3) //Si el frame de las trotugas no es uno de lso 3 primeros, se convierte en enemigo.
         {
             return Collision(Collision::Type::ENEMY, Vector2D<float>(0, 0));
         }
-        return Collision(Collision::Type::PLATFORM, getVelocity());
+        return Collision(Collision::Type::PLATFORM, getVelocity()); //en caso contrario sigue siendo una plataforma
     }
     else 
     {

@@ -48,11 +48,12 @@ public:
 	static constexpr int waterHeight = 182;
 	static constexpr int nestHeight = 21;
 
+	//Constantes de la avispa
 	static constexpr int minWaspLifetime = 3000;
 	static constexpr int maxWaspLifetime = 8000;
 	static constexpr int waspSpawnChance = 1;
 
-
+	//constante del ancho del frame de la tortuga
 	static constexpr int turtleFrameWidth = 30;
 
 
@@ -73,13 +74,8 @@ private:
 	SDL_Renderer* renderer;
 	std::array<Texture*, NUM_TEXTURES> textures;
 
-	// Vectores de objetos del juego
-
+	// Lista de los objetos del juego
 	std::list<SceneObject*> sceneObjects;
-	/*std::vector<Vehicle*> vehicles;
-	std::vector<Log*> logs;
-	std::vector<HomedFrog*> homedFrogs;*/
-	//Wasp* wasp;
 
 	// Puntero a la rana del jugador
 	Frog* frogPointer;
@@ -87,6 +83,7 @@ private:
 	// Vector de nidos (posiciones donde la rana puede llegar)
 	std::vector<SDL_FRect> nests;
 
+	//generador aleatorio
 	std::mt19937_64 randomGenerator;
 
 	void render() const;
@@ -116,7 +113,11 @@ private:
 	void loadTurtleGroup(std::fstream& file, int lineNumber);
 	void loadFrog(std::fstream& file, int lineNumber);
 
+	//metood para reinicio, limpia la lista
 	void cleanUp();
+
+	//metodo para mostrar la message box en pantalla
+	void messageBox();
 
 public:
 	Game();
@@ -135,9 +136,6 @@ public:
 	Collision checkCollision(const SDL_FRect& rect);
 	// Comprueba si la rana está sobre un nido (Con esta encapsulacion consigo reducir la cantidad de lineas de codigo del metodo checkCollision)
 	Collision nestChecking(const SDL_FRect& rect);
-
-
-
 
 	int getRandomRange(int min, int max);
 

@@ -14,6 +14,7 @@ Frog::Frog(Game* game, Texture* texture, Point2D<float> position, int lives) :
 	orientation(1)
 {
 }
+
 Frog::Frog(Game* game, std::fstream& file, int lineNumber)
 	: SceneObject(game,
 		game->getTexture(Game::FROG),
@@ -27,11 +28,11 @@ Frog::Frog(Game* game, std::fstream& file, int lineNumber)
 {
 	float Xpos, Ypos;
 	int FrogLives;
-	// Ensure file is open and in text mode
+	// Se aegura que el archivo esta abierto en txt mode
 	if (!file.is_open()) {
 		throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "El archivo no está abierto");
 	}
-	// Use std::istream& for operator>>
+	// Se usa std::istream& para el operator>>
 	std::istream& in = file;
 	if (!(in >> Xpos >> Ypos >> FrogLives)) {
 		throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "Error al leer datos de rana");
@@ -43,27 +44,21 @@ Frog::Frog(Game* game, std::fstream& file, int lineNumber)
 
 void Frog::update()
 {
+	//movimiento
 	position = position + direction;
 	direction = Vector2D<float>(0, 0);
 
 	SDL_FRect frogRect = getBoundingBox();
-		
+	
+	//colisiones
 	Collision collision = gamePointer->checkCollision(frogRect);
 
-	if (collision.collisionType == Collision::ENEMY) Die();
-	else if (collision.collisionType == Collision::PLATFORM) setLogDirection(collision.velocity);
-	else if (position.getY() < Game::nestHeight)
-	{
-		setPosition(spawnPosition);
-	}
-	else if (position.getY() < Game::waterHeight)
-	{
-		Die();
-	}
+	if (collision.collisionType == Collision::ENEMY) Die();//colision con ENEMIGO
+	else if (collision.collisionType == Collision::PLATFORM) setLogDirection(collision.velocity); //colision con PLATAFORMA
+	else if (position.getY() < Game::nestHeight){setPosition(spawnPosition);} //limite con zona de nidos
+	else if (position.getY() < Game::waterHeight) { Die();} //limite con rio 
 
-	if (position.getX() + width <= 0 || position.getX() >= gamePointer->WINDOW_WIDTH) {
-		Die();
-	}
+	if (position.getX() + width <= 0 || position.getX() >= gamePointer->WINDOW_WIDTH) {Die();} //limite con pantalla
 }
 
 void Frog::setLogDirection(const Vector2D<float>& newDirection)
@@ -82,7 +77,7 @@ void Frog::Die()
 	lives--;
 }
 
-void Frog::handleEvent(const SDL_Event& event)
+void Frog::handleEvent(const SDL_Event& event) //direciones de movimiento de la rana
 {
 	switch (event.key.key) {
 	case SDLK_UP:
@@ -119,7 +114,7 @@ void Frog::handleEvent(const SDL_Event& event)
 void Frog::render() const
 {
 	double angle = 0.0;
-	switch (orientation)
+	switch (orientation) // So the sprite faces the rigth direction
 	{
 	case 1: angle = 0.0; break;
 	case 2: angle = -90.0; break;

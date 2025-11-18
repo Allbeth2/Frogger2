@@ -50,11 +50,11 @@ constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
 	TextureSpec{"wasp.png", 1, 1},
 };
 
-
+//metodo carga las entidades del juego con ayuda de metodos auxiliares
 bool Game::LoadEntitiesFromFile()
 {
 	std::fstream file(MAP_FILE, std::ios::in);
-	if (!file.is_open())
+	if (!file.is_open()) //si no puede abrir el archivo salta un error
 	{
 		throw FileNotFoundError("turtle.txt not found");
 		return false;
@@ -63,6 +63,7 @@ bool Game::LoadEntitiesFromFile()
 	char entidad;
 	int lineNumber = 0;
 
+	//Se lee el archivo si existe
 	while (file >> entidad)
 	{
 		lineNumber++;
@@ -71,6 +72,7 @@ bool Game::LoadEntitiesFromFile()
 	return true;
 }
 
+//Dependiendo de la Letra que identifique a la entidad, llama a la funcion correspondiente de cargar ese objeto
 void Game::processEntity(char entidad, std::fstream& file, int lineNumber)
 {
 	switch (entidad) { // Cada clase se encarga de leer sus propios datos
@@ -92,27 +94,27 @@ void Game::processEntity(char entidad, std::fstream& file, int lineNumber)
 	}
 }
 
+//Ingresa los objetos coches a la lista
 void Game::loadVehicle(std::fstream& file, int lineNumber)
 {
-
 	sceneObjects.push_back(new Vehicle(this, file, lineNumber));
 }
 
+//Ingresa los objetos trocos a la lista
 void Game::loadLog(std::fstream& file, int lineNumber)
 {
-
 	sceneObjects.push_back(new Log(this, file, lineNumber));
 }
 
+//Ingresa los objetos tortugas a la lista
 void Game::loadTurtleGroup(std::fstream& file, int lineNumber)
 {
-
 	sceneObjects.push_back(new TurtleGroup(this, file, lineNumber));
 }
 
+//Ingresa el objeto de rana a la lista
 void Game::loadFrog(std::fstream& file, int lineNumber)
 {
-
 	frogPointer = new Frog(this, file, lineNumber);
 	sceneObjects.push_back(frogPointer);
 }
@@ -122,24 +124,27 @@ Game::Game()
 	frogPointer(nullptr),
 	randomGenerator(time(nullptr))
 {
-	if (!SDL_Init(SDL_INIT_VIDEO))
+	if (!SDL_Init(SDL_INIT_VIDEO)) //salta un error si SDL no puede inicializar por alguun problema
 		throw SDLError("Error al inicializar SDL: "s + SDL_GetError());
 	window = SDL_CreateWindow(WINDOW_TITLE,
 		WINDOW_WIDTH,
 		WINDOW_HEIGHT,
 		0);
-	if (window == nullptr)
+	if (window == nullptr) //lanza un error si la ventana no funciona
 		throw SDLError("window: "s + SDL_GetError());
 
 	renderer = SDL_CreateRenderer(window, nullptr);
-	if (renderer == nullptr)
+	if (renderer == nullptr)//lanza un error si el render no funciona
 		throw SDLError("renderer: "s + SDL_GetError());
 
+
+	//Se colocan las texturas adecuadas en donde corresponde cada una
 	for (size_t i = 0; i < textures.size(); i++) {
 		auto [name, nrows, ncols] = textureList[i];
 		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
 	}
 
+	//Nidos
 	constexpr float nido0x = 16;
 	constexpr float nido0y = 22;
 	constexpr float HorizontalGap = 96;
@@ -159,13 +164,17 @@ Game::Game()
 }
 
 Game::~Game()
-{
+{	
+	//se destruyen los objectos de la lista
 	for(SceneObject * ele : sceneObjects)
 	{
 		delete ele;
 	}
+
+	//Se vacia la lista
 	sceneObjects.clear();
 
+	//se destruyen las texturas
 	for (Texture* t : textures) {
 		delete t;
 	}
@@ -190,6 +199,7 @@ void Game::render() const
 	SDL_RenderClear(renderer);
 	textures[BACKGROUND]->render();
 
+	//se llama al render de cada objeto de la lista
 	for (SceneObject* ele : sceneObjects)
 	{
 		ele->render();
@@ -200,6 +210,7 @@ void Game::render() const
 
 void Game::update()
 {
+	//se llama al update de cada objeto de la lista
 	for (SceneObject* ele : sceneObjects)
 	{
 		ele->update();
@@ -223,38 +234,17 @@ void Game::handleEvents() {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_EVENT_QUIT)
 			exit = true;
+
 		if (event.type == SDL_EVENT_KEY_DOWN) 
 		{
-			if (event.key.key == SDLK_0)
-			{
-				const SDL_MessageBoxButtonData buttons[] =
-				{
-					{SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 1, "Cancel"},
-					{SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "OK" },
-				};
-				const SDL_MessageBoxData boxdata = 
-				{
-					SDL_MESSAGEBOX_WARNING,
-					window,
-					"WARNING",
-					"Are you sure you want to restart the game?",
-					SDL_arraysize(buttons),
-					buttons,
-					NULL,
-				};
-				int buttonid = -1;
-				if (SDL_ShowMessageBox(&boxdata, &buttonid) && buttonid == 0) cleanUp();
-			}
+			//tecla que indica que se quiere reiniciar el juego
+			if (event.key.key == SDLK_0) messageBox();
 			
-			if (frogPointer)
-			{
-				frogPointer->handleEvent(event);
-			}
-			
+			//cualquier otra tecla presionada llama al HandleEvent de la rana
+			if (frogPointer) frogPointer->handleEvent(event);
 		}
 	}
 }
-
 
 void Game::cleanUp()
 {
@@ -268,8 +258,34 @@ void Game::cleanUp()
 	LoadEntitiesFromFile();
 }
 
+//muestra la Messagebox
+void Game::messageBox()
+{
+	//array de botones que se muestran en la messagebox
+	const SDL_MessageBoxButtonData buttons[] =
+	{
+		{SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 1, "Cancel"},
+		{SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "OK" },
+	};
+
+	//La informacion de la messageBox
+	const SDL_MessageBoxData boxdata =
+	{
+		SDL_MESSAGEBOX_WARNING,
+		window,
+		"WARNING",
+		"Are you sure you want to restart the game?",
+		SDL_arraysize(buttons),
+		buttons,
+		NULL,
+	};
+	int buttonid = -1;
+	if (SDL_ShowMessageBox(&boxdata, &buttonid) && buttonid == 0) cleanUp(); //Si el jugador acepta reiniciar, se llama a la funcion que lo hace posible
+}
+
 Collision Game::checkCollision(const SDL_FRect& frogRect)
 {
+	//cuando la rana llega al nivel de los nidos, se revisan estos
 	if (frogRect.y < Game::nestHeight) 
 	{
 		return nestChecking(frogRect);
@@ -283,7 +299,7 @@ Collision Game::checkCollision(const SDL_FRect& frogRect)
         {
             Collision currentCollision = obj->checkCollision(frogRect);
             if (currentCollision.collisionType == Collision::Type::ENEMY) {
-                return currentCollision; // Enemy collision is highest priority
+                return currentCollision; // Enemy collision alta prioridad
             }
             if (currentCollision.collisionType == Collision::Type::PLATFORM) {
                 result = currentCollision;

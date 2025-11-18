@@ -7,13 +7,13 @@
 
 class TurtleGroup : public Platform
 {
-    int turtleCount;
-    bool sinking;
-    int currentFrame = 0;
-    float animationTimer = 0.0f;
+    int turtleCount; //el numero de tortugas
+    bool sinking;  //bool para saber si se submergen
+    int currentFrame = 0; //frameactual
+    float animationTimer = 0.0f; //timer de animacion
 
-    static constexpr float ANIMATION_RATE = 0.5f; // Tiempo en seonds por frame
-    static constexpr int TOTAL_FRAMES = 7; // numero de frames en la animacion de siking
+    static constexpr float ANIMATION_RATE = 0.5f; // Tiempo en segundos por frame
+    static constexpr int TOTAL_FRAMES = 7; // numero de frames en la animacion de sinking
 
 public:
     TurtleGroup(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool sinking, int currentFrame);

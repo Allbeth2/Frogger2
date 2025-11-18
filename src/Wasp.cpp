@@ -36,6 +36,7 @@ void Wasp::render() const
     SceneObject::render();
 }
 
+//extension practica 2
 void Wasp::setAnchor(std::list<SceneObject*>::iterator it)
 {
     anchor = it;

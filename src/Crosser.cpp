@@ -6,11 +6,13 @@ Crosser::Crosser(Game* game, Texture* texture, Point2D<float> pos, float w, floa
 {
 }
 
+//Update
 void Crosser::update()
 {
+    //fisicas
     position = position + velocity;
-
     
+    //Limites
     if (position.getX() + width >= Game::rightFrame)
     {
         position = Point2D<float>(Game::leftFrame, position.getY());

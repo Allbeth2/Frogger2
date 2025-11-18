@@ -23,7 +23,7 @@ void SceneObject::render() const
 
 void SceneObject::update()
 {
-
+    //SceneObject no usa Update pero sus hijos si
 }
 
 Collision SceneObject::checkCollision(const SDL_FRect& otherRect)

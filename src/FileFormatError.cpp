@@ -6,6 +6,7 @@ FileFormatError::FileFormatError(const std::string& filename, int lineNumber, co
 {
 }
 
+//Se construye el mensaje de error
 std::string FileFormatError::buildMessage(const std::string& filename, int lineNumber, const std::string& message)
 {
 	std::ostringstream oss;
