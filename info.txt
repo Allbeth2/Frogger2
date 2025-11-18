@@ -1,0 +1,8 @@
+Componentes del grupo:
+Oliver Garcia Aguado
+Alicia Sarahi Sanchez Varela
+
+En cuanto al reinicio de la partida, se ha optado por implementar el dialogo de confirmación.
+
+Esta entrega no incluye ninguno de los añadidos opcionales
+

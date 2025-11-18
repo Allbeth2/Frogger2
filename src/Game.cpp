@@ -122,7 +122,7 @@ Game::Game()
 	frogPointer(nullptr),
 	randomGenerator(time(nullptr))
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (!SDL_Init(SDL_INIT_VIDEO))
 		throw SDLError("Error al inicializar SDL: "s + SDL_GetError());
 	window = SDL_CreateWindow(WINDOW_TITLE,
 		WINDOW_WIDTH,
@@ -223,19 +223,15 @@ void Game::handleEvents() {
 	while (SDL_PollEvent(&event)) {
 		if (event.type == SDL_EVENT_QUIT)
 			exit = true;
-
 		if (event.type == SDL_EVENT_KEY_DOWN) 
 		{
 			if (event.key.key == SDLK_0)
 			{
-				
 				const SDL_MessageBoxButtonData buttons[] =
 				{
 					{SDL_MESSAGEBOX_BUTTON_ESCAPEKEY_DEFAULT, 1, "Cancel"},
 					{SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT, 0, "OK" },
-					
 				};
-
 				const SDL_MessageBoxData boxdata = 
 				{
 					SDL_MESSAGEBOX_WARNING,
@@ -246,15 +242,8 @@ void Game::handleEvents() {
 					buttons,
 					NULL,
 				};
-
 				int buttonid = -1;
-				if (SDL_ShowMessageBox(&boxdata, &buttonid) != -1)
-				{
-					if (buttonid == 0)
-					{
-						cleanUp();
-					}
-				}
+				if (SDL_ShowMessageBox(&boxdata, &buttonid) && buttonid == 0) cleanUp();
 			}
 			
 			if (frogPointer)
