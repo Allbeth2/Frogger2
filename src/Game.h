@@ -86,6 +86,9 @@ private:
 	//generador aleatorio
 	std::mt19937_64 randomGenerator;
 
+	std::list<SceneObject*>::iterator waspAnchor;
+	bool deletingWasp;
+
 	void render() const;
 	void update();
 	void handleEvents();
@@ -113,6 +116,8 @@ private:
 	void loadTurtleGroup(std::fstream& file, int lineNumber);
 	void loadFrog(std::fstream& file, int lineNumber);
 
+	
+
 	//metood para reinicio, limpia la lista
 	void cleanUp();
 
@@ -139,6 +144,7 @@ public:
 
 	int getRandomRange(int min, int max);
 
+	void deleteAfter(std::list<SceneObject*>::iterator waspAnchor);
 };
 
 inline Texture*

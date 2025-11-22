@@ -69,6 +69,8 @@ bool Game::LoadEntitiesFromFile()
 		lineNumber++;
 		processEntity(entidad, file, lineNumber);
 	}
+
+	deletingWasp = false;
 	return true;
 }
 
@@ -216,16 +218,42 @@ void Game::update()
 		ele->update();
 	}
 	trySpawnWasp();
+
+	if (deletingWasp)
+	{
+
+		sceneObjects.erase(waspAnchor);
+		deletingWasp = false;
+	}
 }
 
 void Game::run()
 {
+	// SDL3 devuelve el tiempo en milisegundos, formato Uint64
+	Uint64 frameStart = 0;
+	Uint64 frameEnd = 0;
+	Uint64 frameDuration = 0;
+
 	while (!exit) {
+
+		frameStart = SDL_GetTicks();
+
+		// Logica del juego
 		exit = allNestsOccupied() || (frogPointer->getLives() <= 0);
 		handleEvents();
 		update();
 		render();
-		SDL_Delay(DELAYTIME);
+
+
+		// Se calcula el tiempo que ha tomado procesar el juego
+		frameEnd = SDL_GetTicks();
+		frameDuration = frameEnd - frameStart;
+
+		// Se aplica un delay si el frame fue muy rapido, en caso contrario no se hace nada
+		if (frameDuration < DELAYTIME)
+		{
+			SDL_Delay(static_cast<Uint32>(DELAYTIME - frameDuration));
+		}
 	}
 }
 
@@ -310,6 +338,11 @@ Collision Game::checkCollision(const SDL_FRect& frogRect)
 	return result;
 }
 
+void Game::deleteAfter(std::list<SceneObject*>::iterator waspAnchorToDelete)
+{
+	waspAnchor = waspAnchorToDelete;
+	deletingWasp = true;
+}
 Collision Game::nestChecking (const SDL_FRect& frogRect)
 {
 	SDL_FRect* nestFound = nullptr;
@@ -364,8 +397,13 @@ void Game::trySpawnWasp()
 			}
 			if(!waspExists)
 			{
+
 				Uint32 lifetime = getRandomRange(Game::minWaspLifetime, Game::maxWaspLifetime);
-				sceneObjects.push_back(new Wasp(this, textures[TextureName::WASP], nestPos, Vector2D<float>(0, 0), lifetime));
+				Wasp* newWasp = new Wasp(this, textures[TextureName::WASP], nestPos, Vector2D<float>(0, 0), lifetime);
+				waspAnchor = sceneObjects.insert(sceneObjects.end(), newWasp);
+				newWasp->setAnchor(waspAnchor);
+				
+				deletingWasp = false;
 			}
 		}
 	}

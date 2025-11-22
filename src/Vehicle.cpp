@@ -22,12 +22,11 @@ Vehicle::Vehicle(Game* game, std::fstream& file, int lineNumber)
     float Xpos, Ypos, Xvel;
     int TextureType;
 
-    // Ensure file is open and in text mode
+
     if (!file.is_open()) {
         throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "El archivo no está abierto");
     }
 
-    // Use std::istream& for operator>>
     std::istream& in = file;
     if (!(in >> Xpos >> Ypos >> Xvel >> TextureType)) {
         throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "Error al leer datos de vehículo");

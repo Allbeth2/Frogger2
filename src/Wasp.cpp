@@ -14,6 +14,12 @@ void Wasp::update()
 {
     position = position + velocity * Game::DELTATIME;
     // The logic for self-destruction will be handled by the Game class
+
+    if (!isAlive())
+    {
+        // Remove self from the scene objects list
+		gamePointer->deleteAfter(anchor);
+    }
 }
 
 bool Wasp::isAlive() const
@@ -36,7 +42,6 @@ void Wasp::render() const
     SceneObject::render();
 }
 
-//extension practica 2
 void Wasp::setAnchor(std::list<SceneObject*>::iterator it)
 {
     anchor = it;
