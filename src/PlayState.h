@@ -15,12 +15,13 @@ class Vehicle;
 class Log;
 class HomedFrog;
 class Wasp;
-class Collision;
+struct Collision;
 class SceneObject;
 
 class PlayState : public GameState {
 public:
     PlayState(Game* game);
+    PlayState(Game* game, const std::string& mapFilePath);
     ~PlayState();
 
     void update() override;
@@ -32,8 +33,11 @@ public:
     Collision nestChecking(const SDL_FRect& rect);
     int getRandomRange(int min, int max);
     void deleteAfter(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO);
+    
+    std::string getMapFilePath() const { return mapFilePath_; }
 
 private:
+    std::string mapFilePath_;
     std::list<SceneObject*> sceneObjectsForCollision_; // Additional list for SceneObjects
 
     Frog* frogPointer_;
@@ -50,6 +54,7 @@ private:
     void loadLog(std::fstream& file, int lineNumber);
     void loadTurtleGroup(std::fstream& file, int lineNumber);
     void loadFrog(std::fstream& file, int lineNumber);
+    void loadWasp(std::fstream& file, int lineNumber);
 };
 
 #endif // PLAY_STATE_H

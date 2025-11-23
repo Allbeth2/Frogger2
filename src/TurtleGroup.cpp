@@ -7,11 +7,11 @@
 #include "FileFormatError.h"
 
 TurtleGroup::TurtleGroup(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool sinking, int currentFrame)
-    : Platform(state, texture, pos, Game::turtleFrameWidth * turtleCount, texture->getFrameHeight(), vel),
+    : Platform(state, texture, pos, static_cast<float>(Game::turtleFrameWidth * turtleCount), static_cast<float>(texture->getFrameHeight()), vel),
       turtleCount(turtleCount),
       sinking(sinking), currentFrame(currentFrame), animationTimer(0.0f)
 {
-    width = texture->getFrameWidth() * turtleCount;
+    width = static_cast<float>(texture->getFrameWidth() * turtleCount);
 }
 TurtleGroup::TurtleGroup(PlayState* state, std::fstream& file, int lineNumber)
     : Platform(state, file, lineNumber),
@@ -31,11 +31,11 @@ TurtleGroup::TurtleGroup(PlayState* state, std::fstream& file, int lineNumber)
     }
     turtleCount = turtleCountInt;
     sinking = (sinkInt != 0);
-    width = Game::turtleFrameWidth * turtleCount;
+    width = static_cast<float>(Game::turtleFrameWidth * turtleCount);
     position = Point2D<float>(Xpos, Ypos);
     velocity = Vector2D<float>(Xvel / Game::FRAME_RATE, 0.0f);
     texture = state->getGame()->getTexture(Game::TURTLE);
-    height = texture->getFrameHeight();
+    height = static_cast<float>(texture->getFrameHeight());
 }
 
 void TurtleGroup::update()

@@ -19,6 +19,7 @@ private:
 public:
     Wasp(PlayState* state, Texture* texture, Point2D<float> pos, 
          Vector2D<float> vel, Uint32 lifetime);
+    Wasp(PlayState* state, std::fstream& file, int lineNumber);
     
     virtual ~Wasp() = default;
     

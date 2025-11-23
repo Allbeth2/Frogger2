@@ -7,7 +7,7 @@
 #include "FileFormatError.h"
 
 Log::Log(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel)
-    : Platform(state, texture, pos, texture->getFrameWidth(), texture->getFrameHeight(), vel)
+    : Platform(state, texture, pos, static_cast<float>(texture->getFrameWidth()), static_cast<float>(texture->getFrameHeight()), vel)
 {
 }
 
@@ -29,8 +29,8 @@ Log::Log(PlayState* state, std::fstream& file, int lineNumber)
     int textureIndex = TextureType + 7;
     Texture* tex = state->getGame()->getTexture(static_cast<Game::TextureName>(textureIndex));
     texture = tex;
-    width = tex->getFrameWidth();
-    height = tex->getFrameHeight();
+    width = static_cast<float>(tex->getFrameWidth());
+    height = static_cast<float>(tex->getFrameHeight());
     position = Point2D<float>(Xpos, Ypos);
     velocity = Vector2D<float>(Xvel / Game::FRAME_RATE, 0.0f);
 }

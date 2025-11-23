@@ -94,7 +94,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Crosser.cpp" />
+    <ClCompile Include="EndState.cpp" />
     <ClCompile Include="FileFormatError.cpp" />
     <ClCompile Include="FileNotFoundError.cpp" />
     <ClCompile Include="Frog.cpp" />
@@ -104,8 +106,11 @@
     <ClCompile Include="gameState.cpp" />
     <ClCompile Include="gameStateMachine.cpp" />
     <ClCompile Include="HomedFrog.cpp" />
+    <ClCompile Include="Label.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SceneObject.cpp" />
@@ -116,8 +121,10 @@
     <ClCompile Include="Wasp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Crosser.h" />
+    <ClInclude Include="EndState.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="FileFormatError.h" />
     <ClInclude Include="FileNotFoundError.h" />
@@ -128,7 +135,10 @@
     <ClInclude Include="gameState.h" />
     <ClInclude Include="gameStateMachine.h" />
     <ClInclude Include="HomedFrog.h" />
+    <ClInclude Include="Label.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlayState.h" />
     <ClInclude Include="SceneObject.h" />

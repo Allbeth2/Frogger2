@@ -6,12 +6,14 @@
 #include <string>
 
 class Button;
+class Label;
+class Texture;
 
 class MainMenuState : public GameState
 {
 public:
     MainMenuState(Game* game);
-    virtual ~MainMenuState() = default;
+    virtual ~MainMenuState();
 
     void update() override;
     void render() const override;
@@ -20,14 +22,16 @@ public:
 private:
     void loadMaps();
     void createButtons();
+    Texture* getSelectedMapTexture() const;
 
     std::vector<std::string> mapFiles_;
     int selectedMap_ = 0;
 
     // UI elements
-    Button* playButton_ = nullptr;
+    Button* mapNameButton_ = nullptr;
     Button* exitButton_ = nullptr;
-    // ... other UI elements like labels for map names ...
+    Button* leftArrowButton_ = nullptr;
+    Button* rightArrowButton_ = nullptr;
 };
 
 #endif // MAIN_MENU_STATE_H

@@ -1,14 +1,36 @@
 #include "Wasp.h"
-#include "Game.h" // Include Game.h
+#include "Game.h"
 #include "PlayState.h"
 #include "Texture.h"
 #include "Collision.h"
+#include "FileFormatError.h"
+#include <fstream>
+#include <istream>
 
 Wasp::Wasp(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime)
-    : SceneObject(state, texture, pos, texture->getFrameWidth(), texture->getFrameHeight()),
+    : SceneObject(state, texture, pos, static_cast<float>(texture->getFrameWidth()), static_cast<float>(texture->getFrameHeight())),
       velocity(vel),
       deathTime(SDL_GetTicks() + lifetime)
 {
+}
+
+Wasp::Wasp(PlayState* state, std::fstream& file, int lineNumber)
+    : SceneObject(state, file, lineNumber)
+{
+    float x, y, vx, vy;
+    Uint32 t;
+
+    if (!(file >> x >> y >> vx >> vy >> t))
+    {
+        throw FileFormatError("Wasp", lineNumber, "Error reading wasp data");
+    }
+
+    position = Point2D<float>(x, y);
+    velocity = Vector2D<float>(vx / Game::FRAME_RATE, vy / Game::FRAME_RATE);
+    deathTime = SDL_GetTicks() + t;
+    texture = state->getGame()->getTexture(Game::WASP);
+    width = static_cast<float>(texture->getFrameWidth());
+    height = static_cast<float>(texture->getFrameHeight());
 }
 
 void Wasp::update()

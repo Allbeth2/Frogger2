@@ -19,12 +19,17 @@
 
 using namespace std;
 
-// Constantes (from original Game.cpp)
-constexpr const char* const MAP_FILE = "../assets/maps/Original.txt";
-
+// Default map file for initial PlayState (if not specified)
+constexpr const char* const DEFAULT_MAP_FILE = "../assets/maps/Original.txt";
 
 PlayState::PlayState(Game* game)
+    : PlayState(game, DEFAULT_MAP_FILE) // Delegate to the new constructor
+{
+}
+
+PlayState::PlayState(Game* game, const std::string& mapFilePath)
     : GameState(game), // Initialize base class
+    mapFilePath_(mapFilePath), // Initialize map file path
     frogPointer_(nullptr),
     randomGenerator_(time(nullptr))
 {
@@ -62,6 +67,8 @@ PlayState::~PlayState()
     frogPointer_ = nullptr; // Frog object is owned by gameObjects_ in GameState
 }
 
+#include "EndState.h" // Include EndState.h
+
 void PlayState::update()
 {
     // Update gameObjects_ (inherited from GameState)
@@ -71,6 +78,19 @@ void PlayState::update()
     }
 
     trySpawnWasp();
+
+    // Check game over conditions
+    if (frogPointer_ != nullptr)
+    {
+        if (frogPointer_->getLives() <= 0)
+        {
+            game_->pushState(std::make_shared<EndState>(game_, false)); // Lost
+        }
+        else if (allNestsOccupied())
+        {
+            game_->pushState(std::make_shared<EndState>(game_, true)); // Won
+        }
+    }
 
     // Execute Delayed Callbacks
     for (const auto& cb : delayedCallbacks_) {
@@ -90,11 +110,20 @@ void PlayState::render() const
     }
 }
 
+#include "PauseState.h"
+
 void PlayState::handleEvent(const SDL_Event& event)
 {
     if (event.type == SDL_EVENT_KEY_DOWN)
     {
-        if (frogPointer_) frogPointer_->handleEvent(event);
+        if (event.key.key == SDLK_ESCAPE)
+        {
+            game_->pushState(std::make_shared<PauseState>(game_, this));
+        }
+        else if (frogPointer_)
+        {
+            frogPointer_->handleEvent(event);
+        }
     }
     // Also pass event to registered eventHandlers_ (inherited from GameState)
     for (EventHandler* handler : eventHandlers_) {
@@ -240,11 +269,10 @@ bool PlayState::allNestsOccupied() const
 
 bool PlayState::LoadEntitiesFromFile()
 {
-    // (Content from original Game::LoadEntitiesFromFile)
-    std::fstream file(MAP_FILE, std::ios::in);
+    std::fstream file(mapFilePath_, std::ios::in);
     if (!file.is_open())
     {
-        throw FileNotFoundError("Map file not found: "s + MAP_FILE);
+        throw FileNotFoundError("Map file not found: "s + mapFilePath_);
         return false;
     }
 
@@ -258,6 +286,18 @@ bool PlayState::LoadEntitiesFromFile()
     }
 
     return true;
+}
+
+void PlayState::loadWasp(std::fstream& file, int lineNumber)
+{
+    Wasp* newWasp = new Wasp(this, file, lineNumber);
+    
+    // Add to both lists and get iterators
+    auto itGO = gameObjects_.insert(gameObjects_.end(), newWasp);
+    auto itSCO = sceneObjectsForCollision_.insert(sceneObjectsForCollision_.end(), newWasp);
+    
+    // Set the iterators in the Wasp object
+    newWasp->setIterators(itGO, itSCO);
 }
 
 void PlayState::processEntity(char entidad, std::fstream& file, int lineNumber)
@@ -275,6 +315,9 @@ void PlayState::processEntity(char entidad, std::fstream& file, int lineNumber)
         break;
     case 'F':
         loadFrog(file, lineNumber);
+        break;
+    case 'W':
+        loadWasp(file, lineNumber);
         break;
     default:
         file.ignore(std::numeric_limits<std::streamsize>::max(), '\n');

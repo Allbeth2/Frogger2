@@ -1,5 +1,6 @@
 #include "Button.h"
 #include "Game.h"
+#include <SDL3/SDL.h>
 
 Button::Button(GameState* state, Texture* texture, Point2D<float> pos)
     : Label(state, texture, pos)
@@ -13,13 +14,13 @@ void Button::connect(Callback cb)
 
 void Button::handleEvent(const SDL_Event& event)
 {
-    if (event.type == SDL_EVENT_MOUSEMOTION)
+    if (event.type == SDL_EVENT_MOUSE_MOTION)
     {
-        SDL_Point mousePos = { event.motion.x, event.motion.y };
+        SDL_FPoint mouseFPos = { (float)event.motion.x, (float)event.motion.y }; // Use SDL_FPoint with float coordinates
         SDL_FRect buttonRect = { position_.getX(), position_.getY(), (float)texture_->getFrameWidth(), (float)texture_->getFrameHeight() };
-        mouseOver_ = SDL_PointInFRect(&mousePos, &buttonRect);
+        mouseOver_ = SDL_PointInRectFloat(&mouseFPos, &buttonRect); // Use SDL_PointInRectFloat
     }
-    else if (event.type == SDL_EVENT_MOUSEBUTTONDOWN)
+    else if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN)
     {
         if (mouseOver_ && callback_ != nullptr)
         {

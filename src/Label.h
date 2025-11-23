@@ -17,6 +17,7 @@ public:
 
     void render() const override;
     void update() override;
+    void setTexture(Texture* texture);
 };
 
 #endif // LABEL_H

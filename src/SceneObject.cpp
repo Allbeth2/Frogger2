@@ -20,7 +20,7 @@ SDL_FRect SceneObject::getBoundingBox() const
 
 void SceneObject::render() const
 {
-    if (texture != nullptr)
+    if (visible_ && texture != nullptr)
     {
         SDL_FRect destRect = getBoundingBox();
         texture->render(destRect);

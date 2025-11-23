@@ -55,6 +55,7 @@ public:
         LEFT_ARROW,
         ORIGINAL_MAP_TEXT,
         PRACTICA_1_MAP_TEXT,
+        AVISPADO_MAP_TEXT, // Added Avispado map text
         REINICIAR,
         RIGHT_ARROW,
         SALIR,
@@ -74,6 +75,8 @@ public:
 	Texture* getTexture(TextureName name) const;
 	// Obtiene el renderer del juego
 	SDL_Renderer* getRenderer();
+    // Obtiene la ventana del juego
+    SDL_Window* getWindow() const { return window; }
 
 	// Expose GameStateMachine public methods
 	using GameStateMachine::empty;
