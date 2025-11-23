@@ -1,13 +1,13 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-class Game;
+class GameState;
 
 class GameObject
 {
 protected:
-    Game *gamePointer;
-    GameObject(Game *game);
+    GameState *gameState;
+    GameObject(GameState *state);
 
 public:
     virtual ~GameObject() = default;

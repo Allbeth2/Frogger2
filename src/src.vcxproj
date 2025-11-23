@@ -101,10 +101,13 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GameError.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="gameState.cpp" />
+    <ClCompile Include="gameStateMachine.cpp" />
     <ClCompile Include="HomedFrog.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="PlayState.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="SDLError.cpp" />
     <ClCompile Include="texture.cpp" />
@@ -115,15 +118,19 @@
   <ItemGroup>
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Crosser.h" />
+    <ClInclude Include="EventHandler.h" />
     <ClInclude Include="FileFormatError.h" />
     <ClInclude Include="FileNotFoundError.h" />
     <ClInclude Include="Frog.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="GameError.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="gameState.h" />
+    <ClInclude Include="gameStateMachine.h" />
     <ClInclude Include="HomedFrog.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Platform.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="SDLError.h" />
     <ClInclude Include="texture.h" />

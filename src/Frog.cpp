@@ -1,4 +1,5 @@
 #include "Frog.h"
+#include "PlayState.h" // Include PlayState.h
 #include "Texture.h"
 #include <istream>
 #include <fstream>
@@ -6,8 +7,8 @@
 #include "Collision.h"
 #include "FileFormatError.h"
 
-Frog::Frog(Game* game, Texture* texture, Point2D<float> position, int lives) :
-	SceneObject(game, texture, position, texture->getFrameWidth(), texture->getFrameHeight()),
+Frog::Frog(PlayState* state, Texture* texture, Point2D<float> position, int lives) :
+	SceneObject(state, texture, position, texture->getFrameWidth(), texture->getFrameHeight()),
 	spawnPosition(position),
 	direction(0, 0),
 	lives(lives),
@@ -15,12 +16,8 @@ Frog::Frog(Game* game, Texture* texture, Point2D<float> position, int lives) :
 {
 }
 
-Frog::Frog(Game* game, std::fstream& file, int lineNumber)
-	: SceneObject(game,
-		game->getTexture(Game::FROG),
-		Point2D<float>(0.0f, 0.0f),
-		game->getTexture(Game::FROG)->getFrameWidth(),
-		game->getTexture(Game::FROG)->getFrameHeight()),
+Frog::Frog(PlayState* state, std::fstream& file, int lineNumber)
+	: SceneObject(state, file, lineNumber),
 	  spawnPosition(0.0f, 0.0f),
 	  direction(0, 0),
 	  lives(3),
@@ -40,6 +37,9 @@ Frog::Frog(Game* game, std::fstream& file, int lineNumber)
 	position = Point2D<float>(Xpos, Ypos);
 	spawnPosition = position;
 	lives = FrogLives;
+    texture = state->getGame()->getTexture(Game::FROG);
+    width = texture->getFrameWidth();
+    height = texture->getFrameHeight();
 }
 
 void Frog::update()
@@ -51,14 +51,14 @@ void Frog::update()
 	SDL_FRect frogRect = getBoundingBox();
 	
 	//colisiones
-	Collision collision = gamePointer->checkCollision(frogRect);
+	Collision collision = playState->checkCollision(frogRect);
 
 	if (collision.collisionType == Collision::ENEMY) Die();//colision con ENEMIGO
 	else if (collision.collisionType == Collision::PLATFORM) setLogDirection(collision.velocity); //colision con PLATAFORMA
 	else if (position.getY() < Game::nestHeight){setPosition(spawnPosition);} //limite con zona de nidos
 	else if (position.getY() < Game::waterHeight) { Die();} //limite con rio 
 
-	if (position.getX() + width <= 0 || position.getX() >= gamePointer->WINDOW_WIDTH) {Die();} //limite con pantalla
+	if (position.getX() + width <= 0 || position.getX() >= playState->getGame()->WINDOW_WIDTH) {Die();} //limite con pantalla
 }
 
 void Frog::setLogDirection(const Vector2D<float>& newDirection)

@@ -1,10 +1,16 @@
 #include "SceneObject.h"
 #include "Texture.h"
-#include "Game.h"
+#include "PlayState.h" // Include PlayState.h for the definition of PlayState
 
-SceneObject::SceneObject(Game* game, Texture* texture, Point2D<float> pos, float w, float h)
-    : GameObject(game), position(pos), width(w), height(h), texture(texture)
+SceneObject::SceneObject(PlayState* state, Texture* texture, Point2D<float> pos, float w, float h)
+    : GameObject(state), playState(state), position(pos), width(w), height(h), texture(texture)
 {
+}
+
+SceneObject::SceneObject(PlayState* state, std::fstream& file, int lineNumber)
+    : GameObject(state), playState(state)
+{
+    // Derived classes will read from the file
 }
 
 SDL_FRect SceneObject::getBoundingBox() const

@@ -4,11 +4,13 @@
 #include <istream>
 #include "Crosser.h"
 
+class PlayState;
+
 class Vehicle : public Crosser
 {
 public:
-    Vehicle(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel);
-    Vehicle(Game* game, std::fstream& file, int lineNumber);
+    Vehicle(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel);
+    Vehicle(PlayState* state, std::fstream& file, int lineNumber);
     
     ~Vehicle() = default;
     

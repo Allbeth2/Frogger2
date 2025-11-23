@@ -1,8 +1,9 @@
 #include "HomedFrog.h"
 #include "Texture.h"
+#include "PlayState.h" // Include PlayState.h
 
-HomedFrog::HomedFrog(Game* game, Texture* texture, Point2D<float> pos)
-    : SceneObject(game, texture, pos, texture->getFrameWidth(), texture->getFrameHeight())
+HomedFrog::HomedFrog(PlayState* state, Texture* texture, Point2D<float> pos)
+    : SceneObject(state, texture, pos, texture->getFrameWidth(), texture->getFrameHeight())
 {
 }
 

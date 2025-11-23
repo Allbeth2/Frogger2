@@ -19,6 +19,9 @@ public:
 	const T& getX() const { return x; }
 	const T& getY() const { return y; }
 
+    void setX(T newX) { x = newX; }
+    void setY(T newY) { y = newY; }
+
 	// Operadores
 	Vector2D operator+(const Vector2D& otro) const {
 		return { x + otro.x, y + otro.y };

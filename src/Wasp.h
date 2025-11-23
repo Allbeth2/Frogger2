@@ -5,7 +5,7 @@
 #include <SDL3/SDL.h>
 #include <list>
 
-class Game;
+class PlayState;
 
 
 class Wasp : public SceneObject
@@ -13,10 +13,11 @@ class Wasp : public SceneObject
 private:
     Vector2D<float> velocity;       
     Uint32 deathTime;               
-    std::list<SceneObject*>::iterator anchor;
+    std::list<GameObject*>::iterator itGO_;
+    std::list<SceneObject*>::iterator itSCO_;
     
 public:
-    Wasp(Game* game, Texture* texture, Point2D<float> pos, 
+    Wasp(PlayState* state, Texture* texture, Point2D<float> pos, 
          Vector2D<float> vel, Uint32 lifetime);
     
     virtual ~Wasp() = default;
@@ -35,7 +36,7 @@ public:
     bool isAlive() const;
     
    
-    void setAnchor(std::list<SceneObject*>::iterator it);
+    void setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO);
 };
 
 #endif // WASP_H

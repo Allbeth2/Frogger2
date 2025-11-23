@@ -8,6 +8,8 @@
 
 class Texture;
 
+class PlayState;
+
 /**
  * Base class for all scene objects (objects that appear in the game world).
  * Provides position, dimensions, texture, and collision detection.
@@ -19,7 +21,9 @@ protected:
     float width;
     float height;
     Texture* texture;
-    SceneObject(Game* game, Texture* texture, Point2D<float> pos, float w, float h);
+    PlayState* playState;
+    SceneObject(PlayState* state, Texture* texture, Point2D<float> pos, float w, float h);
+    SceneObject(PlayState* state, std::fstream& file, int lineNumber);
 
 public:
     virtual ~SceneObject() = default;

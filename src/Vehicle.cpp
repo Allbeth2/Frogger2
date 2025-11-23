@@ -4,20 +4,16 @@
 #include "Texture.h"
 #include "Collision.h"
 #include "Game.h"
+#include "PlayState.h" // Include PlayState.h
 #include "FileFormatError.h"
 
-Vehicle::Vehicle(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel)
-    : Crosser(game, texture, pos, texture->getFrameWidth(), texture->getFrameHeight(), vel)
+Vehicle::Vehicle(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel)
+    : Crosser(state, texture, pos, texture->getFrameWidth(), texture->getFrameHeight(), vel)
 {
 }
 
-Vehicle::Vehicle(Game* game, std::fstream& file, int lineNumber) 
-    : Crosser(game,
-        game->getTexture(Game::CAR1),
-        Point2D<float>(0.0f, 0.0f),
-        game->getTexture(Game::CAR1)->getFrameWidth(),
-        game->getTexture(Game::CAR1)->getFrameHeight(),
-        Vector2D<float>(0.0f, 0.0f))
+Vehicle::Vehicle(PlayState* state, std::fstream& file, int lineNumber) 
+    : Crosser(state, file, lineNumber)
 {
     float Xpos, Ypos, Xvel;
     int TextureType;
@@ -33,7 +29,7 @@ Vehicle::Vehicle(Game* game, std::fstream& file, int lineNumber)
     }
 
     int textureIndex = TextureType + 1;
-    Texture* tex = game->getTexture(static_cast<Game::TextureName>(textureIndex));
+    Texture* tex = state->getGame()->getTexture(static_cast<Game::TextureName>(textureIndex));
 
     texture = tex;
     width = tex->getFrameWidth();

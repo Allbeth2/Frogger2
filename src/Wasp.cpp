@@ -1,10 +1,11 @@
 #include "Wasp.h"
-#include "Game.h"
+#include "Game.h" // Include Game.h
+#include "PlayState.h"
 #include "Texture.h"
 #include "Collision.h"
 
-Wasp::Wasp(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime)
-    : SceneObject(game, texture, pos, texture->getFrameWidth(), texture->getFrameHeight()),
+Wasp::Wasp(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime)
+    : SceneObject(state, texture, pos, texture->getFrameWidth(), texture->getFrameHeight()),
       velocity(vel),
       deathTime(SDL_GetTicks() + lifetime)
 {
@@ -13,12 +14,10 @@ Wasp::Wasp(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel
 void Wasp::update()
 {
     position = position + velocity * Game::DELTATIME;
-    // The logic for self-destruction will be handled by the Game class
 
     if (!isAlive())
     {
-        // Remove self from the scene objects list
-		gamePointer->deleteAfter(anchor);
+        playState->deleteAfter(itGO_, itSCO_);
     }
 }
 
@@ -42,7 +41,8 @@ void Wasp::render() const
     SceneObject::render();
 }
 
-void Wasp::setAnchor(std::list<SceneObject*>::iterator it)
+void Wasp::setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO)
 {
-    anchor = it;
+    itGO_ = itGO;
+    itSCO_ = itSCO;
 }

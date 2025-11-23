@@ -3,10 +3,12 @@
 
 #include "SceneObject.h"
 
+class PlayState;
+
 class HomedFrog : public SceneObject
 {
 public:
-    HomedFrog(Game* game, Texture* texture, Point2D<float> pos);
+    HomedFrog(PlayState* state, Texture* texture, Point2D<float> pos);
     
     virtual ~HomedFrog() = default;
     

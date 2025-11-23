@@ -1,5 +1,6 @@
 #include "GameObject.h"
+#include "gameState.h" // Include gameState.h for the definition of GameState
 
-GameObject::GameObject(Game* game) : gamePointer(game)
+GameObject::GameObject(GameState* state) : gameState(state)
 {
 }

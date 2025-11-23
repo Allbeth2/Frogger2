@@ -1,23 +1,19 @@
 #include "Log.h"
 #include "Texture.h"
 #include "Game.h"
+#include "PlayState.h" // Include PlayState.h
 #include <istream>
 #include <fstream>
 #include "FileFormatError.h"
 
-Log::Log(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel)
-    : Platform(game, texture, pos, texture->getFrameWidth(), texture->getFrameHeight(), vel)
+Log::Log(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel)
+    : Platform(state, texture, pos, texture->getFrameWidth(), texture->getFrameHeight(), vel)
 {
 }
 
 //constructor para que log obtenga sus parametros por si mismo
-Log::Log(Game* game, std::fstream& file, int lineNumber)
-    : Platform(game,
-        game->getTexture(Game::LOG1),
-        Point2D<float>(0.0f, 0.0f),
-        game->getTexture(Game::LOG1)->getFrameWidth(),
-        game->getTexture(Game::LOG1)->getFrameHeight(),
-        Vector2D<float>(0.0f, 0.0f))
+Log::Log(PlayState* state, std::fstream& file, int lineNumber)
+    : Platform(state, file, lineNumber)
 {
     float Xpos, Ypos, Xvel;
     int TextureType;
@@ -31,7 +27,7 @@ Log::Log(Game* game, std::fstream& file, int lineNumber)
         throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "Error al leer datos de tronco");
     }
     int textureIndex = TextureType + 7;
-    Texture* tex = game->getTexture(static_cast<Game::TextureName>(textureIndex));
+    Texture* tex = state->getGame()->getTexture(static_cast<Game::TextureName>(textureIndex));
     texture = tex;
     width = tex->getFrameWidth();
     height = tex->getFrameHeight();

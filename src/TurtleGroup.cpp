@@ -1,24 +1,20 @@
 #include "TurtleGroup.h"
 #include "Texture.h"
 #include "Game.h"
+#include "PlayState.h" // Include PlayState.h
 #include <istream>
 #include <fstream>
 #include "FileFormatError.h"
 
-TurtleGroup::TurtleGroup(Game* game, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool sinking, int currentFrame)
-    : Platform(game, texture, pos, Game::turtleFrameWidth * turtleCount, texture->getFrameHeight(), vel),
+TurtleGroup::TurtleGroup(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool sinking, int currentFrame)
+    : Platform(state, texture, pos, Game::turtleFrameWidth * turtleCount, texture->getFrameHeight(), vel),
       turtleCount(turtleCount),
       sinking(sinking), currentFrame(currentFrame), animationTimer(0.0f)
 {
     width = texture->getFrameWidth() * turtleCount;
 }
-TurtleGroup::TurtleGroup(Game* game, std::fstream& file, int lineNumber)
-    : Platform(game,
-        game->getTexture(Game::TURTLE),
-        Point2D<float>(0.0f, 0.0f),
-        Game::turtleFrameWidth * 3, // ancho default son 3 tortugas
-        game->getTexture(Game::TURTLE)->getFrameHeight(),
-        Vector2D<float>(0.0f, 0.0f)),
+TurtleGroup::TurtleGroup(PlayState* state, std::fstream& file, int lineNumber)
+    : Platform(state, file, lineNumber),
       turtleCount(3),
       sinking(false), currentFrame(0), animationTimer(0.0f)
 {
@@ -38,6 +34,8 @@ TurtleGroup::TurtleGroup(Game* game, std::fstream& file, int lineNumber)
     width = Game::turtleFrameWidth * turtleCount;
     position = Point2D<float>(Xpos, Ypos);
     velocity = Vector2D<float>(Xvel / Game::FRAME_RATE, 0.0f);
+    texture = state->getGame()->getTexture(Game::TURTLE);
+    height = texture->getFrameHeight();
 }
 
 void TurtleGroup::update()

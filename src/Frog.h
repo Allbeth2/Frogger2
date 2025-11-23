@@ -6,6 +6,8 @@
 #include <SDL3/SDL.h>
 
 
+class PlayState;
+
 class Frog : public SceneObject
 {
 	private:
@@ -15,8 +17,8 @@ class Frog : public SceneObject
 		int orientation;                      
 		
 	public:
-		Frog(Game* game, Texture* texture, Point2D<float> position, int lives);
-		Frog(Game* game, std::fstream& file, int lineNumber);
+		Frog(PlayState* state, Texture* texture, Point2D<float> position, int lives);
+		Frog(PlayState* state, std::fstream& file, int lineNumber);
 			
 		~Frog() = default;
 		
