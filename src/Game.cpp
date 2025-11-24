@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <string>
 #include <iostream>
-#include <array> // Still needed for textures array
+#include <array>
 #include <SDL3_image/SDL_image.h>
 #include "Texture.h"
 #include "GameError.h"
@@ -9,7 +9,7 @@
 
 using namespace std;
 
-constexpr const char* const WINDOW_TITLE = "Frogger 3.0"; // Updated title as per enunPract3.pdf
+constexpr const char* const WINDOW_TITLE = "Frogger 3.0";
 
 Game::Game()
 {
@@ -26,9 +26,6 @@ Game::Game()
 	if (renderer == nullptr)
 		throw SDLError("renderer: "s + SDL_GetError());
 
-	// Temporary texture list, will be moved/managed by individual states later
-	// For now, loading all textures from the game for availability
-	// This will need to be refactored as per enunPract3.pdf
 	constexpr const char* const imgBase = "../assets/images/";
 
 	struct TextureSpec
@@ -59,7 +56,7 @@ Game::Game()
         TextureSpec{"texts/left.png", 1, 1},
         TextureSpec{"texts/Original.png", 1, 1},
         TextureSpec{"texts/Práctica 1.png", 1, 1},
-        TextureSpec{"texts/Avispado.png", 1, 1}, // Added Avispado map text texture
+        TextureSpec{"texts/Avispado.png", 1, 1}, 
         TextureSpec{"texts/REINICIAR.png", 1, 1},
         TextureSpec{"texts/right.png", 1, 1},
         TextureSpec{"texts/SALIR.png", 1, 1},
@@ -124,12 +121,12 @@ void Game::run()
 	Uint64 frameEnd = 0;
 	Uint64 frameDuration = 0;
 
-	// Loop while there are states in the stack
+	// Bucle mientras haya estados en la pila
 	while (!GameStateMachine::empty()) {
 
 		frameStart = SDL_GetTicks();
 
-		// Game logic
+		// La logica del juego
 		handleInput();
 		update();
 		render();

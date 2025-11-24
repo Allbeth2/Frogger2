@@ -10,18 +10,28 @@ EndState::EndState(Game* game, bool won)
     createButtons(won);
 }
 
+/**
+ * @brief Crea los botones de la interfaz de usuario para la pantalla de fin de juego.
+ * @param won True si el jugador ha ganado, false en caso contrario.
+ */
 void EndState::createButtons(bool won)
 {
     // Positions are placeholders
     const int buttonWidth = 150;
     const int buttonHeight = 50;
 
-    // Message Label
+    // Etiqueta de mensaje
     Game::TextureName messageTexture = won ? Game::HAS_GANADO : Game::GAME_OVER;
     messageLabel_ = new Label(this, game_->getTexture(messageTexture), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - 100, 150));
+    if (won) {
+        messageLabel_->setColor({ 0, 255, 0, 255 }); // Green
+    }
+    else {
+        messageLabel_->setColor({ 255, 0, 0, 255 }); // Red
+    }
     addObject(messageLabel_);
 
-    // Main Menu Button (VOLVER AL MENÚ)
+    // Botón de volver al menú principal (VOLVER AL MENÚ)
     mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 250));
     mainMenuButton_->connect([this]() {
         game_->popState(); // Pop EndState
@@ -30,7 +40,7 @@ void EndState::createButtons(bool won)
     addObject(mainMenuButton_);
     addEventListener(mainMenuButton_);
 
-    // Exit Button (SALIR)
+    // Botón de salir (SALIR)
     exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 350));
     exitButton_->connect([this]() {
         while (!game_->empty()) {
@@ -51,7 +61,7 @@ void EndState::update()
 
 void EndState::render() const
 {
-    game_->getTexture(Game::MENU_BACKGROUND)->render(); // Render a background
+    // Black background is rendered by default because we don't render any background texture
     for (const auto& obj : gameObjects_)
     {
         obj->render();

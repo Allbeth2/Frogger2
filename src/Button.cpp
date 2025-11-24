@@ -16,7 +16,7 @@ void Button::handleEvent(const SDL_Event& event)
 {
     if (event.type == SDL_EVENT_MOUSE_MOTION)
     {
-        SDL_FPoint mouseFPos = { (float)event.motion.x, (float)event.motion.y }; // Use SDL_FPoint with float coordinates
+		SDL_FPoint mouseFPos = { (float)event.motion.x, (float)event.motion.y }; // Se usa SDL_FPoint en vez de SDL_Point ya que el meotdo SDL_PointInRectFloat requiere SDL_FPoint (buttonRect usa float tambien)
         SDL_FRect buttonRect = { position_.getX(), position_.getY(), (float)texture_->getFrameWidth(), (float)texture_->getFrameHeight() };
         mouseOver_ = SDL_PointInRectFloat(&mouseFPos, &buttonRect); // Use SDL_PointInRectFloat
     }
@@ -36,8 +36,8 @@ void Button::render() const
         SDL_FRect destRect = { position_.getX(), position_.getY(), (float)texture_->getFrameWidth(), (float)texture_->getFrameHeight() };
         if (mouseOver_)
         {
-            // Highlight the button by changing its color
-            texture_->render(destRect, { 255, 255, 0, 255 }); // Yellow highlight
+            // Se ilumina el boton de amarillo cambiando el color del boton
+            texture_->render(destRect, { 255, 255, 0, 255 }); // Amarillo
         }
         else
         {

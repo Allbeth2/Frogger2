@@ -10,30 +10,38 @@ PauseState::PauseState(Game* game, PlayState* playState)
     createButtons();
 }
 
+namespace {
+	// Constantes para la posición de los botones
+    const int BUTTON_WIDTH = 150;
+    const int RESUME_BUTTON_Y = 150;
+    const int RESTART_BUTTON_Y = 250;
+    const int MAIN_MENU_BUTTON_Y = 350;
+    const int EXIT_BUTTON_Y = 400;
+}
+
+/**
+ * @brief Crea los botones de la interfaz de usuario para el menú de pausa.
+ */
 void PauseState::createButtons()
 {
-    // Positions are placeholders
-    const int buttonWidth = 150;
-    const int buttonHeight = 50;
-
-    // Resume Button (CONTINUAR)
-    resumeButton_ = new Button(this, game_->getTexture(Game::CONTINUAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 150));
+    // Botón de reanudar (CONTINUAR)
+    resumeButton_ = new Button(this, game_->getTexture(Game::CONTINUAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)RESUME_BUTTON_Y));
     resumeButton_->connect([this]() {
         game_->popState();
     });
     addObject(resumeButton_);
     addEventListener(resumeButton_);
 
-    // Restart Button (REINICIAR)
-    restartButton_ = new Button(this, game_->getTexture(Game::REINICIAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 250));
+    // Botón de reiniciar (REINICIAR)
+    restartButton_ = new Button(this, game_->getTexture(Game::REINICIAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)RESTART_BUTTON_Y));
     restartButton_->connect([this]() {
         messageBox();
     });
     addObject(restartButton_);
     addEventListener(restartButton_);
 
-    // Main Menu Button (VOLVER AL MENÚ)
-    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 350));
+    // Botón de volver al menú principal (VOLVER AL MENÚ)
+    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)MAIN_MENU_BUTTON_Y));
     mainMenuButton_->connect([this]() {
         game_->popState(); // Pop PauseState
         game_->popState(); // Pop PlayState
@@ -41,8 +49,8 @@ void PauseState::createButtons()
     addObject(mainMenuButton_);
     addEventListener(mainMenuButton_);
 
-    // Exit Button (SALIR)
-    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 400));
+    // Botón de salir (SALIR)
+    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)EXIT_BUTTON_Y));
     exitButton_->connect([this]() {
         while (!game_->empty()) {
             game_->popState();
@@ -52,6 +60,9 @@ void PauseState::createButtons()
     addEventListener(exitButton_);
 }
 
+/**
+ * @brief Muestra un cuadro de mensaje de confirmación para reiniciar el juego.
+ */
 void PauseState::messageBox()
 {
 	const SDL_MessageBoxButtonData buttons[] =
@@ -63,7 +74,7 @@ void PauseState::messageBox()
 	const SDL_MessageBoxData boxdata =
 	{
 		SDL_MESSAGEBOX_WARNING,
-		game_->getWindow(), // Use game window as parent
+		game_->getWindow(), // Usa la ventana del juego como padre
 		"WARNING",
 		"Are you sure you want to restart the game?",
 		SDL_arraysize(buttons),
@@ -72,7 +83,7 @@ void PauseState::messageBox()
 	};
 	int buttonid = -1;
 	if (SDL_ShowMessageBox(&boxdata, &buttonid) && buttonid == 0) {
-        game_->popState(); // Pop PauseState
+        game_->popState();
         game_->replaceState(std::make_shared<PlayState>(game_, playState_->getMapFilePath()));
     }
 }
@@ -87,9 +98,9 @@ void PauseState::update()
 
 void PauseState::render() const
 {
-    playState_->render(); // Render the playstate underneath
+    playState_->render();
 
-    // Render a semi-transparent black overlay
+	// Se renderiza un fondo negro semitransparente encima de el juego pausado
     SDL_SetRenderDrawColor(game_->getRenderer(), 0, 0, 0, 150); // Black with alpha 150
     SDL_FRect overlayRect = { 0, 0, (float)Game::WINDOW_WIDTH, (float)Game::WINDOW_HEIGHT };
     SDL_RenderFillRect(game_->getRenderer(), &overlayRect);

@@ -10,19 +10,18 @@
 #include "SDLError.h"
 #include "FileNotFoundError.h"
 #include "FileFormatError.h"
-#include "MainMenuState.h" // Include MainMenuState.h
+#include "MainMenuState.h"
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_messagebox.h>
 #include <iostream>
 #include <string>
-#include <memory> // For std::make_shared
+#include <memory>
 
 int main(int argc, char* argv[])
 {
 	try {
 		Game game;
-		// Create and push the initial MainMenuState
-		game.pushState(std::make_shared<MainMenuState>(&game)); // Use make_shared
+		game.pushState(std::make_shared<MainMenuState>(&game));
 
 		game.run();
 	}

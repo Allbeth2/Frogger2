@@ -20,8 +20,20 @@ public:
     void handleEvent(const SDL_Event& event) override;
 
 private:
+    /**
+     * @brief Carga los mapas disponibles desde la carpeta de assets.
+     */
     void loadMaps();
+
+    /**
+     * @brief Crea los botones de la interfaz de usuario para el menú principal.
+     */
     void createButtons();
+
+    /**
+     * @brief Obtiene la textura para el mapa actualmente seleccionado.
+     * @return Un puntero a la textura del mapa seleccionado.
+     */
     Texture* getSelectedMapTexture() const;
 
     std::vector<std::string> mapFiles_;

@@ -14,7 +14,7 @@
  */
 class GameStateMachine
 {
-	// Pila (como las de EDA) de punteros inteligentes a estados del juego
+	// Pila de punteros inteligentes a estados del juego
 	std::stack<std::shared_ptr<GameState>> gameStates;
 
 public:

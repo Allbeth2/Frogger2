@@ -17,7 +17,14 @@ public:
     void handleEvent(const SDL_Event& event) override;
 
 private:
+    /**
+     * @brief Crea los botones de la interfaz de usuario para el menú de pausa.
+     */
     void createButtons();
+
+    /**
+     * @brief Muestra un cuadro de mensaje de confirmación para reiniciar el juego.
+     */
     void messageBox();
 
     PlayState* playState_ = nullptr;

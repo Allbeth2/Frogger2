@@ -17,6 +17,10 @@ public:
     void handleEvent(const SDL_Event& event) override;
 
 private:
+    /**
+     * @brief Crea los botones de la interfaz de usuario para la pantalla de fin de juego.
+     * @param won True si el jugador ha ganado, false en caso contrario.
+     */
     void createButtons(bool won);
 
     Label* messageLabel_ = nullptr;

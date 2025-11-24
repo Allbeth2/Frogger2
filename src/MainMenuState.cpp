@@ -13,7 +13,7 @@ MainMenuState::MainMenuState(Game* game)
 {
     loadMaps();
 
-    // Load last selected map from config.txt
+	// Carga la última selección de mapa de config.txt
     std::ifstream configFile("../config.txt");
     if (configFile.is_open())
     {
@@ -34,7 +34,7 @@ MainMenuState::MainMenuState(Game* game)
 
 MainMenuState::~MainMenuState()
 {
-    // Save the last selected map to config.txt
+	// Guarda la selección actual de mapa en config.txt
     if (!mapFiles_.empty())
     {
         std::ofstream configFile("../config.txt");
@@ -45,9 +45,11 @@ MainMenuState::~MainMenuState()
     }
 }
 
+/**
+ * @brief Carga los mapas disponibles desde la carpeta de assets.
+ */
 void MainMenuState::loadMaps()
 {
-    // Hardcode the map names in the correct order
     mapFiles_ = {
         "Original",
         "Práctica 1",
@@ -57,62 +59,76 @@ void MainMenuState::loadMaps()
     };
 }
 
+namespace {
+    // Constantes para la ubicación de los botones
+    const int BUTTON_WIDTH = 150;
+    const int BUTTON_HEIGHT = 50;
+    const int CHOOSE_MAP_LABEL_Y = 150;
+    const int MAP_NAME_BUTTON_Y = 250;
+    const int EXIT_BUTTON_Y = 320;
+    const int ARROW_BUTTON_Y = 250;
+    const int LEFT_ARROW_X = 50;
+    const int RIGHT_ARROW_X_PADDING = 50;
+}
+
+/**
+ * @brief Crea los botones de la interfaz de usuario para el menú principal.
+ */
 void MainMenuState::createButtons()
 {
-    // Positions
-    const int buttonWidth = 150;
-    const int buttonHeight = 50;
-    const int padding = 20;
+    // Etiqueta "Elige un Mapa"
+    Label* chooseMapLabel = new Label(this, game_->getTexture(Game::ELIGE_UN_MAPA), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - 100, (float)CHOOSE_MAP_LABEL_Y));
+    GameState::addObject(chooseMapLabel);
 
-    // "Choose a Map" label
-    Label* chooseMapLabel = new Label(this, game_->getTexture(Game::ELIGE_UN_MAPA), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - 100, 150));
-    addObject(chooseMapLabel);
-
-    // Map Name Button
+    // Botón con el nombre del mapa
     if (!mapFiles_.empty())
     {
-        mapNameButton_ = new Button(this, getSelectedMapTexture(), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 250));
+        mapNameButton_ = new Button(this, getSelectedMapTexture(), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)MAP_NAME_BUTTON_Y));
         mapNameButton_->connect([this]() {
-            // Find the full path of the selected map
+            // Encuentra la ruta completa del mapa seleccionado
             std::string selectedMapPath = "../assets/maps/" + this->mapFiles_[this->selectedMap_] + ".txt";
-            this->game_->pushState(std::make_shared<PlayState>(this->game_, selectedMapPath)); // Pass selected map path
+            this->game_->pushState(std::make_shared<PlayState>(this->game_, selectedMapPath)); // Pasa la ruta del mapa seleccionado
         });
-        addObject(mapNameButton_);
+        GameState::addObject(mapNameButton_);
         addEventListener(mapNameButton_);
     }
 
-    // Left Arrow Button
-    leftArrowButton_ = new Button(this, game_->getTexture(Game::LEFT_ARROW), Point2D<float>(50, 250));
+    // Botón de flecha izquierda
+    leftArrowButton_ = new Button(this, game_->getTexture(Game::LEFT_ARROW), Point2D<float>((float)LEFT_ARROW_X, (float)ARROW_BUTTON_Y));
     leftArrowButton_->connect([this]() {
         if (!mapFiles_.empty())
         {
             selectedMap_ = (selectedMap_ - 1 + mapFiles_.size()) % mapFiles_.size();
         }
     });
-    addObject(leftArrowButton_);
+    GameState::addObject(leftArrowButton_);
     addEventListener(leftArrowButton_);
 
-    // Right Arrow Button
-    rightArrowButton_ = new Button(this, game_->getTexture(Game::RIGHT_ARROW), Point2D<float>(Game::WINDOW_WIDTH - 50 - game_->getTexture(Game::RIGHT_ARROW)->getFrameWidth(), 250));
+    // Botón de flecha derecha
+    rightArrowButton_ = new Button(this, game_->getTexture(Game::RIGHT_ARROW), Point2D<float>(Game::WINDOW_WIDTH - RIGHT_ARROW_X_PADDING - game_->getTexture(Game::RIGHT_ARROW)->getFrameWidth(), (float)ARROW_BUTTON_Y));
     rightArrowButton_->connect([this]() {
         if (!mapFiles_.empty())
         {
             selectedMap_ = (selectedMap_ + 1) % mapFiles_.size();
         }
     });
-    addObject(rightArrowButton_);
+    GameState::addObject(rightArrowButton_);
     addEventListener(rightArrowButton_);
 
 
-    // Exit Button (SALIR)
-    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 320));
+    // Botón de salir (SALIR)
+    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)EXIT_BUTTON_Y));
     exitButton_->connect([this]() {
         this->game_->popState();
     });
-    addObject(exitButton_);
+    GameState::addObject(exitButton_);
     addEventListener(exitButton_);
 }
 
+/**
+ * @brief Obtiene la textura para el mapa actualmente seleccionado.
+ * @return Un puntero a la textura del mapa seleccionado.
+ */
 Texture* MainMenuState::getSelectedMapTexture() const
 {
     if (mapFiles_.empty()) return nullptr;
@@ -124,7 +140,7 @@ Texture* MainMenuState::getSelectedMapTexture() const
     else if (currentMapName == "Avispado") mapTextureName = Game::AVISPADO_MAP_TEXT;
     else if (currentMapName == "Trivial") mapTextureName = Game::TRIVIAL_MAP_TEXT;
     else if (currentMapName == "Veloz") mapTextureName = Game::VELOZ_MAP_TEXT;
-    else return nullptr; // Or a default texture
+    else return nullptr; // O una textura por defecto
 
     return this->game_->getTexture(mapTextureName);
 }

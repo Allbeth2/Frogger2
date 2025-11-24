@@ -8,19 +8,33 @@
 class PlayState;
 
 
+
 class Wasp : public SceneObject
+
 {
+
 private:
+
     Vector2D<float> velocity;       
+
     Uint32 deathTime;               
+
     std::list<GameObject*>::iterator itGO_;
+
     std::list<SceneObject*>::iterator itSCO_;
+
     
+
 public:
-    Wasp(PlayState* state, Texture* texture, Point2D<float> pos, 
-         Vector2D<float> vel, Uint32 lifetime);
-    Wasp(PlayState* state, std::fstream& file, int lineNumber);
+
     
+
+    Wasp(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime);
+
+    
+
+    Wasp(PlayState* state, std::fstream& file, int lineNumber);
+
     virtual ~Wasp() = default;
     
     

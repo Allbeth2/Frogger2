@@ -7,6 +7,8 @@
 
 class PlayState;
 
+class PlayState;
+
 class Crosser : public SceneObject
 {
 protected:

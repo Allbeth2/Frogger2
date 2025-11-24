@@ -45,7 +45,7 @@ void
 GameStateMachine::update()
 {
 	if (!gameStates.empty()) {
-		// Esta variable local evita que el estado sea destruido hasta que
+		// Esta variable evita que el estado sea destruido hasta que
 		// acabe esta función si su actualización lo desapila de esta pila
 		shared_ptr<GameState> current = gameStates.top();
 		current->update();
@@ -56,7 +56,6 @@ void
 GameStateMachine::render() const
 {
 	if (!gameStates.empty()) {
-		// Asumimos que render (const) no desapilará y destruirá el estado
 		gameStates.top()->render();
 	}
 }

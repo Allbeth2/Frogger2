@@ -4,18 +4,18 @@
 #include "Texture.h"
 #include "Collision.h"
 #include "Game.h"
-#include "PlayState.h" // Include PlayState.h
+#include "PlayState.h"
 #include "FileFormatError.h"
 
-Vehicle::Vehicle(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel)
-    : Crosser(state, texture, pos, static_cast<float>(texture->getFrameWidth()), static_cast<float>(texture->getFrameHeight()), vel)
-{
-}
-
+/**
+ * @brief Constructor de Vehicle que lee datos desde un archivo.
+ * @param state Puntero al PlayState actual.
+ * @param file Stream del archivo para leer los datos.
+ * @param lineNumber Número de línea actual en el archivo.
+ */
 Vehicle::Vehicle(PlayState* state, std::fstream& file, int lineNumber) 
     : Crosser(state, file, lineNumber)
 {
-    float Xpos, Ypos, Xvel;
     int TextureType;
 
 
@@ -24,7 +24,7 @@ Vehicle::Vehicle(PlayState* state, std::fstream& file, int lineNumber)
     }
 
     std::istream& in = file;
-    if (!(in >> Xpos >> Ypos >> Xvel >> TextureType)) {
+    if (!(in >> TextureType)) {
         throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "Error al leer datos de vehículo");
     }
 
@@ -34,11 +34,14 @@ Vehicle::Vehicle(PlayState* state, std::fstream& file, int lineNumber)
     texture = tex;
     width = static_cast<float>(tex->getFrameWidth());
     height = static_cast<float>(tex->getFrameHeight());
-    position = Point2D<float>(Xpos, Ypos);
-    velocity = Vector2D<float>(Xvel / Game::FRAME_RATE, 0.0f);
 }
 
 
+/**
+ * @brief Comprueba la colisión con otro rectángulo.
+ * @param otherRect El rectángulo del otro objeto para comprobar la colisión.
+ * @return Un objeto Collision que describe la colisión.
+ */
 Collision Vehicle::checkCollision(const SDL_FRect& otherRect)
 {
     SDL_FRect myRect = getBoundingBox();

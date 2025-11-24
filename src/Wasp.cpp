@@ -7,6 +7,11 @@
 #include <fstream>
 #include <istream>
 
+namespace {
+	// Multiplicador para que las avispas tengan una velocidad adecuada (5 o 4 pixeles por segundo es excesivamente lento)
+    constexpr float WASP_SPEED_MULTIPLIER = 30.0f;
+}
+
 Wasp::Wasp(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime)
     : SceneObject(state, texture, pos, static_cast<float>(texture->getFrameWidth()), static_cast<float>(texture->getFrameHeight())),
       velocity(vel),
@@ -14,28 +19,36 @@ Wasp::Wasp(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<floa
 {
 }
 
+/**
+ * @brief Constructor de Wasp que lee datos desde un archivo.
+ * @param state Puntero al PlayState actual.
+ * @param file Stream del archivo para leer los datos.
+ * @param lineNumber Número de línea actual en el archivo.
+ */
 Wasp::Wasp(PlayState* state, std::fstream& file, int lineNumber)
     : SceneObject(state, file, lineNumber)
 {
-    float x, y, vx, vy;
+    float vx, vy;
     Uint32 t;
 
-    if (!(file >> x >> y >> vx >> vy >> t))
+    if (!(file >> vx >> vy >> t))
     {
-        throw FileFormatError("Wasp", lineNumber, "Error reading wasp data");
+        throw FileFormatError("Wasp", lineNumber, "Error al leer los datos de la avispa");
     }
 
-    position = Point2D<float>(x, y);
-    velocity = Vector2D<float>(vx / Game::FRAME_RATE, vy / Game::FRAME_RATE);
+    velocity = Vector2D<float>(vx * WASP_SPEED_MULTIPLIER / Game::FRAME_RATE, vy * WASP_SPEED_MULTIPLIER / Game::FRAME_RATE);
     deathTime = SDL_GetTicks() + t;
     texture = state->getGame()->getTexture(Game::WASP);
     width = static_cast<float>(texture->getFrameWidth());
     height = static_cast<float>(texture->getFrameHeight());
 }
 
+/**
+ * @brief Actualiza el estado de la avispa.
+ */
 void Wasp::update()
 {
-    position = position + velocity * Game::DELTATIME;
+    position = position + velocity;
 
     if (!isAlive())
     {
@@ -43,11 +56,20 @@ void Wasp::update()
     }
 }
 
+/**
+ * @brief Comprueba si la avispa está viva.
+ * @return True si la avispa está viva, false en caso contrario.
+ */
 bool Wasp::isAlive() const
 {
     return SDL_GetTicks() < deathTime;
 }
 
+/**
+ * @brief Comprueba la colisión con otro rectángulo.
+ * @param otherRect El rectángulo del otro objeto para comprobar la colisión.
+ * @return Un objeto Collision que describe la colisión.
+ */
 Collision Wasp::checkCollision(const SDL_FRect& otherRect)
 {
     SDL_FRect myRect = getBoundingBox();
@@ -58,11 +80,19 @@ Collision Wasp::checkCollision(const SDL_FRect& otherRect)
     return Collision(Collision::Type::NONE, Vector2D<float>(0, 0));
 }
 
+/**
+ * @brief Dibuja la avispa en la pantalla.
+ */
 void Wasp::render() const
 {
     SceneObject::render();
 }
 
+/**
+ * @brief Establece los iteradores para la avispa en las listas de objetos del juego.
+ * @param itGO Iterador en la lista gameObjects_.
+ * @param itSCO Iterador en la lista sceneObjectsForCollision_.
+ */
 void Wasp::setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO)
 {
     itGO_ = itGO;

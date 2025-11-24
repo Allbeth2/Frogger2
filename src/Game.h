@@ -5,12 +5,12 @@
 #include <array>
 #include "gameStateMachine.h"
 
-// Forward declaration for Texture
+
 class Texture;
 
 /**
  * Clase principal del juego.
- * Ahora se comporta como una aplicación SDL y gestiona la máquina de estados.
+ * Ahora hereda de GameStateMachine para gestionar los estados del juego.
  */
 class Game : private GameStateMachine
 {
@@ -46,7 +46,7 @@ public:
 		LOG1, LOG2,
 		TURTLE,
 		WASP,
-        // Menu textures
+		// Texturas de los menús
         MENU_BACKGROUND,
         CONTINUAR,
         ELIGE_UN_MAPA,
@@ -55,7 +55,7 @@ public:
         LEFT_ARROW,
         ORIGINAL_MAP_TEXT,
         PRACTICA_1_MAP_TEXT,
-        AVISPADO_MAP_TEXT, // Added Avispado map text
+        AVISPADO_MAP_TEXT,
         REINICIAR,
         RIGHT_ARROW,
         SALIR,
@@ -89,11 +89,11 @@ private:
 	SDL_Renderer* renderer;
 	std::array<Texture*, NUM_TEXTURES> textures;
 
-	// Override GameStateMachine's methods
+	// Hace override de los métodos de GameStateMachine
 	void update();
 	void render() const;
 	void handleEvent(const SDL_Event& event);
-	void handleInput(); // New method to poll SDL events and pass them to handleEvent(const SDL_Event& event)
+	void handleInput(); // Un nuevo método para manejar la entrada del usuario 
 };
 
 inline Texture*

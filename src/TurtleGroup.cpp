@@ -1,24 +1,22 @@
 #include "TurtleGroup.h"
 #include "Texture.h"
 #include "Game.h"
-#include "PlayState.h" // Include PlayState.h
+#include "PlayState.h"
 #include <istream>
 #include <fstream>
 #include "FileFormatError.h"
 
-TurtleGroup::TurtleGroup(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, int turtleCount, bool sinking, int currentFrame)
-    : Platform(state, texture, pos, static_cast<float>(Game::turtleFrameWidth * turtleCount), static_cast<float>(texture->getFrameHeight()), vel),
-      turtleCount(turtleCount),
-      sinking(sinking), currentFrame(currentFrame), animationTimer(0.0f)
-{
-    width = static_cast<float>(texture->getFrameWidth() * turtleCount);
-}
+/**
+ * @brief Constructor de TurtleGroup que lee datos desde un archivo.
+ * @param state Puntero al PlayState actual.
+ * @param file Stream del archivo para leer los datos.
+ * @param lineNumber Número de línea actual en el archivo.
+ */
 TurtleGroup::TurtleGroup(PlayState* state, std::fstream& file, int lineNumber)
     : Platform(state, file, lineNumber),
       turtleCount(3),
       sinking(false), currentFrame(0), animationTimer(0.0f)
 {
-    float Xpos, Ypos, Xvel;
     int turtleCountInt, sinkInt;
     //Se asegura que el arhivo esta abierto
     if (!file.is_open()) {
@@ -26,18 +24,19 @@ TurtleGroup::TurtleGroup(PlayState* state, std::fstream& file, int lineNumber)
     }
     // Usa std::istream& para el operator>>
     std::istream& in = file;
-    if (!(in >> Xpos >> Ypos >> Xvel >> turtleCountInt >> sinkInt)) {
+    if (!(in >> turtleCountInt >> sinkInt)) {
         throw FileFormatError(std::string("../assets/maps/turtles.txt"), lineNumber, "Error al leer datos de grupo de tortugas");
     }
     turtleCount = turtleCountInt;
     sinking = (sinkInt != 0);
     width = static_cast<float>(Game::turtleFrameWidth * turtleCount);
-    position = Point2D<float>(Xpos, Ypos);
-    velocity = Vector2D<float>(Xvel / Game::FRAME_RATE, 0.0f);
     texture = state->getGame()->getTexture(Game::TURTLE);
     height = static_cast<float>(texture->getFrameHeight());
 }
 
+/**
+ * @brief Actualiza el estado del grupo de tortugas, incluyendo la animación de hundimiento.
+ */
 void TurtleGroup::update()
 {
     Platform::update();
@@ -53,6 +52,9 @@ void TurtleGroup::update()
     }
 }
 
+/**
+ * @brief Dibuja el grupo de tortugas en la pantalla.
+ */
 void TurtleGroup::render() const
 {
     SDL_FRect destRect = getBoundingBox();
@@ -69,6 +71,11 @@ void TurtleGroup::render() const
     }
 }
 
+/**
+ * @brief Comprueba la colisión con otro rectángulo.
+ * @param otherRect El rectángulo del otro objeto para comprobar la colisión.
+ * @return Un objeto Collision que describe la colisión.
+ */
 Collision TurtleGroup :: checkCollision(const SDL_FRect& otherRect)
 {
     SDL_FRect myRect = getBoundingBox();

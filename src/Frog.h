@@ -6,9 +6,12 @@
 #include <SDL3/SDL.h>
 
 
+#include "EventHandler.h"
+
+
 class PlayState;
 
-class Frog : public SceneObject
+class Frog : public SceneObject, public EventHandler
 {
 	private:
 		Point2D<float> spawnPosition;  
@@ -17,7 +20,6 @@ class Frog : public SceneObject
 		int orientation;                      
 		
 	public:
-		Frog(PlayState* state, Texture* texture, Point2D<float> position, int lives);
 		Frog(PlayState* state, std::fstream& file, int lineNumber);
 			
 		~Frog() = default;
@@ -26,7 +28,7 @@ class Frog : public SceneObject
 		
 		void render() const override;
 		
-		void handleEvent(const SDL_Event& event);
+		void handleEvent(const SDL_Event& event) override;
 
 		Collision checkCollision(const SDL_FRect& otherRect) override;
 		

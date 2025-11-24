@@ -1,5 +1,5 @@
 #include "GameObject.h"
-#include "gameState.h" // Include gameState.h for the definition of GameState
+#include "gameState.h"
 
 GameObject::GameObject(GameState* state) : gameState(state)
 {

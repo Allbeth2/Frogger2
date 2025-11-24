@@ -2,18 +2,19 @@
 #define GAME_STATE_H
 
 #include <list>
-#include <memory>    // For shared_ptr if needed
-#include <functional> // For std::function
-#include <SDL3/SDL.h>     // For SDL_Event
+#include <memory>    
+#include <functional> 
+#include <SDL3/SDL.h>
 
-// Forward declarations
+
 class Game;
 class GameObject;
-class EventHandler; // Already created src/EventHandler.h
+class EventHandler;
 
 class GameState {
 public:
     using DelayedCallback = std::function<void()>;
+    using Anchor = std::list<GameObject*>::iterator;
 
     GameState(Game* game) : game_(game) {}
     virtual ~GameState();
@@ -23,7 +24,7 @@ public:
     virtual void handleEvent(const SDL_Event& event) = 0;
 
     void addEventListener(EventHandler* handler);
-    void addObject(GameObject* obj);
+    Anchor addObject(GameObject* obj);
     void runLater(DelayedCallback cb);
 
     Game* getGame() const { return game_; }

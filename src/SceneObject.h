@@ -11,8 +11,8 @@ class Texture;
 class PlayState;
 
 /**
- * Base class for all scene objects (objects that appear in the game world).
- * Provides position, dimensions, texture, and collision detection.
+ * Classe base para todos los objetos de la escena que tienen posición, tamaño y textura.
+ * 
  */
 class SceneObject : public GameObject
 {
@@ -33,7 +33,6 @@ public:
     SDL_FRect getBoundingBox() const;
     void setPosition(const Point2D<float>& pos);
     
-    // Métodos virtuales para evitar dynamic_cast
     virtual bool isHomedFrog() const { return false; }
     virtual bool isWasp() const { return false; }
 };
