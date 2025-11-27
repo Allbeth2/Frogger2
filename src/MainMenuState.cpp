@@ -61,12 +61,13 @@ void MainMenuState::loadMaps()
 
 namespace {
     // Constantes para la ubicación de los botones
-    const int BUTTON_WIDTH = 150;
-    const int BUTTON_HEIGHT = 50;
-    const int CHOOSE_MAP_LABEL_Y = 175;
-    const int MAP_NAME_BUTTON_Y = 250;
-    const int EXIT_BUTTON_Y = 320;
-    const int ARROW_BUTTON_Y = 250;
+    const int BUTTON_WIDTH = 120;
+    const int BUTTON_HEIGHT = 60;
+    const int CHOOSE_MAP_LABEL_Y = 200;
+    const int MAP_NAME_BUTTON_Y = 275;
+    const int EXIT_BUTTON_X = 50;
+    const int EXIT_BUTTON_Y = 345;
+    const int ARROW_BUTTON_Y = 275;
     const int LEFT_ARROW_X = 50;
     const int RIGHT_ARROW_X_PADDING = 50;
 }
@@ -117,7 +118,7 @@ void MainMenuState::createButtons()
 
 
     // Botón de salir (SALIR)
-    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)EXIT_BUTTON_Y));
+    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - EXIT_BUTTON_X, (float)EXIT_BUTTON_Y));
     exitButton_->connect([this]() {
         this->game_->popState();
     });

@@ -12,11 +12,14 @@ PauseState::PauseState(Game* game, PlayState* playState)
 
 namespace {
 	// Constantes para la posición de los botones
-    const int BUTTON_WIDTH = 150;
-    const int RESUME_BUTTON_Y = 150;
-    const int RESTART_BUTTON_Y = 250;
-    const int MAIN_MENU_BUTTON_Y = 350;
-    const int EXIT_BUTTON_Y = 400;
+    const int RESUME_BUTTON_X = 90;
+    const int RESUME_BUTTON_Y = 100;
+    const int RESTART_BUTTON_X = 90;
+    const int RESTART_BUTTON_Y = 190;
+    const int MAIN_MENU_BUTTON_X = 140;
+    const int MAIN_MENU_BUTTON_Y = 280;
+    const int EXIT_BUTTON_X = 40;
+    const int EXIT_BUTTON_Y = 380;
 }
 
 /**
@@ -25,7 +28,7 @@ namespace {
 void PauseState::createButtons()
 {
     // Botón de reanudar (CONTINUAR)
-    resumeButton_ = new Button(this, game_->getTexture(Game::CONTINUAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)RESUME_BUTTON_Y));
+    resumeButton_ = new Button(this, game_->getTexture(Game::CONTINUAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - RESUME_BUTTON_X, (float)RESUME_BUTTON_Y));
     resumeButton_->connect([this]() {
         game_->popState();
     });
@@ -33,7 +36,7 @@ void PauseState::createButtons()
     addEventListener(resumeButton_);
 
     // Botón de reiniciar (REINICIAR)
-    restartButton_ = new Button(this, game_->getTexture(Game::REINICIAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)RESTART_BUTTON_Y));
+    restartButton_ = new Button(this, game_->getTexture(Game::REINICIAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - RESTART_BUTTON_X, (float)RESTART_BUTTON_Y));
     restartButton_->connect([this]() {
         messageBox();
     });
@@ -41,7 +44,7 @@ void PauseState::createButtons()
     addEventListener(restartButton_);
 
     // Botón de volver al menú principal (VOLVER AL MENÚ)
-    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)MAIN_MENU_BUTTON_Y));
+    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - MAIN_MENU_BUTTON_X, (float)MAIN_MENU_BUTTON_Y));
     mainMenuButton_->connect([this]() {
         game_->popState(); // Pop PauseState
         game_->popState(); // Pop PlayState
@@ -50,7 +53,7 @@ void PauseState::createButtons()
     addEventListener(mainMenuButton_);
 
     // Botón de salir (SALIR)
-    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)EXIT_BUTTON_Y));
+    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - EXIT_BUTTON_X, (float)EXIT_BUTTON_Y));
     exitButton_->connect([this]() {
         while (!game_->empty()) {
             game_->popState();

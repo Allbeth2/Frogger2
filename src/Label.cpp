@@ -9,7 +9,7 @@ void Label::render() const
 {
     if (visible_ && texture_ != nullptr)
     {
-        SDL_FRect destRect = { position_.getX(), position_.getY(), (float)texture_->getFrameWidth(), (float)texture_->getFrameHeight() };
+        SDL_FRect destRect = { position_.getX(), position_.getY(), (float)texture_->getFrameWidth(), (float)texture_->getFrameHeight()};
         texture_->render(destRect, color_);
     }
 }

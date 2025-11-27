@@ -17,8 +17,9 @@ EndState::EndState(Game* game, bool won)
 void EndState::createButtons(bool won)
 {
     // Positions are placeholders
-    const int buttonWidth = 150;
+    const int buttonWidth = 140;
     const int buttonHeight = 50;
+    const int EXIT_BUTTON_X = 60;
 
     // Etiqueta de mensaje
     Game::TextureName messageTexture = won ? Game::HAS_GANADO : Game::GAME_OVER;
@@ -32,7 +33,7 @@ void EndState::createButtons(bool won)
     addObject(messageLabel_);
 
     // Botón de volver al menú principal (VOLVER AL MENÚ)
-    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 250));
+    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth, 250));
     mainMenuButton_->connect([this]() {
         game_->popState(); // Pop EndState
         game_->popState(); // Pop PlayState
@@ -41,7 +42,7 @@ void EndState::createButtons(bool won)
     addEventListener(mainMenuButton_);
 
     // Botón de salir (SALIR)
-    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - buttonWidth / 2, 350));
+    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - EXIT_BUTTON_X, 350));
     exitButton_->connect([this]() {
         while (!game_->empty()) {
             game_->popState();
