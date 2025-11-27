@@ -63,7 +63,7 @@ namespace {
     // Constantes para la ubicación de los botones
     const int BUTTON_WIDTH = 150;
     const int BUTTON_HEIGHT = 50;
-    const int CHOOSE_MAP_LABEL_Y = 150;
+    const int CHOOSE_MAP_LABEL_Y = 175;
     const int MAP_NAME_BUTTON_Y = 250;
     const int EXIT_BUTTON_Y = 320;
     const int ARROW_BUTTON_Y = 250;
@@ -77,7 +77,7 @@ namespace {
 void MainMenuState::createButtons()
 {
     // Etiqueta "Elige un Mapa"
-    Label* chooseMapLabel = new Label(this, game_->getTexture(Game::ELIGE_UN_MAPA), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - 100, (float)CHOOSE_MAP_LABEL_Y));
+    Label* chooseMapLabel = new Label(this, game_->getTexture(Game::ELIGE_UN_MAPA), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - 125, (float)CHOOSE_MAP_LABEL_Y));
     GameState::addObject(chooseMapLabel);
 
     // Botón con el nombre del mapa
@@ -86,8 +86,8 @@ void MainMenuState::createButtons()
         mapNameButton_ = new Button(this, getSelectedMapTexture(), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)MAP_NAME_BUTTON_Y));
         mapNameButton_->connect([this]() {
             // Encuentra la ruta completa del mapa seleccionado
-            std::string selectedMapPath = "../assets/maps/" + this->mapFiles_[this->selectedMap_] + ".txt";
-            this->game_->pushState(std::make_shared<PlayState>(this->game_, selectedMapPath)); // Pasa la ruta del mapa seleccionado
+            std::string selectedMapPath = "../assets/maps/" + mapFiles_[selectedMap_] + ".txt";
+                game_->pushState(std::make_shared<PlayState>(game_, selectedMapPath)); // Pasa la ruta del mapa seleccionado
         });
         GameState::addObject(mapNameButton_);
         addEventListener(mapNameButton_);

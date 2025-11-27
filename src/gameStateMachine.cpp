@@ -45,7 +45,7 @@ void
 GameStateMachine::update()
 {
 	if (!gameStates.empty()) {
-		// Esta variable evita que el estado sea destruido hasta que
+		// current evita que el estado sea destruido hasta que
 		// acabe esta función si su actualización lo desapila de esta pila
 		shared_ptr<GameState> current = gameStates.top();
 		current->update();

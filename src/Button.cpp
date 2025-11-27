@@ -22,6 +22,7 @@ void Button::handleEvent(const SDL_Event& event)
     }
     else if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN)
     {
+
         if (mouseOver_ && callback_ != nullptr)
         {
             callback_();

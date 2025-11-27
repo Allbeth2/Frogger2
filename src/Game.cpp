@@ -47,7 +47,7 @@ Game::Game()
 		TextureSpec{"log2.png", 1, 1},
 		TextureSpec{"turtle.png", 1, 7},
 		TextureSpec{"wasp.png", 1, 1},
-        // Menu textures
+        // Texturas del menu principal
         TextureSpec{"menuBackground.png", 1, 1},
         TextureSpec{"texts/CONTINUAR.png", 1, 1},
         TextureSpec{"texts/ELIGE UN MAPA.png", 1, 1},
@@ -92,13 +92,13 @@ SDL_Renderer* Game::getRenderer()
 void Game::render() const
 {
 	SDL_RenderClear(renderer);
-	GameStateMachine::render(); // Delegate to GameStateMachine's render
+	GameStateMachine::render(); // Delega el render a GameStateMachine
 	SDL_RenderPresent(renderer);
 }
 
 void Game::update()
 {
-	GameStateMachine::update(); // Delegate to GameStateMachine's update
+	GameStateMachine::update(); // Delega el update a GameStateMachine
 }
 
 void Game::handleEvent(const SDL_Event& event)

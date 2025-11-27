@@ -101,7 +101,7 @@ void PauseState::render() const
     playState_->render();
 
 	// Se renderiza un fondo negro semitransparente encima de el juego pausado
-    SDL_SetRenderDrawColor(game_->getRenderer(), 0, 0, 0, 150); // Black with alpha 150
+    SDL_SetRenderDrawColor(game_->getRenderer(), 0, 0, 0, 150); // Negro con 155 de alpha (155/255)
     SDL_FRect overlayRect = { 0, 0, (float)Game::WINDOW_WIDTH, (float)Game::WINDOW_HEIGHT };
     SDL_RenderFillRect(game_->getRenderer(), &overlayRect);
 

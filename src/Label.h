@@ -13,7 +13,7 @@ class Label : public GameObject
 protected:
     Point2D<float> position_;
     Texture* texture_;
-    SDL_Color color_ = { 255, 255, 255, 255 }; // Default to white
+    SDL_Color color_ = { 255, 255, 255, 255 }; // Por default es blanco
 
 public:
     Label(GameState* state, Texture* texture, Point2D<float> pos);
