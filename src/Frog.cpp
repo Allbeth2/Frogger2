@@ -1,7 +1,7 @@
 #include "Frog.h"
 #include "PlayState.h"
 #include "Texture.h"
-#include <istream>
+#include <iostream>
 #include <fstream>
 #include "Game.h"
 #include "Collision.h"
@@ -84,6 +84,7 @@ void Frog::Die()
 {
 	setPosition(spawnPosition);
 	lives--;
+	std::cout << "La rana perdio una vida: Ahora Tiene " << lives << " vidas.";
 }
 
 /**
