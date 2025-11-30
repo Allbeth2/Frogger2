@@ -2,7 +2,7 @@
 #include "Texture.h"
 #include "PlayState.h"
 #include "FileFormatError.h"
-
+#include <fstream>
 SceneObject::SceneObject(PlayState* state, Texture* texture, Point2D<float> pos, float w, float h)
     : GameObject(state), playState(state), position(pos), width(w), height(h), texture(texture)
 {

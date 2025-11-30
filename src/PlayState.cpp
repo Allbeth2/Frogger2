@@ -52,11 +52,7 @@ PlayState::PlayState(Game* game, const std::filesystem::path& mapFilePath)
 
 PlayState::~PlayState()
 {
-    //for(SceneObject* ele : sceneObjectsForCollision_)
-    //{
-    //}
-    sceneObjectsForCollision_.clear();
-    frogPointer_ = nullptr;
+    // El destructor de GameState ya se encarga de eliminar los objetos en gameObjects_
 }
 
 
@@ -144,17 +140,6 @@ Collision PlayState::checkCollision(const SDL_FRect& frogRect)
 }
 
 /**
- * @brief Añade un SceneObject a la lista de colisiones.
- * @param obj El SceneObject a añadir.
- * @return Un iterador al objeto recién añadido.
- */
-PlayState::Anchor PlayState::addObject(SceneObject* obj)
-{
-    sceneObjectsForCollision_.push_back(obj);
-    return std::prev(sceneObjectsForCollision_.end());
-}
-
-/**
  * @brief Comprueba si hay colisión con los nidos.
  * @param rect El rectángulo para comprobar la colisión.
  * @return Un objeto Collision con los detalles de la colisión.
@@ -182,8 +167,7 @@ Collision PlayState::nestChecking (const SDL_FRect& frogRect)
 
 
         HomedFrog* homedFrog = new HomedFrog(this, game_->getTexture(Game::TextureName::FROG), nestPos);
-        GameState::addObject(homedFrog);
-        addObject(homedFrog);
+        addSceneObject(homedFrog);
         return Collision(Collision::NONE, Vector2D<float>(0,0));
     }
     return Collision(Collision::ENEMY, Vector2D<float>(0,0));
@@ -262,14 +246,10 @@ void PlayState::trySpawnWasp()
             if(!waspExists)
             {
                 Uint32 lifetime = getRandomRange(Game::minWaspLifetime, Game::maxWaspLifetime);
-                Wasp* newWasp = new Wasp(this, game_->getTexture(Game::TextureName::WASP), nestPos, Vector2D<float>(0, 0), lifetime);
-                
-                // Añade a ambas listas y obtiene los iteradores
-                auto itGO = GameState::addObject(newWasp);
-                auto itSCO = addObject(newWasp);
+                Wasp* newWasp = new Wasp(this, game_->getTexture(Game::TextureName::WASP), nestPos, Vector2D<float>(0, 0), lifetime);                
                 
                 // Establece los iteradores en el objeto Wasp
-                newWasp->setIterators(itGO, itSCO);
+                addSceneObject(newWasp);
             }
         }
     }
@@ -324,13 +304,7 @@ bool PlayState::LoadEntitiesFromFile()
 void PlayState::loadWasp(std::fstream& file, int lineNumber)
 {
     Wasp* newWasp = new Wasp(this, file, lineNumber);
-    
-    // Añade a ambas listas y obtiene los iteradores
-    auto itGO = GameState::addObject(newWasp);
-    auto itSCO = addObject(newWasp);
-    
-    // Establece los iteradores en el objeto Wasp
-    newWasp->setIterators(itGO, itSCO);
+    addSceneObject(newWasp);
 }
 
 /**
@@ -370,8 +344,7 @@ void PlayState::processEntity(char entidad, std::fstream& file, int lineNumber)
 void PlayState::loadVehicle(std::fstream& file, int lineNumber)
 {
     Vehicle* newVehicle = new Vehicle(this, file, lineNumber);
-    GameState::addObject(newVehicle); // Añade a gameObjects_
-    addObject(newVehicle); // Añade a la lista de colisiones
+    addSceneObject(newVehicle);
 }
 
 /**
@@ -380,8 +353,7 @@ void PlayState::loadVehicle(std::fstream& file, int lineNumber)
 void PlayState::loadLog(std::fstream& file, int lineNumber)
 {
     Log* newLog = new Log(this, file, lineNumber);
-    GameState::addObject(newLog);
-    addObject(newLog);
+    addSceneObject(newLog);
 }
 
 /**
@@ -390,8 +362,7 @@ void PlayState::loadLog(std::fstream& file, int lineNumber)
 void PlayState::loadTurtleGroup(std::fstream& file, int lineNumber)
 {
     TurtleGroup* newTurtleGroup = new TurtleGroup(this, file, lineNumber);
-    GameState::addObject(newTurtleGroup);
-    addObject(newTurtleGroup);
+    addSceneObject(newTurtleGroup);
 }
 
 /**
@@ -400,8 +371,18 @@ void PlayState::loadTurtleGroup(std::fstream& file, int lineNumber)
 void PlayState::loadFrog(std::fstream& file, int lineNumber)
 {
     Frog* newFrog = new Frog(this, file, lineNumber);
-    GameState::addObject(newFrog);
-    addObject(newFrog);
+    addSceneObject(newFrog);
     frogPointer_ = newFrog;
     addEventListener(newFrog); // Añade la rana a los manejadores de eventos
+}
+
+/**
+ * @brief Añade un SceneObject a las listas de objetos del juego y de colisiones.
+ * @param obj El SceneObject a añadir.
+ */
+void PlayState::addSceneObject(SceneObject* obj)
+{
+    auto itGO = GameState::addObject(obj);
+    auto itSCO = sceneObjectsForCollision_.insert(sceneObjectsForCollision_.end(), obj);
+    obj->setIterators(itGO, itSCO);
 }

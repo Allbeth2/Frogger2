@@ -30,13 +30,6 @@ public:
     void render() const override;
     void handleEvent(const SDL_Event& event) override;
 
-    /**
-     * @brief Añade un SceneObject a la lista de colisiones.
-     * @param obj El SceneObject a añadir.
-     * @return Un iterador al objeto recién añadido.
-     */
-    Anchor addObject(SceneObject* obj);
-
     // Métodos específicos del juego de la antigua clase Game
     /**
      * @brief Comprueba si hay colisión con algún objeto de la escena.
@@ -118,6 +111,7 @@ private:
     void loadTurtleGroup(std::fstream& file, int lineNumber);
     void loadFrog(std::fstream& file, int lineNumber);
     void loadWasp(std::fstream& file, int lineNumber);
+    void addSceneObject(SceneObject* obj);
 };
 
 #endif // PLAY_STATE_H

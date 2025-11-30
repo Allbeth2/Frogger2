@@ -50,13 +50,14 @@ MainMenuState::~MainMenuState()
  */
 void MainMenuState::loadMaps()
 {
-    mapFiles_ = {
-        "Original",
-        "Practica1",
-        "Trivial",
-        "Veloz",
-        "Avispado"
-    };
+    const fs::path mapsDir = "../assets/maps";
+    if (fs::exists(mapsDir) && fs::is_directory(mapsDir)) {
+        for (const auto& entry : fs::directory_iterator(mapsDir)) {
+            if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+                mapFiles_.push_back(entry.path().stem().string());
+            }
+        }
+    }
 }
 
 namespace {
@@ -158,13 +159,11 @@ void MainMenuState::update()
         mapNameButton_->setTexture(getSelectedMapTexture());
     }
 
-    if (leftArrowButton_ != nullptr)
+    bool arrowsVisible = mapFiles_.size() > 1;
+    if (leftArrowButton_ != nullptr && rightArrowButton_ != nullptr)
     {
-        leftArrowButton_->setVisible(selectedMap_ > 0);
-    }
-    if (rightArrowButton_ != nullptr)
-    {
-        rightArrowButton_->setVisible(selectedMap_ < mapFiles_.size() - 1);
+        leftArrowButton_->setVisible(arrowsVisible);
+        rightArrowButton_->setVisible(arrowsVisible);
     }
 }
 

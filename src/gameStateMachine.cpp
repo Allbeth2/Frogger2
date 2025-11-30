@@ -22,6 +22,12 @@ GameStateMachine::popState()
 		gameStates.pop();
 }
 
+void GameStateMachine::clearStates()
+{
+	while (!gameStates.empty())
+		gameStates.pop();
+}
+
 bool
 GameStateMachine::empty() const
 {

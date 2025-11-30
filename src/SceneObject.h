@@ -4,6 +4,7 @@
 #include "GameObject.h"
 #include "Vector2D.h"
 #include "Collision.h"
+#include <list>
 #include <SDL3/SDL.h>
 
 class Texture;
@@ -33,6 +34,8 @@ public:
     SDL_FRect getBoundingBox() const;
     void setPosition(const Point2D<float>& pos);
     
+    virtual void setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO) {}
+
     virtual bool isHomedFrog() const { return false; }
     virtual bool isWasp() const { return false; }
 };

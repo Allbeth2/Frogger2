@@ -78,11 +78,12 @@ public:
     // Obtiene la ventana del juego
     SDL_Window* getWindow() const { return window; }
 
-	// Expose GameStateMachine public methods
+	// Expone los métodos públicos de GameStateMachine
 	using GameStateMachine::empty;
 	using GameStateMachine::pushState;
 	using GameStateMachine::replaceState;
 	using GameStateMachine::popState;
+	using GameStateMachine::clearStates;
 
 private:
 	SDL_Window* window;
@@ -90,9 +91,9 @@ private:
 	std::array<Texture*, NUM_TEXTURES> textures;
 
 	// Hace override de los métodos de GameStateMachine
-	void update();
-	void render() const;
-	void handleEvent(const SDL_Event& event);
+	void update() override;
+	void render() const override;
+	void handleEvent(const SDL_Event& event) override;
 	void handleInput(); // Un nuevo método para manejar la entrada del usuario 
 };
 

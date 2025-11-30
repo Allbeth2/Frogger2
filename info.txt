@@ -2,7 +2,5 @@ Componentes del grupo:
 Oliver Garcia Aguado
 Alicia Sarahi Sanchez Varela
 
-En cuanto al reinicio de la partida, se ha optado por implementar el dialogo de confirmación.
-
-Esta entrega no incluye ninguno de los añadidos opcionales
+En cuanto a las funcionalidad opcionales, se han incluido las flechas laterals accionables del selector de mapas del menu principal
 

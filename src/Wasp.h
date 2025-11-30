@@ -51,7 +51,7 @@ public:
     bool isAlive() const;
     
    
-    void setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO);
+    void setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO) override;
 };
 
 #endif // WASP_H

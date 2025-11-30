@@ -28,6 +28,8 @@ public:
 	// Desapila el estado actual y pasa al siguiente en la pila
 	// (no hace nada si no la pila es vacía)
 	void popState();
+	// Desapila todos los estados
+	void clearStates();
 
 	// Sobrecargas que reciben un puntero normal
 	void pushState(GameState* state);
@@ -38,9 +40,9 @@ public:
 
 	// Métodos que delegan en los métodos homónimos de GameState
 	// sobre el estado actual (no hacen nada si la pila es vacía)
-	void update();
-	void render() const;
-	void handleEvent(const SDL_Event& event);
+	virtual void update();
+	virtual void render() const;
+	virtual void handleEvent(const SDL_Event& event);
 };
 
 inline void

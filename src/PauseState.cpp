@@ -56,9 +56,7 @@ void PauseState::createButtons()
     // Botón de salir (SALIR)
     exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - EXIT_BUTTON_X, (float)EXIT_BUTTON_Y));
     exitButton_->connect([this]() {
-        while (!game_->empty()) {
-            game_->popState();
-        }
+        game_->clearStates();
     });
     addObject(exitButton_);
     addEventListener(exitButton_);

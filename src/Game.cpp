@@ -14,60 +14,62 @@ constexpr const char* const WINDOW_TITLE = "Frogger 3.0";
 Game::Game()
 {
 	if (!SDL_Init(SDL_INIT_VIDEO))
-		throw SDLError("Error al inicializar SDL: "s + SDL_GetError());
+		throw SDLError("Error al inicializar SDL: " + string(SDL_GetError()));
 	window = SDL_CreateWindow(WINDOW_TITLE,
 		WINDOW_WIDTH,
 		WINDOW_HEIGHT,
 		0);
 	if (window == nullptr)
-		throw SDLError("window: "s + SDL_GetError());
+		throw SDLError("window: " + string(SDL_GetError()));
 
 	renderer = SDL_CreateRenderer(window, nullptr);
 	if (renderer == nullptr)
-		throw SDLError("renderer: "s + SDL_GetError());
+		throw SDLError("renderer: " + string(SDL_GetError()));
 
 	constexpr const char* const imgBase = "../assets/images/";
 
-	struct TextureSpec
+	// Struct para ayudar a inicializar las texturas
+	struct TextureInfo
 	{
 		const char* name;
 		int nrows = 1;
 		int ncols = 1;
 	};
 
-	constexpr array<TextureSpec, Game::NUM_TEXTURES> textureList{
-		TextureSpec{"background.png", 1, 1},
-		TextureSpec{"frog.png", 1, 2},
-		TextureSpec{"car1.png", 1, 1},
-		TextureSpec{"car2.png", 1, 1},
-		TextureSpec{"car3.png", 1, 1},
-		TextureSpec{"car4.png", 1, 1},
-		TextureSpec{"car5.png", 1, 1},
-		TextureSpec{"log1.png", 1, 1},
-		TextureSpec{"log2.png", 1, 1},
-		TextureSpec{"turtle.png", 1, 7},
-		TextureSpec{"wasp.png", 1, 1},
+	const array<TextureInfo, Game::NUM_TEXTURES> textureList{
+		TextureInfo{"background.png", 1, 1},
+		TextureInfo{"frog.png", 1, 2},
+		TextureInfo{"car1.png", 1, 1},
+		TextureInfo{"car2.png", 1, 1},
+		TextureInfo{"car3.png", 1, 1},
+		TextureInfo{"car4.png", 1, 1},
+		TextureInfo{"car5.png", 1, 1},
+		TextureInfo{"log1.png", 1, 1},
+		TextureInfo{"log2.png", 1, 1},
+		TextureInfo{"turtle.png", 1, 7},
+		TextureInfo{"wasp.png", 1, 1},
         // Texturas del menu principal
-        TextureSpec{"menuBackground.png", 1, 1},
-        TextureSpec{"texts/CONTINUAR.png", 1, 1},
-        TextureSpec{"texts/ELIGE UN MAPA.png", 1, 1},
-        TextureSpec{"texts/GAME OVER.png", 1, 1},
-        TextureSpec{"texts/HAS GANADO.png", 1, 1},
-        TextureSpec{"texts/left.png", 1, 1},
-        TextureSpec{"texts/Original.png", 1, 1},
-        TextureSpec{"texts/Practica1.png", 1, 1},
-        TextureSpec{"texts/Avispado.png", 1, 1}, 
-        TextureSpec{"texts/REINICIAR.png", 1, 1},
-        TextureSpec{"texts/right.png", 1, 1},
-        TextureSpec{"texts/SALIR.png", 1, 1},
-        TextureSpec{"texts/Trivial.png", 1, 1},
-        TextureSpec{"texts/Veloz.png", 1, 1},
-        TextureSpec{"texts/VOLVER AL MENÚ.png", 1, 1},
+        TextureInfo{"menuBackground.png", 1, 1},
+        TextureInfo{"texts/CONTINUAR.png", 1, 1},
+        TextureInfo{"texts/ELIGE UN MAPA.png", 1, 1},
+        TextureInfo{"texts/GAME OVER.png", 1, 1},
+        TextureInfo{"texts/HAS GANADO.png", 1, 1},
+        TextureInfo{"texts/left.png", 1, 1},
+        TextureInfo{"texts/Original.png", 1, 1},
+        TextureInfo{"texts/Practica1.png", 1, 1},
+        TextureInfo{"texts/Avispado.png", 1, 1},
+        TextureInfo{"texts/REINICIAR.png", 1, 1},
+        TextureInfo{"texts/right.png", 1, 1},
+        TextureInfo{"texts/SALIR.png", 1, 1},
+        TextureInfo{"texts/Trivial.png", 1, 1},
+        TextureInfo{"texts/Veloz.png", 1, 1},
+        TextureInfo{"texts/VOLVER AL MENÚ.png", 1, 1},
 	};
 
 	for (size_t i = 0; i < textures.size(); i++) {
-		auto [name, nrows, ncols] = textureList[i];
-		textures[i] = new Texture(renderer, (string(imgBase) + name).c_str(), nrows, ncols);
+		const TextureInfo& spec = textureList[i];
+		string path = string(imgBase) + spec.name;
+		textures[i] = new Texture(renderer, path.c_str(), spec.nrows, spec.ncols);
 	}
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
@@ -92,46 +94,45 @@ SDL_Renderer* Game::getRenderer()
 void Game::render() const
 {
 	SDL_RenderClear(renderer);
-	GameStateMachine::render(); // Delega el render a GameStateMachine
+	GameStateMachine::render(); // Llama a la implementación de la clase base
 	SDL_RenderPresent(renderer);
 }
 
 void Game::update()
 {
-	GameStateMachine::update(); // Delega el update a GameStateMachine
+	GameStateMachine::update(); // Llama a la implementación de la clase base
 }
 
 void Game::handleEvent(const SDL_Event& event)
 {
-	GameStateMachine::handleEvent(event); // Delegate to GameStateMachine's handleEvent
+	GameStateMachine::handleEvent(event); // Llama a la implementación de la clase base
 }
 
 void Game::handleInput() {
 	SDL_Event event;
-	while (SDL_PollEvent(&event)) {
-		// Pass all events to the current state
+	while (SDL_PollEvent(&event)) { // Pasa todos los eventos al estado actual
 		handleEvent(event);
 	}
 }
 
 void Game::run()
 {
-	// SDL3 devuelve el tiempo en milisegundos, formato Uint64
+	// Bucle principal del juego
 	Uint64 frameStart = 0;
 	Uint64 frameEnd = 0;
 	Uint64 frameDuration = 0;
 
 	// Bucle mientras haya estados en la pila
-	while (!GameStateMachine::empty()) {
+	while (!empty()) {
 
 		frameStart = SDL_GetTicks();
 
-		// La logica del juego
+		// Logica del juego
 		handleInput();
 		update();
 		render();
 
-		// Se calcula el tiempo que ha tomado procesar el juego
+		// Control del framerate
 		frameEnd = SDL_GetTicks();
 		frameDuration = frameEnd - frameStart;
 

@@ -16,7 +16,7 @@ EndState::EndState(Game* game, bool won)
  */
 void EndState::createButtons(bool won)
 {
-    // Positions are placeholders
+    // Posiciones de los botones
     const int buttonWidth = 140;
     const int buttonHeight = 50;
     const int EXIT_BUTTON_X = 60;
@@ -25,10 +25,10 @@ void EndState::createButtons(bool won)
     Game::TextureName messageTexture = won ? Game::HAS_GANADO : Game::GAME_OVER;
     messageLabel_ = new Label(this, game_->getTexture(messageTexture), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - 100, 150));
     if (won) {
-        messageLabel_->setColor({ 0, 255, 0, 255 }); // Green
+        messageLabel_->setColor({ 0, 255, 0, 255 }); // Verde
     }
     else {
-        messageLabel_->setColor({ 255, 0, 0, 255 }); // Red
+        messageLabel_->setColor({ 255, 0, 0, 255 }); // Rojo
     }
     addObject(messageLabel_);
 
@@ -44,9 +44,7 @@ void EndState::createButtons(bool won)
     // Botón de salir (SALIR)
     exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - EXIT_BUTTON_X, 350));
     exitButton_->connect([this]() {
-        while (!game_->empty()) {
-            game_->popState();
-        }
+        game_->clearStates();
     });
     addObject(exitButton_);
     addEventListener(exitButton_);
@@ -62,7 +60,7 @@ void EndState::update()
 
 void EndState::render() const
 {
-    // Black background is rendered by default because we don't render any background texture
+    // El fondo se renderiza en negro por defecto porque no se renderiza ninguna textura de fondo
     for (const auto& obj : gameObjects_)
     {
         obj->render();
