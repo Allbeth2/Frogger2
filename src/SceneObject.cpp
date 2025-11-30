@@ -4,7 +4,7 @@
 #include "FileFormatError.h"
 #include <fstream>
 SceneObject::SceneObject(PlayState* state, Texture* texture, Point2D<float> pos, float w, float h)
-    : GameObject(state), position(pos), playState(state), width(w), height(h), texture(texture)
+    : GameObject(state), position(pos), width(w), height(h), texture(texture), playState(state)
 {
 }
 
