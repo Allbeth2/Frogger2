@@ -1,7 +1,7 @@
 #include "Label.h"
 
 Label::Label(GameState* state, Texture* texture, Point2D<float> pos)
-    : GameObject(state), texture_(texture), position_(pos)
+    : GameObject(state), position_(pos), texture_(texture)
 {
 }
 
@@ -9,7 +9,7 @@ void Label::render() const
 {
     if (visible_ && texture_ != nullptr)
     {
-        SDL_FRect destRect = { position_.getX(), position_.getY(), (float)texture_->getFrameWidth(), (float)texture_->getFrameHeight()};
+        SDL_FRect destRect = { position_.getX(), position_.getY(), (float)texture_->getFrameWidth(), (float)texture_->getFrameHeight() };
         texture_->render(destRect, color_);
     }
 }

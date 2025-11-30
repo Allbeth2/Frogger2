@@ -30,7 +30,6 @@ Log::Log(PlayState* state, std::fstream& file, int lineNumber)
     int textureIndex = TextureType + 7;
     Texture* tex = state->getGame()->getTexture(static_cast<Game::TextureName>(textureIndex));
     texture = tex;
-    width = static_cast<float>(tex->getFrameWidth());
-    height = static_cast<float>(tex->getFrameHeight());
+    width = tex->getFrameWidth();
+    height = tex->getFrameHeight();
 }
-

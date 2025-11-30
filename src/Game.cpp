@@ -140,7 +140,7 @@ void Game::run()
 		// Se aplica un delay si el frame fue muy rapido, en caso contrario no se hace nada
 		if (frameDuration < DELAYTIME)
 		{
-			SDL_Delay(static_cast<Uint32>(DELAYTIME - frameDuration));
+			SDL_Delay(DELAYTIME - frameDuration);
 		}
 	}
 }

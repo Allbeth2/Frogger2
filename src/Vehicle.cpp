@@ -32,8 +32,8 @@ Vehicle::Vehicle(PlayState* state, std::fstream& file, int lineNumber)
     Texture* tex = state->getGame()->getTexture(static_cast<Game::TextureName>(textureIndex));
 
     texture = tex;
-    width = static_cast<float>(tex->getFrameWidth());
-    height = static_cast<float>(tex->getFrameHeight());
+    width = tex->getFrameWidth();
+    height = tex->getFrameHeight();
 }
 
 

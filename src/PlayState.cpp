@@ -42,8 +42,8 @@ PlayState::PlayState(Game* game, const std::filesystem::path& mapFilePath)
         nests_.push_back(SDL_FRect{
             nido0x + (i * HorizontalGap),
             nido0y,
-            (float)Game::CellSize, 
-            (float)Game::CellSize - 1
+            (float)Game::CellSize,
+            (float)Game::CellSize - 1.0f
             });
     }
 

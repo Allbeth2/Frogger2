@@ -32,9 +32,9 @@ Frog::Frog(PlayState* state, std::fstream& file, int lineNumber)
 	}
 	spawnPosition = position;
 	lives = FrogLives;
-    texture = state->getGame()->getTexture(Game::FROG);
-    width = static_cast<float>(texture->getFrameWidth());
-    height = static_cast<float>(texture->getFrameHeight());
+	texture = state->getGame()->getTexture(Game::FROG);
+	width = texture->getFrameWidth();
+	height = texture->getFrameHeight();
 }
 
 /**
@@ -84,7 +84,7 @@ void Frog::Die()
 {
 	setPosition(spawnPosition);
 	lives--;
-	std::cout << "La rana perdio una vida: Ahora Tiene " << lives << " vidas.";
+	std::cout << "La rana perdio una vida: Ahora Tiene " << lives << " vidas.\n";
 }
 
 /**
@@ -99,26 +99,26 @@ void Frog::handleEvent(const SDL_Event& event) //direciones de movimiento de la 
 	    case SDLK_UP:
 		    if (position.getY() > 0)
 		    {
-			    direction = Vector2D<float>(0, -static_cast<float>(Game::CellSize));
+			    direction = Vector2D<float>(0, -Game::CellSize);
 			    orientation = 1;
 		    }
 		    break;
 	    case SDLK_DOWN:
 		    if (position.getY() + height < Game::WINDOW_HEIGHT)
 		    {
-			    direction = Vector2D<float>(0, static_cast<float>(Game::CellSize));
+			    direction = Vector2D<float>(0, Game::CellSize);
 			    orientation = 3;
 		    }
 		    break;
 	    case SDLK_LEFT:
 		    if (position.getX() > 0) {
-			    direction = Vector2D<float>(-static_cast<float>(Game::CellSize), 0);
+			    direction = Vector2D<float>(-Game::CellSize, 0);
 			    orientation = 2;
 		    }
 		    break;
 	    case SDLK_RIGHT:
 		    if (position.getX() + width < Game::WINDOW_WIDTH) {
-			    direction = Vector2D<float>(static_cast<float>(Game::CellSize), 0);
+			    direction = Vector2D<float>(Game::CellSize, 0);
 			    orientation = 4;
 		    }
 		    break;

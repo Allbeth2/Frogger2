@@ -29,7 +29,7 @@ namespace {
 void PauseState::createButtons()
 {
     // Botón de reanudar (CONTINUAR)
-    resumeButton_ = new Button(this, game_->getTexture(Game::CONTINUAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - RESUME_BUTTON_X, (float)RESUME_BUTTON_Y));
+    resumeButton_ = new Button(this, game_->getTexture(Game::CONTINUAR), Point2D<float>(Game::WINDOW_WIDTH / 2.0f - RESUME_BUTTON_X, (float)RESUME_BUTTON_Y));
     resumeButton_->connect([this]() {
         game_->popState();
     });
@@ -37,7 +37,7 @@ void PauseState::createButtons()
     addEventListener(resumeButton_);
 
     // Botón de reiniciar (REINICIAR)
-    restartButton_ = new Button(this, game_->getTexture(Game::REINICIAR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - RESTART_BUTTON_X, (float)RESTART_BUTTON_Y));
+    restartButton_ = new Button(this, game_->getTexture(Game::REINICIAR), Point2D<float>(Game::WINDOW_WIDTH / 2.0f - RESTART_BUTTON_X, (float)RESTART_BUTTON_Y));
     restartButton_->connect([this]() {
         messageBox();
     });
@@ -45,7 +45,7 @@ void PauseState::createButtons()
     addEventListener(restartButton_);
 
     // Botón de volver al menú principal (VOLVER AL MENÚ)
-    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - MAIN_MENU_BUTTON_X, (float)MAIN_MENU_BUTTON_Y));
+    mainMenuButton_ = new Button(this, game_->getTexture(Game::VOLVER_AL_MENU), Point2D<float>(Game::WINDOW_WIDTH / 2.0f - MAIN_MENU_BUTTON_X, (float)MAIN_MENU_BUTTON_Y));
     mainMenuButton_->connect([this]() {
         game_->popState(); // Pop PauseState
         game_->popState(); // Pop PlayState
@@ -54,7 +54,7 @@ void PauseState::createButtons()
     addEventListener(mainMenuButton_);
 
     // Botón de salir (SALIR)
-    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - EXIT_BUTTON_X, (float)EXIT_BUTTON_Y));
+    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>(Game::WINDOW_WIDTH / 2.0f - EXIT_BUTTON_X, (float)EXIT_BUTTON_Y));
     exitButton_->connect([this]() {
         game_->clearStates();
     });

@@ -13,7 +13,7 @@ namespace {
 }
 
 Wasp::Wasp(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<float> vel, Uint32 lifetime)
-    : SceneObject(state, texture, pos, static_cast<float>(texture->getFrameWidth()), static_cast<float>(texture->getFrameHeight())),
+    : SceneObject(state, texture, pos, texture->getFrameWidth(), texture->getFrameHeight()),
       velocity(vel),
       deathTime(SDL_GetTicks() + lifetime)
 {
@@ -39,8 +39,8 @@ Wasp::Wasp(PlayState* state, std::fstream& file, int lineNumber)
     velocity = Vector2D<float>(vx * WASP_SPEED_MULTIPLIER / Game::FRAME_RATE, vy * WASP_SPEED_MULTIPLIER / Game::FRAME_RATE);
     deathTime = SDL_GetTicks() + t;
     texture = state->getGame()->getTexture(Game::WASP);
-    width = static_cast<float>(texture->getFrameWidth());
-    height = static_cast<float>(texture->getFrameHeight());
+    width = texture->getFrameWidth();
+    height = texture->getFrameHeight();
 }
 
 /**

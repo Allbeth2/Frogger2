@@ -79,13 +79,12 @@ namespace {
 void MainMenuState::createButtons()
 {
     // Etiqueta "Elige un Mapa"
-    Label* chooseMapLabel = new Label(this, game_->getTexture(Game::ELIGE_UN_MAPA), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - 125, (float)CHOOSE_MAP_LABEL_Y));
+    Label* chooseMapLabel = new Label(this, game_->getTexture(Game::ELIGE_UN_MAPA), Point2D<float>(Game::WINDOW_WIDTH / 2.0f - 125, (float)CHOOSE_MAP_LABEL_Y));
     GameState::addObject(chooseMapLabel);
-
     // Botón con el nombre del mapa
     if (!mapFiles_.empty())
     {
-        mapNameButton_ = new Button(this, getSelectedMapTexture(), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)MAP_NAME_BUTTON_Y));
+        mapNameButton_ = new Button(this, getSelectedMapTexture(), Point2D<float>(Game::WINDOW_WIDTH / 2.0f - BUTTON_WIDTH / 2.0f, (float)MAP_NAME_BUTTON_Y));
         mapNameButton_->connect([this]() {
             // Encuentra la ruta completa del mapa seleccionado
             fs::path selectedMapPath = fs::path("../assets/maps/") / (mapFiles_[selectedMap_] + ".txt");
@@ -94,32 +93,22 @@ void MainMenuState::createButtons()
         GameState::addObject(mapNameButton_);
         addEventListener(mapNameButton_);
     }
-
     // Botón de flecha izquierda
     leftArrowButton_ = new Button(this, game_->getTexture(Game::LEFT_ARROW), Point2D<float>((float)LEFT_ARROW_X, (float)ARROW_BUTTON_Y));
     leftArrowButton_->connect([this]() {
-        if (!mapFiles_.empty())
-        {
-            selectedMap_ = (selectedMap_ - 1 + mapFiles_.size()) % mapFiles_.size();
-        }
+        if (!mapFiles_.empty()) selectedMap_ = (selectedMap_ - 1 + mapFiles_.size()) % mapFiles_.size();
     });
     GameState::addObject(leftArrowButton_);
     addEventListener(leftArrowButton_);
-
     // Botón de flecha derecha
-    rightArrowButton_ = new Button(this, game_->getTexture(Game::RIGHT_ARROW), Point2D<float>(Game::WINDOW_WIDTH - RIGHT_ARROW_X_PADDING - game_->getTexture(Game::RIGHT_ARROW)->getFrameWidth(), (float)ARROW_BUTTON_Y));
+    rightArrowButton_ = new Button(this, game_->getTexture(Game::RIGHT_ARROW), Point2D<float>((float)(Game::WINDOW_WIDTH - RIGHT_ARROW_X_PADDING - game_->getTexture(Game::RIGHT_ARROW)->getFrameWidth()), (float)ARROW_BUTTON_Y));
     rightArrowButton_->connect([this]() {
-        if (!mapFiles_.empty())
-        {
-            selectedMap_ = (selectedMap_ + 1) % mapFiles_.size();
-        }
+        if (!mapFiles_.empty()) selectedMap_ = (selectedMap_ + 1) % mapFiles_.size();
     });
     GameState::addObject(rightArrowButton_);
     addEventListener(rightArrowButton_);
-
-
     // Botón de salir (SALIR)
-    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - EXIT_BUTTON_X, (float)EXIT_BUTTON_Y));
+    exitButton_ = new Button(this, game_->getTexture(Game::SALIR), Point2D<float>(Game::WINDOW_WIDTH / 2.0f - EXIT_BUTTON_X, (float)EXIT_BUTTON_Y));
     exitButton_->connect([this]() {
         this->game_->popState();
     });

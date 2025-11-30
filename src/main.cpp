@@ -22,7 +22,6 @@ int main(int argc, char* argv[])
 	try {
 		Game game;
 		game.pushState(std::make_shared<MainMenuState>(&game));
-
 		game.run();
 	}
 	catch (const FileNotFoundError& e) {
@@ -55,6 +54,5 @@ int main(int argc, char* argv[])
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error Desconocido", "Se ha producido un error desconocido", nullptr);
 		return 1;
 	}
-
 	return 0;
 }

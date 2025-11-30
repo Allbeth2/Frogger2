@@ -29,9 +29,9 @@ TurtleGroup::TurtleGroup(PlayState* state, std::fstream& file, int lineNumber)
     }
     turtleCount = turtleCountInt;
     sinking = (sinkInt != 0);
-    width = static_cast<float>(Game::turtleFrameWidth * turtleCount);
+    width = Game::turtleFrameWidth * turtleCount;
     texture = state->getGame()->getTexture(Game::TURTLE);
-    height = static_cast<float>(texture->getFrameHeight());
+    height = texture->getFrameHeight();
 }
 
 /**
