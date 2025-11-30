@@ -55,7 +55,7 @@ Game::Game()
         TextureSpec{"texts/HAS GANADO.png", 1, 1},
         TextureSpec{"texts/left.png", 1, 1},
         TextureSpec{"texts/Original.png", 1, 1},
-        TextureSpec{"texts/Práctica 1.png", 1, 1},
+        TextureSpec{"texts/Practica1.png", 1, 1},
         TextureSpec{"texts/Avispado.png", 1, 1}, 
         TextureSpec{"texts/REINICIAR.png", 1, 1},
         TextureSpec{"texts/right.png", 1, 1},

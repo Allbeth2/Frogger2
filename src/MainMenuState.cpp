@@ -52,7 +52,7 @@ void MainMenuState::loadMaps()
 {
     mapFiles_ = {
         "Original",
-        "Práctica 1",
+        "Practica1",
         "Trivial",
         "Veloz",
         "Avispado"
@@ -135,15 +135,15 @@ Texture* MainMenuState::getSelectedMapTexture() const
     if (mapFiles_.empty()) return nullptr;
 
     Game::TextureName mapTextureName;
-    std::string currentMapName = this->mapFiles_[this->selectedMap_];
+    std::string currentMapName = mapFiles_[selectedMap_];
     if (currentMapName == "Original") mapTextureName = Game::ORIGINAL_MAP_TEXT;
-    else if (currentMapName == "Práctica 1") mapTextureName = Game::PRACTICA_1_MAP_TEXT;
+    else if (currentMapName == "Practica1") mapTextureName = Game::PRACTICA_1_MAP_TEXT;
     else if (currentMapName == "Avispado") mapTextureName = Game::AVISPADO_MAP_TEXT;
     else if (currentMapName == "Trivial") mapTextureName = Game::TRIVIAL_MAP_TEXT;
     else if (currentMapName == "Veloz") mapTextureName = Game::VELOZ_MAP_TEXT;
     else return nullptr; // O una textura por defecto
 
-    return this->game_->getTexture(mapTextureName);
+    return this->game_->getTexture(mapTextureName); // Para que el compilador no de error
 }
 
 void MainMenuState::update()
