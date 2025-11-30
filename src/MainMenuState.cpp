@@ -87,8 +87,8 @@ void MainMenuState::createButtons()
         mapNameButton_ = new Button(this, getSelectedMapTexture(), Point2D<float>((float)Game::WINDOW_WIDTH / 2 - BUTTON_WIDTH / 2, (float)MAP_NAME_BUTTON_Y));
         mapNameButton_->connect([this]() {
             // Encuentra la ruta completa del mapa seleccionado
-            std::string selectedMapPath = "../assets/maps/" + mapFiles_[selectedMap_] + ".txt";
-                game_->pushState(std::make_shared<PlayState>(game_, selectedMapPath)); // Pasa la ruta del mapa seleccionado
+            fs::path selectedMapPath = fs::path("../assets/maps/") / (mapFiles_[selectedMap_] + ".txt");
+            game_->pushState(std::make_shared<PlayState>(game_, selectedMapPath)); // Pasa la ruta del mapa seleccionado
         });
         GameState::addObject(mapNameButton_);
         addEventListener(mapNameButton_);

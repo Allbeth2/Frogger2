@@ -20,14 +20,14 @@
 
 using namespace std;
 
-constexpr const char* const DEFAULT_MAP_FILE = "../assets/maps/Original.txt";
+const std::filesystem::path DEFAULT_MAP_FILE = "../assets/maps/Original.txt";
 
 PlayState::PlayState(Game* game)
     : PlayState(game, DEFAULT_MAP_FILE)
 {
 }
 
-PlayState::PlayState(Game* game, const std::string& mapFilePath)
+PlayState::PlayState(Game* game, const std::filesystem::path& mapFilePath)
 	: GameState(game), // Inicializa la clase base GameState
 	mapFilePath_(mapFilePath), // Inicializa la ruta del archivo del mapa 
     frogPointer_(nullptr),
@@ -299,10 +299,10 @@ bool PlayState::allNestsOccupied() const
  */
 bool PlayState::LoadEntitiesFromFile()
 {
-    std::fstream file(mapFilePath_, std::ios::in);
+    std::fstream file(mapFilePath_);
     if (!file.is_open())
     {
-        throw FileNotFoundError("Map file not found: "s + mapFilePath_);
+        throw FileNotFoundError("Map file not found: "s + mapFilePath_.string());
         return false;
     }
 

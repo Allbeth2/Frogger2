@@ -4,6 +4,7 @@
 #include "gameState.h"
 #include <vector>
 #include <list>
+#include <filesystem>
 #include <random>
 #include <fstream> 
 #include "Vector2D.h" 
@@ -20,9 +21,9 @@ class SceneObject;
 class PlayState : public GameState {
 public:
     using Anchor = std::list<SceneObject*>::iterator;
-
+    
     PlayState(Game* game);
-    PlayState(Game* game, const std::string& mapFilePath);
+    PlayState(Game* game, const std::filesystem::path& mapFilePath);
     ~PlayState();
 
     void update() override;
@@ -64,16 +65,16 @@ public:
      * @param itGO Iterador al objeto en la lista gameObjects_.
      * @param itSCO Iterador al objeto en la lista sceneObjectsForCollision_.
      */
-    void deleteAfter(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO);
-    
+    void deleteAfter(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO);    
+
     /**
      * @brief Obtiene la ruta del archivo del mapa actual.
      * @return La ruta del archivo del mapa.
      */
-    std::string getMapFilePath() const { return mapFilePath_; }
+    const std::filesystem::path& getMapFilePath() const { return mapFilePath_; }
 
 private:
-    std::string mapFilePath_;
+    std::filesystem::path mapFilePath_;
     std::list<SceneObject*> sceneObjectsForCollision_; // Lista adicional para colisiones
 
     Frog* frogPointer_;
