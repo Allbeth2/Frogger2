@@ -18,7 +18,6 @@ void EndState::createButtons(bool won)
 {
     // Posiciones de los botones
     const int buttonWidth = 140;
-    const int buttonHeight = 50;
     const int EXIT_BUTTON_X = 60;
 
     // Etiqueta de mensaje

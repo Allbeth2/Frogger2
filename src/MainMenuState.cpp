@@ -138,11 +138,11 @@ Texture* MainMenuState::getSelectedMapTexture() const
     Game::TextureName mapTextureName;
     std::string currentMapName = mapFiles_[selectedMap_];
     if (currentMapName == "Original") mapTextureName = Game::ORIGINAL_MAP_TEXT;
-    else if (currentMapName == "Practica1") mapTextureName = Game::PRACTICA_1_MAP_TEXT;
     else if (currentMapName == "Avispado") mapTextureName = Game::AVISPADO_MAP_TEXT;
     else if (currentMapName == "Trivial") mapTextureName = Game::TRIVIAL_MAP_TEXT;
     else if (currentMapName == "Veloz") mapTextureName = Game::VELOZ_MAP_TEXT;
-    else return nullptr; // O una textura por defecto
+    else mapTextureName = Game::PRACTICA_1_MAP_TEXT; // Lo siento Ruben, no he encontrado otra forma de resolverlo.
+
 
     return this->game_->getTexture(mapTextureName); // Para que el compilador no de error
 }

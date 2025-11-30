@@ -6,6 +6,7 @@
 #include "Texture.h"
 #include "GameError.h"
 #include "SDLError.h"
+#include <filesystem>
 
 using namespace std;
 
@@ -56,7 +57,7 @@ Game::Game()
         TextureInfo{"texts/HAS GANADO.png", 1, 1},
         TextureInfo{"texts/left.png", 1, 1},
         TextureInfo{"texts/Original.png", 1, 1},
-        TextureInfo{"texts/Practica1.png", 1, 1},
+        TextureInfo{"texts/Práctica 1.png", 1, 1},
         TextureInfo{"texts/Avispado.png", 1, 1},
         TextureInfo{"texts/REINICIAR.png", 1, 1},
         TextureInfo{"texts/right.png", 1, 1},
@@ -68,8 +69,8 @@ Game::Game()
 
 	for (size_t i = 0; i < textures.size(); i++) {
 		const TextureInfo& spec = textureList[i];
-		string path = string(imgBase) + spec.name;
-		textures[i] = new Texture(renderer, path.c_str(), spec.nrows, spec.ncols);
+		std::filesystem::path texturePath = std::filesystem::path(imgBase) / spec.name;
+		textures[i] = new Texture(renderer, texturePath.string().c_str(), spec.nrows, spec.ncols);
 	}
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
