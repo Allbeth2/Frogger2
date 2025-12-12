@@ -22,13 +22,11 @@ void Crosser::update()
     //Limites
     if (velocity.getX() > 0 && position.getX() >= Game::rightFrame) // Los que se mueven hacia la derecha
     {
-        float overshoot = position.getX() - Game::rightFrame;
-        position.setX(Game::leftFrame - width + overshoot);
+        position.setX(Game::leftFrame - width);
     }
     else if (velocity.getX() < 0 && position.getX() + width <= Game::leftFrame) // Los que se mueven hacia la izquierda
     {
-        float overshoot = (position.getX() + width) - Game::leftFrame;
-        position.setX(Game::rightFrame + overshoot);
+        position.setX(Game::rightFrame);
     }
 }
 

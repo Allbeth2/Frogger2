@@ -16,11 +16,12 @@ public:
     using DelayedCallback = std::function<void()>;
     using Anchor = std::list<GameObject*>::iterator;
 
+
     GameState(Game* game) : game_(game) {}
     virtual ~GameState();
 
-    virtual void update() = 0;
-    virtual void render() const = 0;
+    virtual void update();
+    virtual void render() const;
     virtual void handleEvent(const SDL_Event& event) = 0;
 
     void addEventListener(EventHandler* handler);

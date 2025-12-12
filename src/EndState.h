@@ -12,8 +12,6 @@ public:
     EndState(Game* game, bool won);
     virtual ~EndState() = default;
 
-    void update() override;
-    void render() const override;
     void handleEvent(const SDL_Event& event) override;
 
 private:

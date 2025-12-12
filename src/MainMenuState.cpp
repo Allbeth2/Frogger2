@@ -136,33 +136,27 @@ Texture* MainMenuState::getSelectedMapTexture() const
     return this->game_->getTexture(mapTextureName); // Para que el compilador no de error
 }
 
-void MainMenuState::update()
-{
-    for (auto& obj : gameObjects_)
-    {
-        obj->update();
-    }
-
-    if (mapNameButton_ != nullptr)
-    {
-        mapNameButton_->setTexture(getSelectedMapTexture());
-    }
-
-    bool arrowsVisible = mapFiles_.size() > 1;
-    if (leftArrowButton_ != nullptr && rightArrowButton_ != nullptr)
-    {
-        leftArrowButton_->setVisible(arrowsVisible);
-        rightArrowButton_->setVisible(arrowsVisible);
-    }
-}
+//void MainMenuState::update()
+//{
+//    GameState::update();
+//
+//    if (mapNameButton_ != nullptr)
+//    {
+//        mapNameButton_->setTexture(getSelectedMapTexture());
+//    }
+//
+//    bool arrowsVisible = mapFiles_.size() > 1;
+//    if (leftArrowButton_ != nullptr && rightArrowButton_ != nullptr)
+//    {
+//        leftArrowButton_->setVisible(arrowsVisible);
+//        rightArrowButton_->setVisible(arrowsVisible);
+//    }
+//}
 
 void MainMenuState::render() const
 {
     game_->getTexture(Game::MENU_BACKGROUND)->render();
-    for (const auto& obj : gameObjects_)
-    {
-        obj->render();
-    }
+    GameState::render();
 }
 
 void MainMenuState::handleEvent(const SDL_Event& event)
@@ -188,5 +182,14 @@ void MainMenuState::handleEvent(const SDL_Event& event)
                 selectedMap_ = (selectedMap_ - 1 + mapFiles_.size()) % mapFiles_.size();
             }
         }
+        else if (event.key.key == SDLK_KP_ENTER)
+        {
+            if (!mapFiles_.empty())
+            {
+                fs::path selectedMapPath = fs::path("../assets/maps/") / (mapFiles_[selectedMap_] + ".txt");
+                game_->pushState(std::make_shared<PlayState>(game_, selectedMapPath)); // Pasa la ruta del mapa seleccionado
+            }
+        }
+
     }
 }

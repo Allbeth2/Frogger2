@@ -70,6 +70,7 @@ Game::Game()
 	for (size_t i = 0; i < textures.size(); i++) {
 		const TextureInfo& spec = textureList[i];
 		std::filesystem::path texturePath = std::filesystem::path(imgBase) / spec.name;
+		/*std::cout << texturePath.string() << " " << spec.name << std::endl;*/
 		textures[i] = new Texture(renderer, texturePath.string().c_str(), spec.nrows, spec.ncols);
 	}
 

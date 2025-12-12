@@ -65,6 +65,10 @@ bool Wasp::isAlive() const
     return SDL_GetTicks() < deathTime;
 }
 
+
+
+
+
 /**
  * @brief Comprueba la colisión con otro rectángulo.
  * @param otherRect El rectángulo del otro objeto para comprobar la colisión.
@@ -81,19 +85,11 @@ Collision Wasp::checkCollision(const SDL_FRect& otherRect)
 }
 
 /**
- * @brief Dibuja la avispa en la pantalla.
- */
-void Wasp::render() const
-{
-    SceneObject::render();
-}
-
-/**
  * @brief Establece los iteradores para la avispa en las listas de objetos del juego.
  * @param itGO Iterador en la lista gameObjects_.
  * @param itSCO Iterador en la lista sceneObjectsForCollision_.
  */
-void Wasp::setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO)
+void Wasp::setIterators(GameObjectAnchor itGO, SceneObjectAnchor itSCO)
 {
     itGO_ = itGO;
     itSCO_ = itSCO;

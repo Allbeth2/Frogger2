@@ -7,6 +7,8 @@
 
 class PlayState;
 
+using GameObjectAnchor = std::list<GameObject*>::iterator;
+using SceneObjectAnchor = std::list<SceneObject*>::iterator;
 
 
 class Wasp : public SceneObject
@@ -19,9 +21,9 @@ private:
 
     Uint32 deathTime;               
 
-    std::list<GameObject*>::iterator itGO_;
+    GameObjectAnchor itGO_;
 
-    std::list<SceneObject*>::iterator itSCO_;
+    SceneObjectAnchor itSCO_;
 
     
 
@@ -41,9 +43,6 @@ public:
     virtual void update() override;
     
     
-    virtual void render() const override;
-    
-    
     virtual Collision checkCollision(const SDL_FRect& otherRect) override;
     
     bool isWasp() const override { return true; }
@@ -51,7 +50,7 @@ public:
     bool isAlive() const;
     
    
-    void setIterators(std::list<GameObject*>::iterator itGO, std::list<SceneObject*>::iterator itSCO) override;
+    void setIterators(GameObjectAnchor itGO, SceneObjectAnchor itSCO) override;
 };
 
 #endif // WASP_H

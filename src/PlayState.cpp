@@ -58,10 +58,7 @@ PlayState::~PlayState()
 
 void PlayState::update()
 {
-    for (GameObject* obj : gameObjects_)
-    {
-        obj->update();
-    }
+    GameState::update();
 
     trySpawnWasp();
 
@@ -89,10 +86,7 @@ void PlayState::render() const
 	game_->getTexture(Game::BACKGROUND)->render(); // Se renderiza el fondo primero
 
 
-    for (GameObject* obj : gameObjects_)
-    {
-        obj->render();
-    }
+    GameState::render();
 }
 
 #include "PauseState.h"

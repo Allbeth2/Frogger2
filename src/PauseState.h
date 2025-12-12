@@ -12,7 +12,6 @@ public:
     PauseState(Game* game, PlayState* playState);
     virtual ~PauseState() = default;
 
-    void update() override;
     void render() const override;
     void handleEvent(const SDL_Event& event) override;
 

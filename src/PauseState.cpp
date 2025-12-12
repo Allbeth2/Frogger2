@@ -90,14 +90,6 @@ void PauseState::messageBox()
     }
 }
 
-void PauseState::update()
-{
-    for (auto& obj : gameObjects_)
-    {
-        obj->update();
-    }
-}
-
 void PauseState::render() const
 {
     playState_->render();
@@ -107,10 +99,7 @@ void PauseState::render() const
     SDL_FRect overlayRect = { 0, 0, (float)Game::WINDOW_WIDTH, (float)Game::WINDOW_HEIGHT };
     SDL_RenderFillRect(game_->getRenderer(), &overlayRect);
 
-    for (const auto& obj : gameObjects_)
-    {
-        obj->render();
-    }
+    GameState::render();
 }
 
 void PauseState::handleEvent(const SDL_Event& event)

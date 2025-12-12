@@ -49,23 +49,6 @@ void EndState::createButtons(bool won)
     addEventListener(exitButton_);
 }
 
-void EndState::update()
-{
-    for (auto& obj : gameObjects_)
-    {
-        obj->update();
-    }
-}
-
-void EndState::render() const
-{
-    // El fondo se renderiza en negro por defecto porque no se renderiza ninguna textura de fondo
-    for (const auto& obj : gameObjects_)
-    {
-        obj->render();
-    }
-}
-
 void EndState::handleEvent(const SDL_Event& event)
 {
     for (auto& handler : eventHandlers_)

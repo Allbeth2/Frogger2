@@ -10,6 +10,22 @@ GameState::~GameState() {
 
 }
 
+void GameState::update()
+{
+    for (auto& obj : gameObjects_)
+    {
+        obj->update();
+    }
+}
+
+void GameState::render() const
+{
+    for (const auto& obj : gameObjects_)
+    {
+        obj->render();
+    }
+}
+
 void GameState::addEventListener(EventHandler* handler) {
     eventHandlers_.push_back(handler);
 }
