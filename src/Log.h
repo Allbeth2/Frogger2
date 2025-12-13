@@ -9,7 +9,7 @@ class PlayState;
 class Log : public Platform
 {
 public:
-	Log(PlayState* state, std::fstream& file, int lineNumber);
+	Log(PlayState* state, std::ifstream& file, int lineNumber);
     
     virtual ~Log() = default;
     

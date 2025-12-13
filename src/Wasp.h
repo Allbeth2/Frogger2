@@ -35,7 +35,7 @@ public:
 
     
 
-    Wasp(PlayState* state, std::fstream& file, int lineNumber);
+    Wasp(PlayState* state, std::ifstream& file, int lineNumber);
 
     virtual ~Wasp() = default;
     

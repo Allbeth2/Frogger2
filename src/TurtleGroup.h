@@ -18,7 +18,7 @@ class TurtleGroup : public Platform
     static constexpr int TOTAL_FRAMES = 7; // numero de frames en la animacion de sinking
 
 public:
-	TurtleGroup(PlayState* state, std::fstream& file, int lineNumber);
+	TurtleGroup(PlayState* state, std::ifstream& file, int lineNumber);
     virtual ~TurtleGroup() = default;
     
     void update() override;

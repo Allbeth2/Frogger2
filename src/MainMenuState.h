@@ -15,7 +15,7 @@ public:
     MainMenuState(Game* game);
     virtual ~MainMenuState();
 
-    /*void update() override;*/
+    void update() override;
     void render() const override;
     void handleEvent(const SDL_Event& event) override;
 

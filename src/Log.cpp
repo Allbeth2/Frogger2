@@ -12,7 +12,7 @@
  * @param file Stream del archivo para leer los datos.
  * @param lineNumber Número de línea actual en el archivo.
  */
-Log::Log(PlayState* state, std::fstream& file, int lineNumber)
+Log::Log(PlayState* state, std::ifstream& file, int lineNumber)
     : Platform(state, file, lineNumber)
 {
     int TextureType;

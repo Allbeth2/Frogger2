@@ -12,7 +12,7 @@
  * @param file Stream del archivo para leer los datos.
  * @param lineNumber Número de línea actual en el archivo.
  */
-TurtleGroup::TurtleGroup(PlayState* state, std::fstream& file, int lineNumber)
+TurtleGroup::TurtleGroup(PlayState* state, std::ifstream& file, int lineNumber)
     : Platform(state, file, lineNumber),
       turtleCount(3),
       sinking(false), currentFrame(0), animationTimer(0.0f)

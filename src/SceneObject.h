@@ -24,7 +24,7 @@ protected:
     Texture* texture;
     PlayState* playState;
     SceneObject(PlayState* state, Texture* texture, Point2D<float> pos, float w, float h);
-    SceneObject(PlayState* state, std::fstream& file, int lineNumber);
+    SceneObject(PlayState* state, std::ifstream& file, int lineNumber);
 
 public:
     virtual ~SceneObject() = default;

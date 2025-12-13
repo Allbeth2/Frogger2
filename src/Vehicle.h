@@ -9,7 +9,7 @@ class PlayState;
 class Vehicle : public Crosser
 {
 public:
-    Vehicle(PlayState* state, std::fstream& file, int lineNumber);
+    Vehicle(PlayState* state, std::ifstream& file, int lineNumber);
     
     ~Vehicle() = default;
     

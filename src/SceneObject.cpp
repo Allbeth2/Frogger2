@@ -14,7 +14,7 @@ SceneObject::SceneObject(PlayState* state, Texture* texture, Point2D<float> pos,
  * @param file Stream del archivo para leer los datos.
  * @param lineNumber Número de línea actual en el archivo.
  */
-SceneObject::SceneObject(PlayState* state, std::fstream& file, int lineNumber)
+SceneObject::SceneObject(PlayState* state, std::ifstream& file, int lineNumber)
     : GameObject(state), playState(state)
 {
     float Xpos, Ypos;

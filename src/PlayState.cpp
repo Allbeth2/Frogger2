@@ -273,7 +273,7 @@ bool PlayState::allNestsOccupied() const
  */
 bool PlayState::LoadEntitiesFromFile()
 {
-    std::fstream file(mapFilePath_);
+    std::ifstream file(mapFilePath_);
     if (!file.is_open())
     {
         throw FileNotFoundError("Map file not found: "s + mapFilePath_.string());
@@ -295,7 +295,7 @@ bool PlayState::LoadEntitiesFromFile()
 /**
  * @brief Carga una avispa desde el archivo.
  */
-void PlayState::loadWasp(std::fstream& file, int lineNumber)
+void PlayState::loadWasp(std::ifstream& file, int lineNumber)
 {
     Wasp* newWasp = new Wasp(this, file, lineNumber);
     addSceneObject(newWasp);
@@ -307,7 +307,7 @@ void PlayState::loadWasp(std::fstream& file, int lineNumber)
  * @param file El stream del archivo para leer.
  * @param lineNumber El número de línea actual en el archivo.
  */
-void PlayState::processEntity(char entidad, std::fstream& file, int lineNumber)
+void PlayState::processEntity(char entidad, std::ifstream& file, int lineNumber)
 {
 
     switch (entidad) {
@@ -335,7 +335,7 @@ void PlayState::processEntity(char entidad, std::fstream& file, int lineNumber)
 /**
  * @brief Carga un vehículo desde el archivo.
  */
-void PlayState::loadVehicle(std::fstream& file, int lineNumber)
+void PlayState::loadVehicle(std::ifstream& file, int lineNumber)
 {
     Vehicle* newVehicle = new Vehicle(this, file, lineNumber);
     addSceneObject(newVehicle);
@@ -344,7 +344,7 @@ void PlayState::loadVehicle(std::fstream& file, int lineNumber)
 /**
  * @brief Carga un tronco desde el archivo.
  */
-void PlayState::loadLog(std::fstream& file, int lineNumber)
+void PlayState::loadLog(std::ifstream& file, int lineNumber)
 {
     Log* newLog = new Log(this, file, lineNumber);
     addSceneObject(newLog);
@@ -353,7 +353,7 @@ void PlayState::loadLog(std::fstream& file, int lineNumber)
 /**
  * @brief Carga un grupo de tortugas desde el archivo.
  */
-void PlayState::loadTurtleGroup(std::fstream& file, int lineNumber)
+void PlayState::loadTurtleGroup(std::ifstream& file, int lineNumber)
 {
     TurtleGroup* newTurtleGroup = new TurtleGroup(this, file, lineNumber);
     addSceneObject(newTurtleGroup);
@@ -362,7 +362,7 @@ void PlayState::loadTurtleGroup(std::fstream& file, int lineNumber)
 /**
  * @brief Carga la rana desde el archivo.
  */
-void PlayState::loadFrog(std::fstream& file, int lineNumber)
+void PlayState::loadFrog(std::ifstream& file, int lineNumber)
 {
     Frog* newFrog = new Frog(this, file, lineNumber);
     addSceneObject(newFrog);

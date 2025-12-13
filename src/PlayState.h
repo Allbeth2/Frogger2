@@ -104,13 +104,13 @@ private:
      * @param file El stream del archivo para leer.
      * @param lineNumber El número de línea actual en el archivo.
      */
-    void processEntity(char entidad, std::fstream& file, int lineNumber);
+    void processEntity(char entidad, std::ifstream& file, int lineNumber);
 
-    void loadVehicle(std::fstream& file, int lineNumber);
-    void loadLog(std::fstream& file, int lineNumber);
-    void loadTurtleGroup(std::fstream& file, int lineNumber);
-    void loadFrog(std::fstream& file, int lineNumber);
-    void loadWasp(std::fstream& file, int lineNumber);
+    void loadVehicle(std::ifstream& file, int lineNumber);
+    void loadLog(std::ifstream& file, int lineNumber);
+    void loadTurtleGroup(std::ifstream& file, int lineNumber);
+    void loadFrog(std::ifstream& file, int lineNumber);
+    void loadWasp(std::ifstream& file, int lineNumber);
     void addSceneObject(SceneObject* obj);
 };
 

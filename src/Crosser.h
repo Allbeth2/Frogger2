@@ -16,7 +16,7 @@ protected:
     Vector2D<float> backjump;
 public:
     Crosser(PlayState* state, Texture* texture, Point2D<float> pos, float w, float h, Vector2D<float> vel);
-    Crosser(PlayState* state, std::fstream& file, int lineNumber);
+    Crosser(PlayState* state, std::ifstream& file, int lineNumber);
     virtual ~Crosser() = default;
     virtual void update() override;
     Vector2D<float> getVelocity() const;

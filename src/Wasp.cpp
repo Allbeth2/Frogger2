@@ -25,7 +25,7 @@ Wasp::Wasp(PlayState* state, Texture* texture, Point2D<float> pos, Vector2D<floa
  * @param file Stream del archivo para leer los datos.
  * @param lineNumber Número de línea actual en el archivo.
  */
-Wasp::Wasp(PlayState* state, std::fstream& file, int lineNumber)
+Wasp::Wasp(PlayState* state, std::ifstream& file, int lineNumber)
     : SceneObject(state, file, lineNumber)
 {
     float vx, vy;

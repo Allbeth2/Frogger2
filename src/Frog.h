@@ -20,7 +20,7 @@ class Frog : public SceneObject, public EventHandler
 		int orientation;                      
 		
 	public:
-		Frog(PlayState* state, std::fstream& file, int lineNumber);
+		Frog(PlayState* state, std::ifstream& file, int lineNumber);
 			
 		~Frog() = default;
 		

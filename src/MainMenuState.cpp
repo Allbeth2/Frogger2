@@ -45,6 +45,26 @@ MainMenuState::~MainMenuState()
     }
 }
 
+void MainMenuState::update()
+{
+    for (auto& obj : gameObjects_)
+    {
+        obj->update();
+    }
+
+    if (mapNameButton_ != nullptr)
+    {
+        mapNameButton_->setTexture(getSelectedMapTexture());
+    }
+
+    bool arrowsVisible = mapFiles_.size() > 1;
+    if (leftArrowButton_ != nullptr && rightArrowButton_ != nullptr)
+    {
+        leftArrowButton_->setVisible(arrowsVisible);
+        rightArrowButton_->setVisible(arrowsVisible);
+    }
+}
+
 /**
  * @brief Carga los mapas disponibles desde la carpeta de assets.
  */

@@ -13,7 +13,7 @@
  * @param file Stream del archivo para leer los datos.
  * @param lineNumber Número de línea actual en el archivo.
  */
-Frog::Frog(PlayState* state, std::fstream& file, int lineNumber)
+Frog::Frog(PlayState* state, std::ifstream& file, int lineNumber)
 	: SceneObject(state, file, lineNumber),
 	  spawnPosition(0.0f, 0.0f),
 	  direction(0, 0),

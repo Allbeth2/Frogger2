@@ -2,7 +2,7 @@
 #include "Game.h" 
 #include "PlayState.h"
 #include "FileFormatError.h"
-Crosser::Crosser(PlayState* state, std::fstream& file, int lineNumber)
+Crosser::Crosser(PlayState* state, std::ifstream& file, int lineNumber)
     : SceneObject(state, file, lineNumber)
 {
     float Xvel;

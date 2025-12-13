@@ -13,7 +13,7 @@
  * @param file Stream del archivo para leer los datos.
  * @param lineNumber Número de línea actual en el archivo.
  */
-Vehicle::Vehicle(PlayState* state, std::fstream& file, int lineNumber) 
+Vehicle::Vehicle(PlayState* state, std::ifstream& file, int lineNumber) 
     : Crosser(state, file, lineNumber)
 {
     int TextureType;
